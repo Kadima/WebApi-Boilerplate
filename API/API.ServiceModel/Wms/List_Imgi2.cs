@@ -28,6 +28,7 @@ namespace WmsWS.ServiceModel.Wms
         public int LooseQty { get; set; }
         public string ProductName { get; set; }
         public string SerialNoFlag { get; set; }
+        public string SerialNo { get; set; }
         public string UserDefine01 { get; set; }
     }
     public class List_Imgi2_Logic

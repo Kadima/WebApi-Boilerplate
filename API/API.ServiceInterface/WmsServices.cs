@@ -21,6 +21,7 @@ namespace WmsWS.ServiceInterface
         public Confirm_Imgr1_Logic confirm_Imgr1_Logic { get; set; }
         public List_Imgi1_Logic list_Imgi1_Logic { get; set; }
         public List_Imgi2_Logic list_Imgi2_Logic { get; set; }
+        public List_Imsn1_Logic list_Imsn1_Logic { get; set; }
         //public List_JobNo_Logic list_JobNo_Logic { get; set; }
         //public Update_Done_Logic update_Done_Logic { get; set; }
         public List_Rcbp1_Logic list_Rcbp1_Logic { get; set; }
@@ -146,6 +147,25 @@ namespace WmsWS.ServiceInterface
             {
                 ListService ls = new ListService();
                 ls.ListImgi2(auth, request, list_Imgi2_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                ecr.meta.code = 599;
+                ecr.meta.message = "The server handle exceptions, the operation fails.";
+                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.field = ex.HelpLink;
+                ecr.meta.errors.message = ex.Message.ToString();
+            }
+            return ecr;
+        }
+        public object Any(List_Imsn1 request)
+        {
+            CommonResponse ecr = new CommonResponse();
+            ecr.initial();
+            try
+            {
+                ListService ls = new ListService();
+                ls.ListImsn1(auth, request, list_Imsn1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex)
             {

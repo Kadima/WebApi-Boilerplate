@@ -109,7 +109,28 @@ namespace WmsWS.ServiceInterface.Wms
                 ecr.meta.message = "Unauthorized";
             }
         }
-        
+        public void ListImsn1(Auth auth, List_Imsn1 request, List_Imsn1_Logic list_Imsn1_Logic, CommonResponse ecr, string[] token, string uri)
+        {
+            if (auth.AuthResult(token, uri))
+            {
+                ecr.data.results = list_Imsn1_Logic.GetList(request);
+                if (ecr.data.results != null)
+                {
+                    ecr.meta.code = 200;
+                    ecr.meta.message = "OK";
+                }
+                else
+                {
+                    ecr.meta.code = 612;
+                    ecr.meta.message = "The specified resource does not exist";
+                }
+            }
+            else
+            {
+                ecr.meta.code = 401;
+                ecr.meta.message = "Unauthorized";
+            }
+        }
         public void ListRcbp1(Auth auth, List_Rcbp1 request, List_Rcbp1_Logic list_Rcbp1_Logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
