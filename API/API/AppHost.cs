@@ -63,6 +63,7 @@ namespace WmsWS
             //container.RegisterAutoWired<WmsWS.ServiceModel.Wms.Update_Done_Logic>();
             //container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_JobNo_Logic>();
             container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Rcbp1_Logic>();
+            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Rcbp3_Logic>();
         }
 
         #region DES

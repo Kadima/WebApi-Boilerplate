@@ -79,6 +79,7 @@
     <Compile Include="Wms\List_Imgi1.cs" />
     <Compile Include="Wms\List_Imsn1.cs" />
     <Compile Include="Wms\List_Imgi2.cs" />
+    <Compile Include="Wms\List_Rcbp3.cs" />
     <Compile Include="Wms\List_Rcbp1.cs" />
     <Compile Include="Wms\List_Imgr2.cs" />
     <Compile Include="Wms\List_Impr1.cs" />
