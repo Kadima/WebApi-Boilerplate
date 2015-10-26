@@ -1,5 +1,5 @@
-# EventListWS
-SysFreight EventList Project    
+# WMS WS
+SysFreight WMS Project    
 
 Development Enviroment:  
 ## VS2013 CE  
