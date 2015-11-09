@@ -60,7 +60,6 @@ namespace WmsWS.ServiceModel.Wms
                             db.From<Imgr1>()
                             .Where(r1 => r1.CustomerCode != null && r1.CustomerCode != "" && r1.GoodsReceiptNoteNo != null && r1.GoodsReceiptNoteNo != "" && r1.StatusCode != null && r1.StatusCode != "DEL" && r1.StatusCode != "EXE" && r1.StatusCode != "CMP" && r1.GoodsReceiptNoteNo.StartsWith(request.GoodsReceiptNoteNo))
                             .OrderByDescending(r1 => r1.ReceiptDate)
-                            .Take(10)
                         );
                     }                  
                 }
