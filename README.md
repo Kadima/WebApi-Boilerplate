@@ -1,11 +1,11 @@
-# WMS WS
-SysFreight WMS Project    
+# Web API
+SysFreight Web API Project    
 
 Development Enviroment:  
 ## VS2013 CE  
   * ServiceStack.net &nbsp;&nbsp;&nbsp;&nbsp;(/API;/API.ServiceInterface;/API.ServiceModel)  
   * InstallShield Limited Edition &nbsp;&nbsp;&nbsp;&nbsp;(/Setup)  
-  * Framework 4.5 Full  
+  * Framework 3.5
   * NodeJS , NPM , Bower , Gulp  
 
 ## Setup
