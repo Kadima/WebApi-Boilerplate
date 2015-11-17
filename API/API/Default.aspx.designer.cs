@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WmsWS {
+namespace WebApi {
     
     
     public partial class Default {

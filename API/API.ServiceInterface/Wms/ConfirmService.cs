@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using WmsWS.ServiceModel;
-using WmsWS.ServiceModel.Wms;
+using WebApi.ServiceModel;
+using WebApi.ServiceModel.Wms;
 
-namespace WmsWS.ServiceInterface.Wms
+namespace WebApi.ServiceInterface.Wms
 {
     public class ConfirmService
     {

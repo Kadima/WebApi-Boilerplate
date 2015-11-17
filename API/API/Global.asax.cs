@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WmsWS
+namespace WebApi
 {
     public class Global : System.Web.HttpApplication
     {

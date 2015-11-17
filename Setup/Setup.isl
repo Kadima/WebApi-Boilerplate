@@ -52,7 +52,7 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>##ID_STRING6##</title>
-		<subject>WmsAPI</subject>
+		<subject>WebAPI</subject>
 		<author>##ID_STRING5##</author>
 		<keywords>Installer,MSI</keywords>
 		<comments>Contact:  Your local administrator</comments>
@@ -225,7 +225,7 @@
 	<table name="AppSearch">
 		<col key="yes" def="s72">Property</col>
 		<col key="yes" def="s72">Signature_</col>
-		<row><td>DOTNETVERSION45FULL</td><td>DotNet45Full</td></row>
+		<row><td>DOTNETVERSION35</td><td>DotNet35</td></row>
 		<row><td>IISROOTFOLDER</td><td>_IISROOTFOLDER</td></row>
 	</table>
 
@@ -341,11 +341,11 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>Component3</td><td>{74E1CAAD-1A04-4A61-9A6C-2939A87D3155}</td><td>BIN</td><td>2</td><td/><td>File3</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component4</td><td>{5B37C6C8-E0CA-4029-95F9-EFC5F7F57E06}</td><td>INSTALLDIR</td><td>2</td><td/><td>File4</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component5</td><td>{265744F7-D143-4F17-8CFB-AC760036CF47}</td><td>BIN</td><td>2</td><td/><td>File5</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component6</td><td>{42F0E241-6169-42A2-88CC-53E149F5C6F4}</td><td>INSTALLDIR</td><td>2</td><td/><td>File6</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component7</td><td>{A189016F-D2D1-4BCC-B15F-ACAA7BFF69D2}</td><td>BIN</td><td>2</td><td/><td>File7</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component</td><td>{0A6ACDF2-82DB-44E8-ABFA-72C170172CF5}</td><td>INSTALLDIR</td><td>2</td><td/><td>File</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component1</td><td>{803379F8-DDAB-483C-A7E3-C4C5EDE848E1}</td><td>INSTALLDIR</td><td>2</td><td/><td>File1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component2</td><td>{365D509D-141E-4B08-AE73-1325F0D67DB0}</td><td>BIN</td><td>2</td><td/><td>File2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component4</td><td>{B77E98FA-14A5-4342-9649-92BD109342C4}</td><td>BIN</td><td>2</td><td/><td>File4</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component6</td><td>{A83AFD04-1BC9-4FBA-A980-02E43B3CD334}</td><td>BIN</td><td>2</td><td/><td>File6</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{FC156DC8-3C1D-4155-862C-BDF658FB8297}</td><td>BIN</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{4ABC9A2C-D7CC-45F4-8648-F02CEF86BD2F}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td>{95FA8CE9-7272-4CE5-A44C-45D38601AB5B}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1060,15 +1060,15 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>BIN</td><td>Component3</td></row>
-		<row><td>BIN</td><td>Component5</td></row>
-		<row><td>BIN</td><td>Component7</td></row>
+		<row><td>BIN</td><td>Component2</td></row>
+		<row><td>BIN</td><td>Component4</td></row>
+		<row><td>BIN</td><td>Component6</td></row>
 		<row><td>BIN</td><td>ISX_DEFAULTCOMPONENT</td></row>
-		<row><td>INSTALLDIR</td><td>Component3</td></row>
+		<row><td>INSTALLDIR</td><td>Component</td></row>
+		<row><td>INSTALLDIR</td><td>Component1</td></row>
+		<row><td>INSTALLDIR</td><td>Component2</td></row>
 		<row><td>INSTALLDIR</td><td>Component4</td></row>
-		<row><td>INSTALLDIR</td><td>Component5</td></row>
 		<row><td>INSTALLDIR</td><td>Component6</td></row>
-		<row><td>INSTALLDIR</td><td>Component7</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>INSTALLDIR</td><td>IS_ININSTALL_SHORTCUT</td></row>
@@ -1082,7 +1082,7 @@
 		<col def="S0">Target</col>
 		<col def="I4">ExtendedType</col>
 		<col def="S255">ISComments</col>
-		<row><td>CreateIISApplication</td><td>18</td><td>File5</td><td/><td/><td/></row>
+		<row><td>CreateIISApplication</td><td>18</td><td>File1</td><td/><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>19</td><td/><td>[IS_PREVENT_DOWNGRADE_EXIT]</td><td/><td>Exits install when a newer version of this product is found</td></row>
 		<row><td>ISPrint</td><td>1</td><td>SetAllUsers.dll</td><td>PrintScrollableText</td><td/><td>Prints the contents of a ScrollableText control on a dialog.</td></row>
 		<row><td>ISRunSetupTypeAddLocalEvent</td><td>1</td><td>ISExpHlp.dll</td><td>RunSetupTypeAddLocalEvent</td><td/><td>Run the AddLocal events associated with the Next button on the Setup Type dialog.</td></row>
@@ -1173,7 +1173,7 @@
 		<row><td>LocalAppDataFolder</td><td>TARGETDIR</td><td>.:LocalA~1|LocalAppData</td><td/><td>0</td><td/></row>
 		<row><td>MyPicturesFolder</td><td>TARGETDIR</td><td>.:MyPict~1|MyPictures</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY1</td><td>PrimaryVolumePath</td><td>WebAPI</td><td/><td>0</td><td/></row>
-		<row><td>NEW_DIRECTORY2</td><td>IISROOTFOLDER</td><td>WmsAPI</td><td/><td>0</td><td/></row>
+		<row><td>NEW_DIRECTORY2</td><td>IISROOTFOLDER</td><td>WebAPI</td><td/><td>0</td><td/></row>
 		<row><td>NetHoodFolder</td><td>TARGETDIR</td><td>.:NetHood</td><td/><td>0</td><td/></row>
 		<row><td>PersonalFolder</td><td>TARGETDIR</td><td>.:Personal</td><td/><td>0</td><td/></row>
 		<row><td>PrimaryVolumePath</td><td>TARGETDIR</td><td>.:Primar~1|PrimaryVolumePath</td><td/><td>0</td><td/></row>
@@ -1889,11 +1889,11 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>AlwaysInstall</td><td>Component3</td></row>
+		<row><td>AlwaysInstall</td><td>Component</td></row>
+		<row><td>AlwaysInstall</td><td>Component1</td></row>
+		<row><td>AlwaysInstall</td><td>Component2</td></row>
 		<row><td>AlwaysInstall</td><td>Component4</td></row>
-		<row><td>AlwaysInstall</td><td>Component5</td></row>
 		<row><td>AlwaysInstall</td><td>Component6</td></row>
-		<row><td>AlwaysInstall</td><td>Component7</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>IS_ININSTALL_SHORTCUT</td></row>
@@ -1912,11 +1912,11 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>File3</td><td>Component3</td><td>WmsAPI.主输出</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WmsAPI&gt;|Built</td><td>3</td><td/></row>
-		<row><td>File4</td><td>Component4</td><td>WmsAPI.内容文件</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WmsAPI&gt;|ContentFiles</td><td>3</td><td/></row>
-		<row><td>File5</td><td>Component5</td><td>WmsAPI.ServiceModel.主输出</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WmsAPI.ServiceModel&gt;|Built</td><td>3</td><td/></row>
-		<row><td>File6</td><td>Component6</td><td>WmsAPI.ConfigIIS.主输出</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WmsAPI.ConfigIIS&gt;|Built</td><td>3</td><td/></row>
-		<row><td>File7</td><td>Component7</td><td>WmsAPI.ServiceInterface.主输出</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WmsAPI.ServiceInterface&gt;|Built</td><td>3</td><td/></row>
+		<row><td>File</td><td>Component</td><td>API.内容文件</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;API&gt;|ContentFiles</td><td>3</td><td/></row>
+		<row><td>File1</td><td>Component1</td><td>ConfigIIS.主输出</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ConfigIIS&gt;|Built</td><td>3</td><td/></row>
+		<row><td>File2</td><td>Component2</td><td>API.主输出</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;API&gt;|Built</td><td>3</td><td/></row>
+		<row><td>File4</td><td>Component4</td><td>API.ServiceModel.主输出</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;API.ServiceModel&gt;|Built</td><td>3</td><td/></row>
+		<row><td>File6</td><td>Component6</td><td>API.ServiceInterface.主输出</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;API.ServiceInterface&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2060,11 +2060,11 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>Component3</td><td/><td/><td>_AB94822C_D0B2_40D9_B507_12CB33FB3EA7_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component4</td><td/><td/><td>_FAA990BF_9C06_4C3F_AA6F_3491170DD35C_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component5</td><td/><td/><td>_5441E5C8_8D87_48BC_95F7_60A8F15A03D3_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component6</td><td/><td/><td>_7A02E5B8_EA17_4143_8BBA_909221D1ED4A_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component7</td><td/><td/><td>_4381943F_2D6F_4579_9F5A_6BA8AE5D6BBE_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component</td><td/><td/><td>_4A73BE8C_FDE1_4B83_8D62_68AC7EC5F8E8_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component1</td><td/><td/><td>_D01DEBBE_81CB_4A9F_894A_A89680D3F339_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component2</td><td/><td/><td>_F4BFBA6B_216E_4014_8ABF_7D41509BDBA9_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component4</td><td/><td/><td>_DCABB4DF_AC86_4574_8FC5_9127B218BB50_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component6</td><td/><td/><td>_2EDCB4C1_B007_45DF_8ECD_967B84D9A081_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_65F2E409_CFDE_413A_81E3_33F7899FBF20_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_6E49CA5F_5585_4307_AF10_632621B34F9A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td/><td/><td>_D5B9E498_9962_4F84_B6CC_0A14029D2580_FILTER</td><td/><td/><td/><td/></row>
@@ -2346,7 +2346,11 @@
 		<col def="S255">Value</col>
 		<col def="S255">TestValue</col>
 		<col def="i4">Type</col>
+		<row><td>API</td><td>API\API\API.csproj</td><td/><td>2</td></row>
+		<row><td>API.ServiceInterface</td><td>API\API.ServiceInterface\API.ServiceInterface.csproj</td><td/><td>2</td></row>
+		<row><td>API.ServiceModel</td><td>API\API.ServiceModel\API.ServiceModel.csproj</td><td/><td>2</td></row>
 		<row><td>CommonFilesFolder</td><td/><td/><td>1</td></row>
+		<row><td>ConfigIIS</td><td>ConfigIIS\ConfigIIS.csproj</td><td/><td>2</td></row>
 		<row><td>ISPROJECTDIR</td><td/><td/><td>1</td></row>
 		<row><td>ISProductFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
@@ -2668,6 +2672,7 @@
 		<row><td>COMPANY_NAME</td><td>1033</td><td>SysFreight</td><td>0</td><td/><td>-1801210706</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>1285770221</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>1285770221</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION35</td><td>1033</td><td>Microsoft .NET Framework 3.5 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-1918654223</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION40CLIENT</td><td>1033</td><td>Microsoft .NET Framework 4.0 Client Package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>1285790797</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION40FULL</td><td>1033</td><td>Microsoft .NET Framework 4.0 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>1285794893</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>1285807181</td></row>
@@ -3781,7 +3786,7 @@
 	<table name="ISSwidtagProperty">
 		<col key="yes" def="s72">Name</col>
 		<col def="s0">Value</col>
-		<row><td>UniqueId</td><td>89D750F1-80A0-4675-9796-3143F510321E</td></row>
+		<row><td>UniqueId</td><td>92D4ABA8-1590-4107-B604-FCABD45AD83B</td></row>
 	</table>
 
 	<table name="ISTargetImage">
@@ -4083,7 +4088,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col key="yes" def="s255">Condition</col>
 		<col def="l255">Description</col>
 		<row><td>(Not Version9X) And (Not (VersionNT&gt;=400 And VersionNT&lt;=600))</td><td>##IDPROP_EXPRESS_LAUNCH_CONDITION_OS##</td></row>
-		<row><td>DOTNETVERSION45FULL&gt;="#1"</td><td>##IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL##</td></row>
+		<row><td>DOTNETVERSION35&lt;&gt;""</td><td>##IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION35##</td></row>
 	</table>
 
 	<table name="ListBox">
@@ -4398,8 +4403,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{4386D010-A78E-43A6-94A8-C14BBCCA08BC}</td><td/></row>
-		<row><td>ProductName</td><td>WmsAPI</td><td/></row>
+		<row><td>ProductCode</td><td>{BA560CCE-5E36-47F2-A5D6-E87D918D03C2}</td><td/></row>
+		<row><td>ProductName</td><td>WebAPI</td><td/></row>
 		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
@@ -4412,10 +4417,10 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>RestartManagerOption</td><td>CloseRestart</td><td/></row>
 		<row><td>SERIALNUMBER</td><td/><td/></row>
 		<row><td>SERIALNUMVALSUCCESSRETVAL</td><td>1</td><td/></row>
-		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;DOTNETVERSION45FULL;IISROOTFOLDER</td><td/></row>
+		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;IISROOTFOLDER;DOTNETVERSION35</td><td/></row>
 		<row><td>SelectedSetupType</td><td>##IDS__DisplayName_Typical##</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
-		<row><td>UpgradeCode</td><td>{236B3F96-0227-4B64-84B1-8C3AC8297136}</td><td/></row>
+		<row><td>UpgradeCode</td><td>{C7E44925-A200-45D2-B1EC-CEAADE8D519D}</td><td/></row>
 		<row><td>_IsMaintenance</td><td>Change</td><td/></row>
 		<row><td>_IsSetupTypeMin</td><td>Typical</td><td/></row>
 	</table>
@@ -4457,7 +4462,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s255">Key</col>
 		<col def="S255">Name</col>
 		<col def="I2">Type</col>
-		<row><td>DotNet45Full</td><td>2</td><td>SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full</td><td>Version</td><td>2</td></row>
+		<row><td>DotNet35</td><td>2</td><td>SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5</td><td>Version</td><td>2</td></row>
 		<row><td>_IISROOTFOLDER</td><td>2</td><td>Software\Microsoft\InetStp</td><td>PathWWWRoot</td><td>0</td></row>
 	</table>
 

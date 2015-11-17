@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using ServiceStack;
-using ServiceStack.Data;
+using ServiceStack.ServiceHost;
 using ServiceStack.OrmLite;
 
-namespace WmsWS.ServiceModel.Wms
+namespace WebApi.ServiceModel.Wms
 {
     [Route("/wms/action/confirm/imgr1", "Post")]
     public class Confirm_Imgr1 : IReturn<CommonResponse>

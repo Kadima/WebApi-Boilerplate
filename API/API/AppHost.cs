@@ -1,9 +1,7 @@
 ﻿using Funq;
 using ServiceStack;
-using ServiceStack.Auth;
-using ServiceStack.Caching;
 using ServiceStack.Configuration;
-using ServiceStack.Data;
+using ServiceStack.ServiceHost;
 using ServiceStack.MiniProfiler;
 using ServiceStack.MiniProfiler.Data;
 using ServiceStack.OrmLite;
@@ -12,32 +10,39 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using WmsWS.ServiceInterface;
+using WebApi.ServiceInterface;
 using System.Reflection;
+using ServiceStack.WebHost.Endpoints;
+using ServiceStack.ServiceInterface.Cors;
+using ServiceStack.Common.Web;
 
-namespace WmsWS
+namespace WebApi
 {
     public class AppHost : AppHostBase
     {
         private static string ver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         private static string strSecretKey;
         public AppHost()
-            : base("WmsWS WebService v" + ver, typeof(WmsServices).Assembly)
+            : base("Web Api v" + ver, typeof(WmsServices).Assembly)
         {
         }
         public override void Configure(Container container)
         {
-            SetConfig(new HostConfig
+            //ServiceStack.Text.JsConfig.EmitCamelCaseNames = true; ! DO NOT USE THIS !
+            //Feature disableFeatures = Feature.Xml | Feature.Jsv | Feature.Csv | Feature.Soap11 | Feature.Soap12 | Feature.Soap;
+            SetConfig(new EndpointHostConfig
             {
                 DebugMode = false,
-                EnableFeatures = Feature.All.Remove(Feature.Xml | Feature.Jsv | Feature.Csv | Feature.Soap11 | Feature.Soap12 | Feature.Soap),
-                HandlerFactoryPath = "api"
+                UseCustomMetadataTemplates = true,
+                DefaultContentType = ContentType.Json,
+                EnableFeatures = Feature.Json | Feature.Metadata
+                //ServiceStackHandlerFactoryPath  = "api"                
             });
-            CorsFeature cf = new CorsFeature(allowedOrigins: "*", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature", allowCredentials: false);
+            CorsFeature cf = new CorsFeature(allowedOrigins: "*", allowedMethods: "GET, POST, PUT, DELETE", allowedHeaders: "Content-Type, Signature", allowCredentials: false);
             this.Plugins.Add(cf);
             
             string strConnectionString = GetConnectionString();
-            var dbConnectionFactory = new OrmLiteConnectionFactory(strConnectionString, SqlServerDialect.Provider, true)
+            var dbConnectionFactory = new OrmLiteConnectionFactory(strConnectionString, SqlServerDialect.Provider)
             {                
                 ConnectionFilter =
                     x =>
@@ -45,25 +50,25 @@ namespace WmsWS
             };
             container.Register<IDbConnectionFactory>(dbConnectionFactory);
 
-            var connectString = new WmsWS.ServiceModel.ConnectStringFactory(strConnectionString);
-            container.Register<WmsWS.ServiceModel.IConnectString>(connectString);
+            var connectString = new WebApi.ServiceModel.ConnectStringFactory(strConnectionString);
+            container.Register<WebApi.ServiceModel.IConnectString>(connectString);
 
-            var secretKey = new WmsWS.ServiceModel.SecretKeyFactory(strSecretKey);
-            container.Register<WmsWS.ServiceModel.ISecretKey>(secretKey);
+            var secretKey = new WebApi.ServiceModel.SecretKeyFactory(strSecretKey);
+            container.Register<WebApi.ServiceModel.ISecretKey>(secretKey);
 
-            container.RegisterAutoWired<WmsWS.ServiceModel.Auth>();
-            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Login_Logic>();
-            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Imgr1_Logic>();
-            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Impr1_Logic>();
-            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Imgr2_Logic>();
-            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.Confirm_Imgr1_Logic>();
-            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Imgi1_Logic>();
-            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Imgi2_Logic>();
-            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Imsn1_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Auth>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Login_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Imgr1_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Impr1_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Imgr2_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.Confirm_Imgr1_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Imgi1_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Imgi2_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Imsn1_Logic>();
             //container.RegisterAutoWired<WmsWS.ServiceModel.Wms.Update_Done_Logic>();
             //container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_JobNo_Logic>();
-            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Rcbp1_Logic>();
-            container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_Rcbp3_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Rcbp1_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Rcbp3_Logic>();
         }
 
         #region DES
@@ -102,7 +107,7 @@ namespace WmsWS
         private static string DesDecrypt(string strValue)
         {
             string DesDecrypt = "";
-            if (strValue.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(strValue))
             {
                 return DesDecrypt;
             }
@@ -137,7 +142,7 @@ namespace WmsWS
             string IniConnection = "";
             string strAppSetting = "";
             string[] strDataBase = new string[3];
-            if (strAppSetting.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(strAppSetting))
             {
                 strAppSetting = System.Configuration.ConfigurationManager.AppSettings["DataBase"];
                 strSecretKey = System.Configuration.ConfigurationManager.AppSettings["SecretKey"];

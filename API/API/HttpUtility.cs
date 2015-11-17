@@ -6,7 +6,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 
-namespace WmsWS
+namespace WebApi
 {   
     /// <summary>
     /// Http请求

@@ -29,22 +29,23 @@
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2015Limited\InstallShield.targets"/>
 	<ItemGroup/>
+	<ItemGroup/>
 	<ItemGroup>
-		<ProjectReference Include="..\API\API\WmsAPI.csproj">
-			<Name>WmsAPI</Name>
+		<ProjectReference Include="..\API\API\API.csproj">
+			<Name>API</Name>
 			<Project>{4389B305-B381-4B50-B1A8-BBB5259A0524}</Project>
 		</ProjectReference>
-		<ProjectReference Include="..\ConfigIIS\WmsAPI.ConfigIIS.csproj">
-			<Name>WmsAPI.ConfigIIS</Name>
-			<Project>{E53DF677-E930-4B14-B739-D17F2450C9B2}</Project>
-		</ProjectReference>
-		<ProjectReference Include="..\API\API.ServiceInterface\WmsAPI.ServiceInterface.csproj">
-			<Name>WmsAPI.ServiceInterface</Name>
+		<ProjectReference Include="..\API\API.ServiceInterface\API.ServiceInterface.csproj">
+			<Name>API.ServiceInterface</Name>
 			<Project>{801A0F89-D5F6-49A6-BCEA-6624388C98A4}</Project>
 		</ProjectReference>
-		<ProjectReference Include="..\API\API.ServiceModel\WmsAPI.ServiceModel.csproj">
-			<Name>WmsAPI.ServiceModel</Name>
+		<ProjectReference Include="..\API\API.ServiceModel\API.ServiceModel.csproj">
+			<Name>API.ServiceModel</Name>
 			<Project>{53E82AC1-DD1D-4C66-B55F-F9F4ACFB2F40}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ConfigIIS\ConfigIIS.csproj">
+			<Name>ConfigIIS</Name>
+			<Project>{E53DF677-E930-4B14-B739-D17F2450C9B2}</Project>
 		</ProjectReference>
 	</ItemGroup>
 </Project>

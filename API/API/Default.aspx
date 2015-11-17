@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WmsWS.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebApi.Default" %>
 
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>WmsWS WebService</title>
+    <title>Web API Service</title>
     <link rel="stylesheet" href="libs/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="libs/css/ui-dialog.css"/>
     <script src="libs/js/jquery.min.js"></script>
@@ -47,7 +47,7 @@
 <body>
     <div class="container-fluid">
         <header>            
-            <h1>WebService Dashboard</h1>
+            <h1>Web API Dashboard</h1>
         </header>
         <br />
         <div class="panel panel-default">

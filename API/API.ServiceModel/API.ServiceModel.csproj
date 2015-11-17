@@ -7,9 +7,9 @@
     <ProjectGuid>{53E82AC1-DD1D-4C66-B55F-F9F4ACFB2F40}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WmsWS.ServiceModel</RootNamespace>
-    <AssemblyName>WmsWS.ServiceModel</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>WebApi.ServiceModel</RootNamespace>
+    <AssemblyName>WebApi.ServiceModel</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -35,39 +35,42 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServiceStack, Version=4.0.44.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.4.0.44\lib\net40\ServiceStack.dll</HintPath>
+    <Reference Include="ServiceStack, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.3.9.71\lib\net35\ServiceStack.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Client, Version=4.0.44.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.Client.4.0.44\lib\net40\ServiceStack.Client.dll</HintPath>
+    <Reference Include="ServiceStack.Common, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Common, Version=4.0.44.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.Common.4.0.44\lib\net40\ServiceStack.Common.dll</HintPath>
+    <Reference Include="ServiceStack.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.Interfaces.4.0.44\lib\portable-wp80+sl5+net40+win8+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+    <Reference Include="ServiceStack.OrmLite, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.OrmLite, Version=4.0.44.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.OrmLite.4.0.44\lib\net45\ServiceStack.OrmLite.dll</HintPath>
+    <Reference Include="ServiceStack.OrmLite.SqlServer, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.OrmLite.SqlServer, Version=4.0.44.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.OrmLite.SqlServer.4.0.44\lib\net45\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    <Reference Include="ServiceStack.Redis, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.Redis.3.9.71\lib\net35\ServiceStack.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=4.0.44.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.Text.4.0.44\lib\net40\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.ServiceInterface, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.3.9.71\lib\net35\ServiceStack.ServiceInterface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
@@ -75,6 +78,26 @@
   <ItemGroup>
     <Compile Include="Auth.cs" />
     <Compile Include="ConfigInterface.cs" />
+    <Compile Include="Tables\Imgi2.cs" />
+    <Compile Include="Tables\Imgi1.cs" />
+    <Compile Include="Tables\Imgr1.cs" />
+    <Compile Include="Tables\Imgr2.cs" />
+    <Compile Include="Tables\Impr1.cs" />
+    <Compile Include="Tables\Jmje1.cs" />
+    <Compile Include="Tables\Jmjm1.cs" />
+    <Compile Include="Tables\Jmjm3.cs" />
+    <Compile Include="Tables\Jmjm4.cs" />
+    <Compile Include="Tables\Jmjm6.cs" />
+    <Compile Include="Tables\Saus1.cs" />
+    <Compile Include="Tables\Imsn1.cs" />
+    <Compile Include="Tables\Rcbp3.cs" />
+    <Compile Include="Tables\Rcbp1.cs" />
+    <Compile Include="Tms\CommonResponse.cs" />
+    <Compile Include="Tms\List_Container.cs" />
+    <Compile Include="Tms\List_Jmjm6.cs" />
+    <Compile Include="Tms\List_JobNo.cs" />
+    <Compile Include="Tms\List_Login.cs" />
+    <Compile Include="Tms\Update_Done.cs" />
     <Compile Include="Wms\CommonResponse.cs" />
     <Compile Include="Wms\List_Imgi1.cs" />
     <Compile Include="Wms\List_Imsn1.cs" />
@@ -84,7 +107,6 @@
     <Compile Include="Wms\List_Imgr2.cs" />
     <Compile Include="Wms\List_Impr1.cs" />
     <Compile Include="Wms\List_Imgr1.cs" />
-    <Compile Include="Wms\Update_Done.cs" />
     <Compile Include="Wms\List_Login.cs" />
     <Compile Include="Modfunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +116,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

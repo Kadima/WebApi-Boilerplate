@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using WmsWS.ServiceModel;
-using WmsWS.ServiceModel.Wms;
+using WebApi.ServiceModel;
+using WebApi.ServiceModel.Tms;
 
-namespace WmsWS.ServiceInterface.Wms
+namespace WebApi.ServiceInterface.Tms
 {
     public class DoneService
     {
@@ -16,6 +15,7 @@ namespace WmsWS.ServiceInterface.Wms
             {
                 if (eventdoneLogic.UpdateDone(request) > 0)
                 {
+                    eventdoneLogic.InsertContainerNo(request);
                     ecr.meta.code = 200;
                     ecr.meta.message = "OK";
                 }

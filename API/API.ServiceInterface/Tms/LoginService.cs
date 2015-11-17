@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WebApi.ServiceModel;
-using WebApi.ServiceModel.Wms;
+using WebApi.ServiceModel.Tms;
 
-namespace WebApi.ServiceInterface.Wms
+namespace WebApi.ServiceInterface.Tms
 {
     public class LoginService
     {
@@ -17,12 +17,12 @@ namespace WebApi.ServiceInterface.Wms
                 {
                     ecr.meta.code = 200;
                     ecr.meta.message = "OK";
-                    ecr.data.results = request.UserId;
+                    ecr.data.results = loginLogic.GetUserInfo(request);
                 }
                 else
                 {
                     ecr.meta.code = 612;
-                    ecr.meta.message = "Invalid User";
+                    ecr.meta.message = "Invalid Phone Number";
                 }
             }
             else

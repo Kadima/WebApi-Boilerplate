@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using WmsWS.ServiceModel;
-using WmsWS.ServiceModel.Wms;
-using WmsWS.ServiceInterface.Wms;
+using ServiceStack.ServiceInterface;
+using WebApi.ServiceModel;
+using WebApi.ServiceModel.Wms;
+using WebApi.ServiceInterface.Wms;
 using System.IO;
 
-namespace WmsWS.ServiceInterface
+namespace WebApi.ServiceInterface
 {
     public class WmsServices : Service
     {        
@@ -39,7 +39,7 @@ namespace WmsWS.ServiceInterface
             catch (Exception ex){
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }            
@@ -58,7 +58,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }
@@ -77,7 +77,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }
@@ -96,7 +96,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }
@@ -115,7 +115,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }
@@ -134,7 +134,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }
@@ -153,7 +153,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }
@@ -172,7 +172,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }
@@ -192,7 +192,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }
@@ -211,7 +211,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }
@@ -231,7 +231,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }
@@ -250,7 +250,7 @@ namespace WmsWS.ServiceInterface
             {
                 ecr.meta.code = 599;
                 ecr.meta.message = "The server handle exceptions, the operation fails.";
-                ecr.meta.errors.code = ex.HResult;
+                ecr.meta.errors.code = ex.GetHashCode();
                 ecr.meta.errors.field = ex.HelpLink;
                 ecr.meta.errors.message = ex.Message.ToString();
             }

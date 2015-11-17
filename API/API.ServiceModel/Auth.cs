@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography;  
 
-namespace WmsWS.ServiceModel
+namespace WebApi.ServiceModel
 {
     public class Auth
     {

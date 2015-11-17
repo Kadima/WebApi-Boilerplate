@@ -7,11 +7,23 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WmsWS
+namespace WebApi
 {
     public partial class Default : System.Web.UI.Page
     {
-        public static string strVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        public static string AssemblyFileVersion()
+        {
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyFileVersionAttribute), false);
+            if (attributes.Length == 0)
+            {
+                return "";
+            }
+            else
+            {
+                return ((AssemblyFileVersionAttribute)attributes[0]).Version;
+            }
+        }
+        public static string strVersion = AssemblyFileVersion();  //Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static string strNetVersion = Environment.Version.ToString();
         public static string strServiceIIS = HttpContext.Current.Request.ServerVariables["SERVER_SOFTWARE"];
         public static string strServiceTime = DateTime.Now.ToString();

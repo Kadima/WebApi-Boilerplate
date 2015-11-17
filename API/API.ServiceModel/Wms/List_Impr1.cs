@@ -2,26 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using ServiceStack;
-using ServiceStack.Data;
+using ServiceStack.ServiceHost;
 using ServiceStack.OrmLite;
+using WebApi.ServiceModel.Tables;
 
-namespace WmsWS.ServiceModel.Wms
+namespace WebApi.ServiceModel.Wms
 {
     [Route("/wms/action/list/impr1/{BarCode}", "Get")]
     public class List_Impr1 : IReturn<CommonResponse>
     {
         public string BarCode { get; set; }
-    }
-    public class Impr1
-    {
-        public string ProductCode { get; set; }
-        public string ProductName { get; set; }
-        public string SerialNoFlag { get; set; }
-        public string UserDefine01 { get; set; }
-        public string StatusCode { get; set; }
     }
     public class List_Impr1_Logic
     {        
@@ -33,7 +25,10 @@ namespace WmsWS.ServiceModel.Wms
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-                    Result = db.Single<Impr1>(i1 => i1.ProductCode != null && i1.ProductCode != "" && i1.StatusCode != null && i1.StatusCode != "DEL" && i1.UserDefine01 == request.BarCode);
+                    Result = db.QuerySingle<Impr1>(
+                        "Select * From Impr1 Where IsNull(ProductCode,'')<>'' And IsNull(StatusCode,'')<>'DEL' And UserDefine01={0}",
+                        request.BarCode
+                    );
                 }
             }
             catch { throw; }
