@@ -9,7 +9,7 @@ namespace WebApi.ServiceInterface.Wms
 {
     public class LoginService
     {
-        public void initial(Auth auth, List_Login request, List_Login_Logic loginLogic, CommonResponse ecr, string[] token, string uri)
+        public void initial(Auth auth, Wms_Login request, Wms_Login_Logic loginLogic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {

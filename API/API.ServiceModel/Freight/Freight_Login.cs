@@ -6,18 +6,18 @@ using ServiceStack;
 using ServiceStack.ServiceHost;
 using ServiceStack.OrmLite;
 
-namespace WebApi.ServiceModel.Wms
+namespace WebApi.ServiceModel.Freight
 {
-    [Route("/wms/action/list/login", "Post")]
-    public class List_Login : IReturn<CommonResponse>
+    [Route("/freight/login", "Post")]
+    public class Freight_Login : IReturn<CommonResponse>
     {
         public string UserId { get; set; }
         public string Password { get; set; }
     }
-    public class List_Login_Logic
+    public class Freight_Login_Logic
     {
         public IDbConnectionFactory DbConnectionFactory { get; set; }
-        public int LoginCheck(List_Login request) 
+        public int LoginCheck(Freight_Login request) 
         {
             int Result = -1;
             try

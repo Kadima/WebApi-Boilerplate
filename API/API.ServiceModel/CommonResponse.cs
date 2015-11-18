@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WebApi.ServiceModel.Tms
+namespace WebApi.ServiceModel
 {
     public class CommonResponse_meta_errors
     {

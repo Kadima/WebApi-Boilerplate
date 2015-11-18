@@ -8,11 +8,11 @@ using ServiceStack.ServiceHost;
 using ServiceStack.OrmLite;
 using WebApi.ServiceModel.Tables;
 
-namespace WebApi.ServiceModel.Wms
+namespace WebApi.ServiceModel.Freight
 {
-    [Route("/wms/action/list/rcbp1", "Get")]
-    [Route("/wms/action/list/rcbp1/{BusinessPartyName}", "Get")]
-    [Route("/wms/action/list/rcbp1/TrxNo/{TrxNo}", "Get")]
+    [Route("/freight/rcbp1", "Get")]
+    [Route("/freight/rcbp1/{BusinessPartyName}", "Get")]
+    [Route("/freight/rcbp1/TrxNo/{TrxNo}", "Get")]
     public class List_Rcbp1 : IReturn<CommonResponse>
     {
         public string TrxNo { get; set; }
@@ -31,23 +31,21 @@ namespace WebApi.ServiceModel.Wms
                 {
                     if (!string.IsNullOrEmpty(request.BusinessPartyName))
                     {
-                        Result = db.Select<Rcbp1>(
-                            "IsNull(StatusCode,'')<>'DEL' And BusinessPartyName like '{0}%' Order By BusinessPartyCode",
-                            request.BusinessPartyName
+                        Result = db.SelectParam<Rcbp1>(
+                            q=> q.StatusCode != null && q.StatusCode !="DEL" && q.BusinessPartyName.StartsWith(request.BusinessPartyName)
                         );
                     }
                     else if (!string.IsNullOrEmpty(request.TrxNo))
                     {
-                        Result = db.Select<Rcbp1>(
-                            "IsNull(StatusCode,'')<>'DEL' And TrxNo={0}",
-                            int.Parse(request.TrxNo)
+                        Result = db.SelectParam<Rcbp1>(
+                            q=> q.StatusCode != null && q.StatusCode !="DEL" && q.TrxNo == int.Parse(request.TrxNo)                           
                         );
                     }
                     else
                     {
                         Result = db.Select<Rcbp1>(
                             "IsNull(StatusCode,'')<>'DEL' Order By BusinessPartyCode"
-                        );
+                        ).Take(20).ToList<Rcbp1>();
                     }
                 }
             }

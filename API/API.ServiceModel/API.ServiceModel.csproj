@@ -77,7 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth.cs" />
+    <Compile Include="CommonResponse.cs" />
     <Compile Include="ConfigInterface.cs" />
+    <Compile Include="Freight\Freight_Login.cs" />
     <Compile Include="Tables\Imgi2.cs" />
     <Compile Include="Tables\Imgi1.cs" />
     <Compile Include="Tables\Imgr1.cs" />
@@ -92,22 +94,20 @@
     <Compile Include="Tables\Imsn1.cs" />
     <Compile Include="Tables\Rcbp3.cs" />
     <Compile Include="Tables\Rcbp1.cs" />
-    <Compile Include="Tms\CommonResponse.cs" />
     <Compile Include="Tms\List_Container.cs" />
     <Compile Include="Tms\List_Jmjm6.cs" />
     <Compile Include="Tms\List_JobNo.cs" />
-    <Compile Include="Tms\List_Login.cs" />
+    <Compile Include="Tms\Tms_Login.cs" />
     <Compile Include="Tms\Update_Done.cs" />
-    <Compile Include="Wms\CommonResponse.cs" />
     <Compile Include="Wms\List_Imgi1.cs" />
     <Compile Include="Wms\List_Imsn1.cs" />
     <Compile Include="Wms\List_Imgi2.cs" />
-    <Compile Include="Wms\List_Rcbp3.cs" />
-    <Compile Include="Wms\List_Rcbp1.cs" />
+    <Compile Include="Freight\List_Rcbp3.cs" />
+    <Compile Include="Freight\List_Rcbp1.cs" />
     <Compile Include="Wms\List_Imgr2.cs" />
     <Compile Include="Wms\List_Impr1.cs" />
     <Compile Include="Wms\List_Imgr1.cs" />
-    <Compile Include="Wms\List_Login.cs" />
+    <Compile Include="Wms\Wms_Login.cs" />
     <Compile Include="Modfunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wms\Confirm_Imgr1.cs" />

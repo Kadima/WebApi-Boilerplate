@@ -11,9 +11,9 @@ namespace ConfigIIS
         {
             try
             {
-                string folderPath = "C:\\inetpub\\wwwroot\\TmsWS";
-                string applicationPath = "/TmsWS";
-                string applicationPoolName = "TmsWebService";
+                string folderPath = "C:\\inetpub\\wwwroot\\WebApi";
+                string applicationPath = "/WebApi";
+                string applicationPoolName = "WebApiService";
                 if (!FolderSecurityHelper.ExistFolderRights(folderPath))
                 {
                     FolderSecurityHelper.SetFolderRights(folderPath);

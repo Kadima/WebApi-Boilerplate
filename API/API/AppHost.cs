@@ -15,6 +15,7 @@ using System.Reflection;
 using ServiceStack.WebHost.Endpoints;
 using ServiceStack.ServiceInterface.Cors;
 using ServiceStack.Common.Web;
+using ServiceStack.Api.Swagger;
 
 namespace WebApi
 {
@@ -23,7 +24,7 @@ namespace WebApi
         private static string ver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         private static string strSecretKey;
         public AppHost()
-            : base("Web Api v" + ver, typeof(WmsServices).Assembly)
+            : base("Web Api v" + ver, typeof(ApiServices).Assembly)
         {
         }
         public override void Configure(Container container)
@@ -35,12 +36,18 @@ namespace WebApi
                 DebugMode = false,
                 UseCustomMetadataTemplates = true,
                 DefaultContentType = ContentType.Json,
+                //GlobalResponseHeaders = {
+                //    { "Access-Control-Allow-Origin", "*" },
+                //    { "Access-Control-Allow-Methods", "GET, POST, PUT, DELETE" },//OPTIONS
+                //    { "Access-Control-Allow-Headers", "Content-Type, Signature" }
+                //},
                 EnableFeatures = Feature.Json | Feature.Metadata
                 //ServiceStackHandlerFactoryPath  = "api"                
             });
-            CorsFeature cf = new CorsFeature(allowedOrigins: "*", allowedMethods: "GET, POST, PUT, DELETE", allowedHeaders: "Content-Type, Signature", allowCredentials: false);
+            CorsFeature cf = new CorsFeature(allowedOrigins: "*", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature", allowCredentials: false);
             this.Plugins.Add(cf);
-            
+            this.Plugins.Add(new SwaggerFeature());
+            //DB
             string strConnectionString = GetConnectionString();
             var dbConnectionFactory = new OrmLiteConnectionFactory(strConnectionString, SqlServerDialect.Provider)
             {                
@@ -49,26 +56,31 @@ namespace WebApi
                     new ProfiledDbConnection(x, Profiler.Current)
             };
             container.Register<IDbConnectionFactory>(dbConnectionFactory);
-
             var connectString = new WebApi.ServiceModel.ConnectStringFactory(strConnectionString);
             container.Register<WebApi.ServiceModel.IConnectString>(connectString);
-
             var secretKey = new WebApi.ServiceModel.SecretKeyFactory(strSecretKey);
             container.Register<WebApi.ServiceModel.ISecretKey>(secretKey);
-
+            //Auth
             container.RegisterAutoWired<WebApi.ServiceModel.Auth>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Login_Logic>();
+            //WMS
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.Wms_Login_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Imgr1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Impr1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Imgr2_Logic>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Wms.Confirm_Imgr1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Imgi1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Imgi2_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Imsn1_Logic>();
-            //container.RegisterAutoWired<WmsWS.ServiceModel.Wms.Update_Done_Logic>();
-            //container.RegisterAutoWired<WmsWS.ServiceModel.Wms.List_JobNo_Logic>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Rcbp1_Logic>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Wms.List_Rcbp3_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Wms.Confirm_Imgr1_Logic>();
+            //TMS
+            container.RegisterAutoWired<WebApi.ServiceModel.Tms.Tms_Login_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Tms.List_Jmjm6_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Tms.List_JobNo_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Tms.Update_Done_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Tms.List_Container_Logic>();
+            //Freight
+            container.RegisterAutoWired<WebApi.ServiceModel.Freight.Freight_Login_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Rcbp1_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Rcbp3_Logic>();
         }
 
         #region DES

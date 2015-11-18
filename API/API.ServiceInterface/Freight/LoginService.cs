@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WebApi.ServiceModel;
-using WebApi.ServiceModel.Tms;
+using WebApi.ServiceModel.Freight;
 
-namespace WebApi.ServiceInterface.Tms
+namespace WebApi.ServiceInterface.Freight
 {
     public class LoginService
     {
-        public void initial(Auth auth, Tms_Login request, Tms_Login_Logic loginLogic, CommonResponse ecr, string[] token, string uri)
+        public void initial(Auth auth, Freight_Login request, Freight_Login_Logic loginLogic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
@@ -17,12 +17,11 @@ namespace WebApi.ServiceInterface.Tms
                 {
                     ecr.meta.code = 200;
                     ecr.meta.message = "OK";
-                    ecr.data.results = loginLogic.GetUserInfo(request);
                 }
                 else
                 {
                     ecr.meta.code = 612;
-                    ecr.meta.message = "Invalid Phone Number";
+                    ecr.meta.message = "Invalid User";
                 }
             }
             else

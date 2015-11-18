@@ -2,30 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data;
 using ServiceStack;
 using ServiceStack.ServiceHost;
 using ServiceStack.OrmLite;
-using WebApi.ServiceModel.Tables;
 
 namespace WebApi.ServiceModel.Wms
 {
-    [Route("/wms/action/list/rcbp3/{BusinessPartyCode}", "Get")]
-    public class List_Rcbp3 : IReturn<CommonResponse>
+    [Route("/wms/action/list/login", "Post")]
+    public class Wms_Login : IReturn<CommonResponse>
     {
-        public string BusinessPartyCode { get; set; }
+        public string UserId { get; set; }
+        public string Password { get; set; }
     }
-    public class List_Rcbp3_Logic
+    public class Wms_Login_Logic
     {
         public IDbConnectionFactory DbConnectionFactory { get; set; }
-        public List<Rcbp3> GetList(List_Rcbp3 request)
+        public int LoginCheck(Wms_Login request) 
         {
-            List<Rcbp3> Result = null;
+            int Result = -1;
             try
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-                    Result = db.Where<Rcbp3>(r1 => r1.BusinessPartyCode == request.BusinessPartyCode);
+                    Result = db.Scalar<int>(
+                        "Select count(*) From Saus1 Where UserId={0} And Password={1}",
+                        request.UserId,request.Password
+                    );
                 }
             }
             catch { throw; }
