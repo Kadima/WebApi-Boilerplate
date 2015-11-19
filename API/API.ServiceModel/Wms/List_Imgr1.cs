@@ -30,16 +30,14 @@ namespace WebApi.ServiceModel.Wms
                 {
                     if (!string.IsNullOrEmpty(request.CustomerCode))
                     {
-                        Result = db.Select<Imgr1>(
-                            "IsNull(CustomerCode,'')<>'' And IsNull(GoodsReceiptNoteNo,'')<>'' And IsNull(StatusCode,'')<>'DEL' And IsNull(StatusCode,'')<>'EXE' And IsNull(StatusCode,'')<>'CMP' And CustomerCode={0} OrderBy ReceiptDate Desc",
-                            request.CustomerCode
-                        );
+                        Result = db.SelectParam<Imgr1>(
+                            i => i.CustomerCode != null && i.CustomerCode != "" && i.GoodsReceiptNoteNo != null && i.GoodsReceiptNoteNo != "" && i.StatusCode != null && i.StatusCode != "DEL" && i.StatusCode != "EXE" && i.StatusCode != "CMP" && i.CustomerCode == request.CustomerCode
+                        ).OrderByDescending(i => i.ReceiptDate).ToList<Imgr1>();
                     }
                     else if (!string.IsNullOrEmpty(request.GoodsReceiptNoteNo))
                     {
-                        Result = db.Select<Imgr1>(
-                            "IsNull(CustomerCode,'')<>'' And IsNull(GoodsReceiptNoteNo,'')<>'' And IsNull(StatusCode,'')<>'DEL' And IsNull(StatusCode,'')<>'EXE' And IsNull(StatusCode,'')<>'CMP' And GoodsReceiptNoteNo like '{0}%'",
-                            request.GoodsReceiptNoteNo
+                        Result = db.SelectParam<Imgr1>(
+                             i => i.CustomerCode != null && i.CustomerCode != "" && i.GoodsReceiptNoteNo != null && i.GoodsReceiptNoteNo != "" && i.StatusCode != null && i.StatusCode != "DEL" && i.StatusCode != "EXE" && i.StatusCode != "CMP" && i.GoodsReceiptNoteNo.StartsWith(request.CustomerCode)
                         );
                     }                  
                 }

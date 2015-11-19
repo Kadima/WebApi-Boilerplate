@@ -30,17 +30,15 @@ namespace WebApi.ServiceModel.Wms
                 {
                     if (!string.IsNullOrEmpty(request.CustomerCode))
                     {
-                        Result = db.Select<Imgi1>(
-                            "IsNull(CustomerCode,'')<>'' And IsNull(GoodsIssueNoteNo,'')<>'' And IsNull(StatusCode,'')<>'DEL' And IsNull(StatusCode,'')<>'EXE' And IsNull(StatusCode,'')<>'CMP' And CustomerCode={0} OrderBy IssueDateTime Desc",
-                            request.CustomerCode
-                        );
+                        Result = db.SelectParam<Imgi1>(
+                            i => i.CustomerCode != null && i.CustomerCode != "" && i.StatusCode != null && i.StatusCode != "DEL" && i.StatusCode!="EXE" && i.StatusCode!="CMP" && i.CustomerCode == request.CustomerCode
+                        ).OrderByDescending(i => i.IssueDateTime).ToList<Imgi1>();
                     }
                     else if (!string.IsNullOrEmpty(request.GoodsIssueNoteNo))
                     {
-                        Result = db.Select<Imgi1>(
-                            "IsNull(CustomerCode,'')<>'' And IsNull(GoodsIssueNoteNo,'')<>'' And IsNull(StatusCode,'')<>'DEL' And IsNull(StatusCode,'')<>'EXE' And IsNull(StatusCode,'')<>'CMP' And GoodsIssueNoteNo like '{0}%' OrderBy IssueDateTime Desc",
-                            request.GoodsIssueNoteNo
-                        );
+                        Result = db.SelectParam<Imgi1>(
+                            i => i.CustomerCode != null && i.CustomerCode != "" && i.StatusCode != null && i.StatusCode != "DEL" && i.StatusCode!="EXE" && i.StatusCode!="CMP" && i.GoodsIssueNoteNo.StartsWith(request.GoodsIssueNoteNo)
+                        ).OrderByDescending(i => i.IssueDateTime).ToList<Imgi1>();
                     }                  
                 }
             }

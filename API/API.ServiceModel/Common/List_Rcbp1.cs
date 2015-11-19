@@ -8,8 +8,10 @@ using ServiceStack.ServiceHost;
 using ServiceStack.OrmLite;
 using WebApi.ServiceModel.Tables;
 
-namespace WebApi.ServiceModel.Freight
+namespace WebApi.ServiceModel.Common
 {
+    [Route("/wms/action/list/rcbp1", "Get")]
+    [Route("/wms/action/list/rcbp1/{BusinessPartyName}", "Get")]
     [Route("/freight/rcbp1", "Get")]
     [Route("/freight/rcbp1/{BusinessPartyName}", "Get")]
     [Route("/freight/rcbp1/TrxNo/{TrxNo}", "Get")]

@@ -79,8 +79,9 @@ namespace WebApi
             container.RegisterAutoWired<WebApi.ServiceModel.Tms.List_Container_Logic>();
             //Freight
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.Freight_Login_Logic>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Rcbp1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Rcbp3_Logic>();
+            //Common
+            container.RegisterAutoWired<WebApi.ServiceModel.Common.List_Rcbp1_Logic>();
         }
 
         #region DES

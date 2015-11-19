@@ -103,10 +103,10 @@
     <Compile Include="Wms\List_Imsn1.cs" />
     <Compile Include="Wms\List_Imgi2.cs" />
     <Compile Include="Freight\List_Rcbp3.cs" />
-    <Compile Include="Freight\List_Rcbp1.cs" />
     <Compile Include="Wms\List_Imgr2.cs" />
     <Compile Include="Wms\List_Impr1.cs" />
     <Compile Include="Wms\List_Imgr1.cs" />
+    <Compile Include="Common\List_Rcbp1.cs" />
     <Compile Include="Wms\Wms_Login.cs" />
     <Compile Include="Modfunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

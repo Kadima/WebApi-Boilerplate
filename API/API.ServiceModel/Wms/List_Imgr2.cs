@@ -28,7 +28,7 @@ namespace WebApi.ServiceModel.Wms
                     Result = db.Select<Imgr2>(
                         "Select * From Imgr2 " +
                         "Left Join Imgr1 On Imgr2.TrxNo = Imgr1.TrxNo " +
-                        "Were Imgr1.GoodsReceiptNoteNo={0}",
+                        "Where Imgr1.GoodsReceiptNoteNo={0}",
                         request.GoodsReceiptNoteNo
                     );
                 }

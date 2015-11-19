@@ -7,10 +7,11 @@ using ServiceStack.ServiceInterface;
 using WebApi.ServiceModel;
 using WebApi.ServiceModel.Wms;
 using WebApi.ServiceModel.Tms;
+using WebApi.ServiceModel.Freight;
+using WebApi.ServiceModel.Common;
 using WebApi.ServiceInterface.Wms;
 using WebApi.ServiceInterface.Tms;
 using System.IO;
-using WebApi.ServiceModel.Freight;
 using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface.Cors;
 
@@ -322,7 +323,6 @@ namespace WebApi.ServiceInterface
         }
         //Freight
         public ServiceModel.Freight.Freight_Login_Logic freight_Login_Logic { get; set; }
-        public ServiceModel.Freight.List_Rcbp1_Logic list_Rcbp1_Logic { get; set; }
         public ServiceModel.Freight.List_Rcbp3_Logic list_Rcbp3_Logic { get; set; }
         public object Any(ServiceModel.Freight.Freight_Login request)
         {
@@ -343,14 +343,14 @@ namespace WebApi.ServiceInterface
             }
             return ecr;
         }
-        public object Any(ServiceModel.Freight.List_Rcbp1 request)
+        public object Any(ServiceModel.Freight.List_Rcbp3 request)
         {
             CommonResponse ecr = new CommonResponse();
             ecr.initial();
             try
             {
                 ServiceInterface.Freight.ListService ls = new ServiceInterface.Freight.ListService();
-                ls.ListRcbp1(auth, request, list_Rcbp1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+                ls.ListRcbp3(auth, request, list_Rcbp3_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex)
             {
@@ -362,14 +362,16 @@ namespace WebApi.ServiceInterface
             }
             return ecr;
         }
-        public object Any(ServiceModel.Freight.List_Rcbp3 request)
+        //Common
+        public ServiceModel.Common.List_Rcbp1_Logic list_Rcbp1_Logic { get; set; }
+        public object Any(ServiceModel.Common.List_Rcbp1 request)
         {
             CommonResponse ecr = new CommonResponse();
             ecr.initial();
             try
             {
-                ServiceInterface.Freight.ListService ls = new ServiceInterface.Freight.ListService();
-                ls.ListRcbp3(auth, request, list_Rcbp3_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+                ServiceInterface.Common.ListService ls = new ServiceInterface.Common.ListService();
+                ls.ListRcbp1(auth, request, list_Rcbp1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex)
             {
