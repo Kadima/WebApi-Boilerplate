@@ -10,7 +10,7 @@ namespace WebApi.ServiceModel.Tables
         public int TrxNo { get; set; }
         public string CustomerCode { get; set; }
         public string GoodsIssueNoteNo { get; set; }
-        public DateTime IssueDateTime { get; set; }
+        public Nullable<System.DateTime> IssueDateTime { get; set; }
         public string RefNo { get; set; }
         public string StatusCode { get; set; }
     }

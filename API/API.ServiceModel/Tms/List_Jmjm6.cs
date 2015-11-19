@@ -24,10 +24,10 @@ namespace WebApi.ServiceModel.Tms
         public string VehicleNo { get; set; }
         public string DriverNo { get; set; }
         public string CargoStatusCode { get; set; }
-        public DateTime TruckDateTime { get; set; }
-        public DateTime RecevieDateTime { get; set; }
-        public DateTime ReadyDateTime { get; set; }
-        public DateTime UnLoadDateTime { get; set; }
+        public Nullable<System.DateTime> TruckDateTime { get; set; }
+        public Nullable<System.DateTime> RecevieDateTime { get; set; }
+        public Nullable<System.DateTime> ReadyDateTime { get; set; }
+        public Nullable<System.DateTime> UnLoadDateTime { get; set; }
     }
     public class List_Jmjm6_Logic
     {
@@ -40,7 +40,9 @@ namespace WebApi.ServiceModel.Tms
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
                     Result = db.Select<List_Jmjm6_Response>(
-                        "select * from Jmjm6 Left Join Jmjm1 on Jmjm6.JobNo=Jmjm1.JobNo WHERE Jmjm1.StatusCode<>'DEL' And Jmjm1.JobNo={0}", request.JobNo
+                        "Select Jmjm6.JobNo, Jmjm6.LineItemNo, Jmjm6.ContainerNo, Jmjm6.Remark, Jmjm1.JobType, Jmjm6.VehicleNo, " +
+                        "Jmjm6.DriverNo, Jmjm6.CargoStatusCode, Jmjm6.TruckDateTime, Jmjm6.RecevieDateTime, Jmjm6.ReadyDateTime, Jmjm6.UnLoadDateTime " +
+                        "From Jmjm6 Left Join Jmjm1 on Jmjm6.JobNo=Jmjm1.JobNo WHERE Jmjm1.StatusCode<>'DEL' And Jmjm1.JobNo={0}", request.JobNo
                     );
                 }
             }

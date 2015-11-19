@@ -30,7 +30,14 @@ namespace WebApi.ServiceModel.Tms
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-                    Result = db.Update<Jmjm4>(new { DoneDateTime = request.DoneDateTime, DoneFlag = request.DoneFlag, Remark = request.Remark, ContainerNo = request.ContainerNo }, p => p.JobNo == request.JobNo && p.JobLineItemNo == request.JobLineItemNo && p.LineItemNo == request.LineItemNo);
+                    if (request.DoneDateTime != DateTime.MinValue)
+                    {
+                        Result = db.Update<Jmjm4>(new { DoneDateTime = request.DoneDateTime, DoneFlag = request.DoneFlag, Remark = request.Remark, ContainerNo = request.ContainerNo }, p => p.JobNo == request.JobNo && p.JobLineItemNo == request.JobLineItemNo && p.LineItemNo == request.LineItemNo);
+                    }
+                    else
+                    {
+                        Result = db.Update<Jmjm4>(new { DoneFlag = request.DoneFlag, Remark = request.Remark, ContainerNo = request.ContainerNo }, p => p.JobNo == request.JobNo && p.JobLineItemNo == request.JobLineItemNo && p.LineItemNo == request.LineItemNo);  
+                    }
                 }
             }
             catch { throw; } 
@@ -55,7 +62,7 @@ namespace WebApi.ServiceModel.Tms
                         int count = db.Scalar<int>(
                             "Select count(*) From Jmjm6 Where Jmjm6.JobNo={0}",request.JobNo
                         );
-                        db.Insert<Jmjm6>(new Jmjm6 { JobNo = request.JobNo, LineItemNo = count + 1, ContainerNo = request.ContainerNo });
+                        db.InsertParam<Jmjm6>(new Jmjm6 { JobNo = request.JobNo, LineItemNo = count + 1, ContainerNo = request.ContainerNo });
                         Result = 0;
                     }
                     else { Result = -1; }

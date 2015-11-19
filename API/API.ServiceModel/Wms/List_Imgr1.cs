@@ -37,7 +37,7 @@ namespace WebApi.ServiceModel.Wms
                     else if (!string.IsNullOrEmpty(request.GoodsReceiptNoteNo))
                     {
                         Result = db.SelectParam<Imgr1>(
-                             i => i.CustomerCode != null && i.CustomerCode != "" && i.GoodsReceiptNoteNo != null && i.GoodsReceiptNoteNo != "" && i.StatusCode != null && i.StatusCode != "DEL" && i.StatusCode != "EXE" && i.StatusCode != "CMP" && i.GoodsReceiptNoteNo.StartsWith(request.CustomerCode)
+                             i => i.CustomerCode != null && i.CustomerCode != "" && i.GoodsReceiptNoteNo != null && i.GoodsReceiptNoteNo != "" && i.StatusCode != null && i.StatusCode != "DEL" && i.StatusCode != "EXE" && i.StatusCode != "CMP" && i.GoodsReceiptNoteNo.StartsWith(request.GoodsReceiptNoteNo)
                         );
                     }                  
                 }

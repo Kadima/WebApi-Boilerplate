@@ -9,7 +9,7 @@ namespace WebApi.ServiceModel.Tables
     {
         public string BusinessPartyCode { get; set; }
         public int LineItemNo { get; set; }
-        public DateTime Birthday { get; set; }
+        public Nullable<System.DateTime> Birthday { get; set; }
         public string ContactName { get; set; }
         public string Department { get; set; }
         public string Title { get; set; }

@@ -15,6 +15,6 @@ namespace WebApi.ServiceModel.Tables
         public string DoneFlag { get; set; }
         public string Remark { get; set; }
         public string ItemName { get; set; }
-        public DateTime DoneDateTime { get; set; }
+        public Nullable<System.DateTime> DoneDateTime { get; set; }
     }
 }

@@ -17,7 +17,6 @@ namespace WebApi.ServiceModel.Tms
     }
     public class List_Container_Response
     {
-        public int Index { get; set; }
         public string JobNo { get; set; }
         public int JobLineItemNo { get; set; }
         public int LineItemNo { get; set; }
@@ -38,7 +37,8 @@ namespace WebApi.ServiceModel.Tms
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
                     Result = db.Select<List_Container_Response>(
-                        "Select * From Jmjm4 Left Join Jmjm3 On Jmjm4.JobNo=Jmjm3.JobNo And Jmjm4.JobLineItemNo=Jmjm3.LineItemNo " +
+                        "Select Jmjm4.JobNo, Jmjm4.JobLineItemNo, Jmjm4.LineItemNo, Jmjm4.ContainerNo, Jmjm3.Description, Jmjm4.Remark, Jmjm4.ItemName, Jmje1.AllowSkipFlag " +
+                        "From Jmjm4 Left Join Jmjm3 On Jmjm4.JobNo=Jmjm3.JobNo And Jmjm4.JobLineItemNo=Jmjm3.LineItemNo " +
                         "Left Join Jmje1 On Jmjm3.EventCode=Jmje1.EventCode " +
                         "Where Jmjm4.PhoneNumber={0} And Jmjm4.JobNo={1} And IsNull(Jmjm4.DoneFlag,'')<>'Y'"
                         , request.PhoneNumber, request.JobNo
