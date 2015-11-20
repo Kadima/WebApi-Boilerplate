@@ -17,7 +17,7 @@ using ServiceStack.ServiceInterface.Cors;
 
 namespace WebApi.ServiceInterface
 {
-    //[EnableCors(allowedOrigins: "http://www.sysfreight.net:8081,http://192.168.0.55:8100", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature")]
+    //[EnableCors(allowedOrigins: "*", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature")]
     public class ApiServices : Service
     {        
         public Auth auth { get; set; }
@@ -365,7 +365,8 @@ namespace WebApi.ServiceInterface
         }
         //Common
         public ServiceModel.Common.List_Rcbp1_Logic list_Rcbp1_Logic { get; set; }
-        public object Any(ServiceModel.Common.List_Rcbp1 request)
+        public ServiceModel.Common.Update_Rcbp1_Logic update_Rcbp1_Logic { get; set; }
+        public object Get(ServiceModel.Common.List_Rcbp1 request)
         {
             CommonResponse ecr = new CommonResponse();
             ecr.initial();
@@ -373,6 +374,25 @@ namespace WebApi.ServiceInterface
             {
                 ServiceInterface.Common.ListService ls = new ServiceInterface.Common.ListService();
                 ls.ListRcbp1(auth, request, list_Rcbp1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                ecr.meta.code = 599;
+                ecr.meta.message = "The server handle exceptions, the operation fails.";
+                ecr.meta.errors.code = ex.GetHashCode();
+                ecr.meta.errors.field = ex.HelpLink;
+                ecr.meta.errors.message = ex.Message.ToString();
+            }
+            return ecr;
+        }
+        public object Post(ServiceModel.Common.Update_Rcbp1 request)
+        {
+            CommonResponse ecr = new CommonResponse();
+            ecr.initial();
+            try
+            {
+                ServiceInterface.Common.UpdateService ls = new ServiceInterface.Common.UpdateService();
+                ls.UpdateRcbp1(auth, request, update_Rcbp1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex)
             {

@@ -36,23 +36,26 @@ namespace WebApi
                 DebugMode = false,
                 UseCustomMetadataTemplates = true,
                 DefaultContentType = ContentType.Json,
-                GlobalResponseHeaders = {
-                    { "Access-Control-Allow-Origin", "*" },
-                    { "Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS" },
-                    { "Access-Control-Allow-Headers", "Content-Type, Signature" }
-                },
+                //GlobalResponseHeaders = {
+                //    { "Access-Control-Allow-Origin", "*" },
+                //    { "Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS" },
+                //    { "Access-Control-Allow-Headers", "Content-Type, Signature" }
+                //},
                 EnableFeatures = Feature.Json | Feature.Metadata
                 //ServiceStackHandlerFactoryPath  = "api"                
             });
-            CorsFeature cf = new CorsFeature(allowedOrigins: "http://www.sysfreight.net:8081,http://192.168.0.55:8100", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature", allowCredentials: false);
+            CorsFeature cf = new CorsFeature(allowedOrigins: "*", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature", allowCredentials: false);
             this.Plugins.Add(cf);
+            //this.PreRequestFilters.Add((httpReq, httpRes) =>
+            //{
+            //    //Handles Request and closes Responses after emitting global HTTP Headers
+            //    if (httpReq.HttpMethod == "OPTIONS")
+            //    {
+            //        httpReq.Headers["Access-Control-Allow-Origin"] = "*";                  
+            //        httpRes.EndRequest();
+            //    }
+            //});
             this.Plugins.Add(new SwaggerFeature());
-            this.PreRequestFilters.Add((httpReq, httpRes) =>
-            {
-                //Handles Request and closes Responses after emitting global HTTP Headers
-                if (httpReq.HttpMethod == "OPTIONS")
-                    httpRes.EndRequest(); //add a 'using ServiceStack;'
-            });
             //DB
             string strConnectionString = GetConnectionString();
             var dbConnectionFactory = new OrmLiteConnectionFactory(strConnectionString, SqlServerDialect.Provider)
@@ -88,6 +91,7 @@ namespace WebApi
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Rcbp3_Logic>();
             //Common
             container.RegisterAutoWired<WebApi.ServiceModel.Common.List_Rcbp1_Logic>();
+            container.RegisterAutoWired<WebApi.ServiceModel.Common.Update_Rcbp1_Logic>();
         }
 
         #region DES
