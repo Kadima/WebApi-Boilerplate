@@ -78,8 +78,10 @@
   <ItemGroup>
     <Compile Include="Auth.cs" />
     <Compile Include="CommonResponse.cs" />
+    <Compile Include="Common\Update_Rcbp1.cs" />
     <Compile Include="ConfigInterface.cs" />
     <Compile Include="Freight\Freight_Login.cs" />
+    <Compile Include="Freight\Update_Rcbp3.cs" />
     <Compile Include="Tables\Imgi2.cs" />
     <Compile Include="Tables\Imgi1.cs" />
     <Compile Include="Tables\Imgr1.cs" />

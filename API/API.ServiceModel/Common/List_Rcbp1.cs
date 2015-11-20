@@ -45,9 +45,9 @@ namespace WebApi.ServiceModel.Common
                     }
                     else
                     {
-                        Result = db.Select<Rcbp1>(
-                            "IsNull(StatusCode,'')<>'DEL' Order By BusinessPartyCode"
-                        ).Take(20).ToList<Rcbp1>();
+                        Result = db.SelectParam<Rcbp1>(
+                            q=> q.StatusCode != null && q.StatusCode !="DEL"
+                        ).OrderBy(q => q.BusinessPartyCode).Take(20).ToList<Rcbp1>();
                     }
                 }
             }

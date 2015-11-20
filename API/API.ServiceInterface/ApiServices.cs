@@ -17,6 +17,7 @@ using ServiceStack.ServiceInterface.Cors;
 
 namespace WebApi.ServiceInterface
 {
+    //[EnableCors(allowedOrigins: "http://www.sysfreight.net:8081,http://192.168.0.55:8100", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature")]
     public class ApiServices : Service
     {        
         public Auth auth { get; set; }
