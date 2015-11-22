@@ -81,6 +81,8 @@
     <Compile Include="Common\Update_Rcbp1.cs" />
     <Compile Include="ConfigInterface.cs" />
     <Compile Include="Freight\Freight_Login.cs" />
+    <Compile Include="Freight\List_Plcp1.cs" />
+    <Compile Include="Freight\Update_Plcp1.cs" />
     <Compile Include="Freight\Update_Rcbp3.cs" />
     <Compile Include="Tables\Imgi2.cs" />
     <Compile Include="Tables\Imgi1.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Tables\Jmjm3.cs" />
     <Compile Include="Tables\Jmjm4.cs" />
     <Compile Include="Tables\Jmjm6.cs" />
+    <Compile Include="Tables\Plcp1.cs" />
     <Compile Include="Tables\Saus1.cs" />
     <Compile Include="Tables\Imsn1.cs" />
     <Compile Include="Tables\Rcbp3.cs" />

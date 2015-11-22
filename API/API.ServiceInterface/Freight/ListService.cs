@@ -24,5 +24,19 @@ namespace WebApi.ServiceInterface.Freight
                 ecr.meta.message = "Unauthorized";
             }
         }
+        public void ListPlcp1(Auth auth, List_Plcp1 request, List_Plcp1_Logic list_Plcp1_Logic, CommonResponse ecr, string[] token, string uri)
+        {
+            if (auth.AuthResult(token, uri))
+            {
+                ecr.data.results = list_Plcp1_Logic.GetList(request);
+                ecr.meta.code = 200;
+                ecr.meta.message = "OK";
+            }
+            else
+            {
+                ecr.meta.code = 401;
+                ecr.meta.message = "Unauthorized";
+            }
+        }
     }
 }
