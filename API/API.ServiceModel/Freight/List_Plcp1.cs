@@ -11,11 +11,14 @@ using WebApi.ServiceModel.Tables;
 namespace WebApi.ServiceModel.Freight
 {
     [Route("/freight/plcp1", "Get")]
-    [Route("/freight/plcp1/{VendorName}", "Get")]
-    [Route("/freight/plcp1/{VendorName}/{StatusCode}", "Get")]
-    [Route("/freight/plcp1/status/{StatusCode}", "Get")]
+    [Route("/freight/plcp1/VoucherNo/{VoucherNo}", "Get")]
+    [Route("/freight/plcp1/VoucherNo/{VoucherNo}/{StatusCode}", "Get")]
+    [Route("/freight/plcp1/VendorName/{VendorName}", "Get")]
+    [Route("/freight/plcp1/VendorName/{VendorName}/{StatusCode}", "Get")]
+    [Route("/freight/plcp1/{StatusCode}", "Get")]
     public class List_Plcp1 : IReturn<CommonResponse>
     {
+        public string VoucherNo { get; set; }
         public string VendorName { get; set; }
         public string StatusCode { get; set; }
     }
@@ -29,10 +32,22 @@ namespace WebApi.ServiceModel.Freight
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-                    if (!string.IsNullOrEmpty(request.VendorName) && !string.IsNullOrEmpty(request.StatusCode))
+                    if (!string.IsNullOrEmpty(request.VoucherNo) && !string.IsNullOrEmpty(request.StatusCode))
+                    {
+                        Result = db.SelectParam<Plcp1>(
+                            q => q.StatusCode != null && q.StatusCode == request.StatusCode && q.VoucherNo.StartsWith(request.VoucherNo)
+                        );
+                    }
+                    else if (!string.IsNullOrEmpty(request.VendorName) && !string.IsNullOrEmpty(request.StatusCode))
                     {
                         Result = db.SelectParam<Plcp1>(
                             q => q.StatusCode != null && q.StatusCode == request.StatusCode && q.VendorName.StartsWith(request.VendorName)
+                        );
+                    }
+                    else if (!string.IsNullOrEmpty(request.VoucherNo))
+                    {
+                        Result = db.SelectParam<Plcp1>(
+                            q => q.StatusCode != null && q.StatusCode != "DEL" && q.VoucherNo.StartsWith(request.VoucherNo)
                         );
                     }
                     else if (!string.IsNullOrEmpty(request.VendorName))
