@@ -423,6 +423,26 @@ namespace WebApi.ServiceInterface
             }
             return ecr;
         }
+        public ServiceModel.Freight.List_Rcvy1_Logic list_Rcvy1_Logic { get; set; }
+        public object Get(ServiceModel.Freight.List_Rcvy1 request)
+        {
+            CommonResponse ecr = new CommonResponse();
+            ecr.initial();
+            try
+            {
+                ServiceInterface.Freight.ListService ls = new ServiceInterface.Freight.ListService();
+                ls.ListRcvy1(auth, request, list_Rcvy1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                ecr.meta.code = 599;
+                ecr.meta.message = "The server handle exceptions, the operation fails.";
+                ecr.meta.errors.code = ex.GetHashCode();
+                ecr.meta.errors.field = ex.HelpLink;
+                ecr.meta.errors.message = ex.Message.ToString();
+            }
+            return ecr;
+        }
         //Common
         public ServiceModel.Common.List_Rcbp1_Logic list_Rcbp1_Logic { get; set; }
         public object Get(ServiceModel.Common.List_Rcbp1 request)

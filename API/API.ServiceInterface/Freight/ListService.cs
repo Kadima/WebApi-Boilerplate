@@ -38,5 +38,19 @@ namespace WebApi.ServiceInterface.Freight
                 ecr.meta.message = "Unauthorized";
             }
         }
+        public void ListRcvy1(Auth auth, List_Rcvy1 request, List_Rcvy1_Logic list_Rcvy1_Logic, CommonResponse ecr, string[] token, string uri)
+        {
+            if (auth.AuthResult(token, uri))
+            {
+                ecr.data.results = list_Rcvy1_Logic.GetList(request);
+                ecr.meta.code = 200;
+                ecr.meta.message = "OK";
+            }
+            else
+            {
+                ecr.meta.code = 401;
+                ecr.meta.message = "Unauthorized";
+            }
+        }
     }
 }
