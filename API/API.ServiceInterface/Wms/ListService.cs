@@ -14,7 +14,7 @@ namespace WebApi.ServiceInterface.Wms
             public string JobNo { get; set; }
             public string ContainerCounts { get; set; }
         }
-        public void ListImgr1(Auth auth, List_Imgr1 request, List_Imgr1_Logic list_Imgr1_Logic, CommonResponse ecr, string[] token, string uri)
+        public void List_Imgr1(Auth auth, List_Imgr1 request, List_Imgr1_Logic list_Imgr1_Logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
@@ -28,7 +28,7 @@ namespace WebApi.ServiceInterface.Wms
                 ecr.meta.message = "Unauthorized";
             }
         }
-        public void ListImpr1(Auth auth, List_Impr1 request, List_Impr1_Logic list_Impr1_Logic, CommonResponse ecr, string[] token, string uri)
+        public void List_Impr1(Auth auth, List_Impr1 request, List_Impr1_Logic list_Impr1_Logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
@@ -50,7 +50,7 @@ namespace WebApi.ServiceInterface.Wms
                 ecr.meta.message = "Unauthorized";
             }
         }
-        public void ListImgr2(Auth auth, List_Imgr2 request, List_Imgr2_Logic list_Imgr2_Logic, CommonResponse ecr, string[] token, string uri)
+        public void List_Imgr2(Auth auth, List_Imgr2 request, List_Imgr2_Logic list_Imgr2_Logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
@@ -72,7 +72,7 @@ namespace WebApi.ServiceInterface.Wms
                 ecr.meta.message = "Unauthorized";
             }
         }
-        public void ListImgi1(Auth auth, List_Imgi1 request, List_Imgi1_Logic list_Imgi1_Logic, CommonResponse ecr, string[] token, string uri)
+        public void List_Imgi1(Auth auth, List_Imgi1 request, List_Imgi1_Logic list_Imgi1_Logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
@@ -86,7 +86,7 @@ namespace WebApi.ServiceInterface.Wms
                 ecr.meta.message = "Unauthorized";
             }
         }
-        public void ListImgi2(Auth auth, List_Imgi2 request, List_Imgi2_Logic list_Imgi2_Logic, CommonResponse ecr, string[] token, string uri)
+        public void List_Imgi2(Auth auth, List_Imgi2 request, List_Imgi2_Logic list_Imgi2_Logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
@@ -108,7 +108,7 @@ namespace WebApi.ServiceInterface.Wms
                 ecr.meta.message = "Unauthorized";
             }
         }
-        public void ListImsn1(Auth auth, List_Imsn1 request, List_Imsn1_Logic list_Imsn1_Logic, CommonResponse ecr, string[] token, string uri)
+        public void List_Imsn1(Auth auth, List_Imsn1 request, List_Imsn1_Logic list_Imsn1_Logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {

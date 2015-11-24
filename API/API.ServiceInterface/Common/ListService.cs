@@ -9,7 +9,7 @@ namespace WebApi.ServiceInterface.Common
 {
     public class ListService
     {
-        public void ListRcbp1(Auth auth, List_Rcbp1 request, List_Rcbp1_Logic list_Rcbp1_Logic, CommonResponse ecr, string[] token, string uri)
+        public void List_Rcbp1(Auth auth, List_Rcbp1 request, List_Rcbp1_Logic list_Rcbp1_Logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
