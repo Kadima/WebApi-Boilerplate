@@ -42,7 +42,11 @@ namespace WebApi.ServiceInterface.Freight
         {
             if (auth.AuthResult(token, uri))
             {
-                ecr.data.results = list_Rcvy1_Logic.GetList(request);
+                if(uri.IndexOf("/sps/") > 0){
+                    ecr.data.results = list_Rcvy1_Logic.GetSpsList(request);
+                }else{                    
+                    ecr.data.results = list_Rcvy1_Logic.GetList(request);
+                }
                 ecr.meta.code = 200;
                 ecr.meta.message = "OK";
             }

@@ -96,6 +96,7 @@
     <Compile Include="Tables\Jmjm4.cs" />
     <Compile Include="Tables\Jmjm6.cs" />
     <Compile Include="Tables\Plcp1.cs" />
+    <Compile Include="Tables\Rcvy1_sps.cs" />
     <Compile Include="Tables\Rcvy1.cs" />
     <Compile Include="Tables\Saus1.cs" />
     <Compile Include="Tables\Imsn1.cs" />

@@ -12,6 +12,7 @@ namespace WebApi.ServiceModel.Freight
 {
     [Route("/freight/rcvy1", "Get")]
     [Route("/freight/rcvy1/{PortOfDischargeName}", "Get")]
+    [Route("/freight/rcvy1/sps/{PortOfDischargeName}", "Get")]
     public class List_Rcvy1 : IReturn<CommonResponse>
     {
         public string PortOfDischargeName { get; set; }
@@ -38,6 +39,20 @@ namespace WebApi.ServiceModel.Freight
                             "Select PortOfDischargeName from rcvy1 where PortOfDischargeName is not null and PortOfDischargeName<>''"
                         );
                     }
+                }
+            }
+            catch { throw; }
+            return Result;
+        }
+        public List<Rcvy1_sps> GetSpsList(List_Rcvy1 request)
+        {
+            List<Rcvy1_sps> Result = null;
+            try
+            {
+                using (var db = DbConnectionFactory.OpenDbConnection())
+                {
+                    string strSQL = "EXEC sps_Track_Rcvy1_List @intUserId=0,@PageSize=0,@PageCount=0,@RecordCount=0,@strWhere='And PortofDischargeName=''" + request.PortOfDischargeName + "'''";
+                    Result = db.SqlList<Rcvy1_sps>(strSQL);
                 }
             }
             catch { throw; }
