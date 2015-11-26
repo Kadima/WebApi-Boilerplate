@@ -28,6 +28,7 @@ namespace WebApi.ServiceModel.Common
                 {
                     Result = db.Update<Rcbp1>(
                         new {
+                            BusinessPartyName = request.rcbp1.BusinessPartyName,
                             Address1 = request.rcbp1.Address1,
                             Address2 = request.rcbp1.Address2,
                             Address3 = request.rcbp1.Address3,

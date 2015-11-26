@@ -247,7 +247,7 @@ namespace WebApi.ServiceInterface
             return ecr;
         }
         public ServiceModel.Freight.List_Rcbp3_Logic list_Rcbp3_Logic { get; set; }
-        public object Get(ServiceModel.Freight.List_Rcbp3 request)
+        public object Any(ServiceModel.Freight.List_Rcbp3 request)
         {
             CommonResponse ecr = new CommonResponse();
             ecr.initial();

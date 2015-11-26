@@ -10,6 +10,7 @@ using WebApi.ServiceModel.Tables;
 
 namespace WebApi.ServiceModel.Freight
 {
+    [Route("/freight/rcbp3/BusinessPartyCode", "Post")]
     [Route("/freight/rcbp3/{BusinessPartyCode}", "Get")]
     public class List_Rcbp3 : IReturn<CommonResponse>
     {
