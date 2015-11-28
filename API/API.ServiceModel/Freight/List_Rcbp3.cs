@@ -10,7 +10,7 @@ using WebApi.ServiceModel.Tables;
 
 namespace WebApi.ServiceModel.Freight
 {
-    [Route("/freight/rcbp3/BusinessPartyCode", "Post")]
+    [Route("/freight/rcbp3", "Get")]
     [Route("/freight/rcbp3/{BusinessPartyCode}", "Get")]
     public class List_Rcbp3 : IReturn<CommonResponse>
     {
@@ -26,7 +26,10 @@ namespace WebApi.ServiceModel.Freight
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-                    Result = db.Where<Rcbp3>(r1 => r1.BusinessPartyCode == request.BusinessPartyCode);
+                    if (!string.IsNullOrEmpty(request.BusinessPartyCode))
+                    { 
+                        Result = db.Where<Rcbp3>(r1 => r1.BusinessPartyCode == request.BusinessPartyCode);
+                    }
                 }
             }
             catch { throw; }
