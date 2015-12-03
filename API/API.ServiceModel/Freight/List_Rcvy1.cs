@@ -30,13 +30,13 @@ namespace WebApi.ServiceModel.Freight
                     if (!string.IsNullOrEmpty(request.PortOfDischargeName))
                     {
                         Result = db.HashSet<string>(
-                            "Select PortOfDischargeName from rcvy1 where PortOfDischargeName is not null and PortOfDischargeName <> '' and PortOfDischargeName LIKE '" + request.PortOfDischargeName + "%'"
+								"Select PortOfDischargeName from rcvy1 where PortOfDischargeName is not null and PortOfDischargeName <> '' and PortOfDischargeName LIKE '" + request.PortOfDischargeName + "%' Order By PortOfDischargeName ASC"
                         );
                     }
                     else
                     {
                         Result = db.HashSet<string>(
-                            "Select PortOfDischargeName from rcvy1 where PortOfDischargeName is not null and PortOfDischargeName<>''"
+								"Select PortOfDischargeName from rcvy1 where PortOfDischargeName is not null and PortOfDischargeName<>'' Order By PortofDischargeName ASC"
                         );
                     }
                 }
@@ -51,7 +51,7 @@ namespace WebApi.ServiceModel.Freight
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-                    string strSQL = "EXEC sps_Track_Rcvy1_List @intUserId=0,@PageSize=0,@PageCount=0,@RecordCount=0,@strWhere='And PortofDischargeName=''" + request.PortOfDischargeName + "'''";
+					string strSQL = "EXEC sps_Track_Rcvy1_List @intUserId=0,@PageSize=0,@PageCount=0,@RecordCount=0,@strWhere='And PortofDischargeName=''" + request.PortOfDischargeName + "'''";
                     Result = db.SqlList<Rcvy1_sps>(strSQL);
                 }
             }
