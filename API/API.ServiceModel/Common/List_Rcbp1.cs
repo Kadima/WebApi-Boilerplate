@@ -33,21 +33,27 @@ namespace WebApi.ServiceModel.Common
                 {
                     if (!string.IsNullOrEmpty(request.BusinessPartyName))
                     {
-                        Result = db.SelectParam<Rcbp1>(
-                            q=> q.StatusCode != null && q.StatusCode !="DEL" && q.BusinessPartyName.StartsWith(request.BusinessPartyName)
-                        );
+                        //Result = db.SelectParam<Rcbp1>(
+                        //    q=> q.StatusCode != null && q.StatusCode !="DEL" && q.BusinessPartyName.StartsWith(request.BusinessPartyName)
+                        //);
+						string strSQL = "Select *,(Select Top 1 CountryName From Rccy1 Where CountryCode=Rcbp1.CountryCode) AS CountryName From Rcbp1 Where IsNUll(StatusCode,'')<>'DEL' And BusinessPartyName LIKE '" + request.BusinessPartyName + "%' Order By BusinessPartyCode Asc";
+						Result = db.Select<Rcbp1>(strSQL);
                     }
                     else if (!string.IsNullOrEmpty(request.TrxNo))
                     {
-                        Result = db.SelectParam<Rcbp1>(
-                            q=> q.StatusCode != null && q.StatusCode !="DEL" && q.TrxNo == int.Parse(request.TrxNo)                           
-                        );
+                        //Result = db.SelectParam<Rcbp1>(
+                        //    q=> q.StatusCode != null && q.StatusCode !="DEL" && q.TrxNo == int.Parse(request.TrxNo)                           
+                        //);
+						string strSQL = "Select *,(Select Top 1 CountryName From Rccy1 Where CountryCode=Rcbp1.CountryCode) AS CountryName From Rcbp1 Where IsNUll(StatusCode,'')<>'DEL' And TrxNo=" + int.Parse(request.TrxNo);
+						Result = db.Select<Rcbp1>(strSQL);
                     }
                     else
                     {
-                        Result = db.SelectParam<Rcbp1>(
-                            q=> q.StatusCode != null && q.StatusCode !="DEL"
-                        ).OrderBy(q => q.BusinessPartyCode).Take(20).ToList<Rcbp1>();
+                        //Result = db.SelectParam<Rcbp1>(
+                        //    q=> q.StatusCode != null && q.StatusCode !="DEL"
+                        //).OrderBy(q => q.BusinessPartyCode).Take(20).ToList<Rcbp1>();
+						string strSQL = "Select Top 20 *,(Select Top 1 CountryName From Rccy1 Where CountryCode=Rcbp1.CountryCode) AS CountryName From Rcbp1 Where IsNUll(StatusCode,'')<>'DEL' Order By BusinessPartyName Asc";
+						Result = db.Select<Rcbp1>(strSQL);
                     }
                 }
             }
