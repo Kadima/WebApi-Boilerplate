@@ -33,6 +33,10 @@ namespace WebApi.ServiceModel.Common
                             Address2 = request.rcbp1.Address2,
                             Address3 = request.rcbp1.Address3,
                             Address4 = request.rcbp1.Address4,
+                            CityCode = request.rcbp1.CityCode,
+                            CountryCode = request.rcbp1.CountryCode,
+                            Telephone = request.rcbp1.Telephone,						
+                            Fax = request.rcbp1.Fax,
                             Email = request.rcbp1.Email,
                             WebSite = request.rcbp1.WebSite
                         },
