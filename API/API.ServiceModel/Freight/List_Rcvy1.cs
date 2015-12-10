@@ -51,10 +51,10 @@ namespace WebApi.ServiceModel.Freight
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-						string strSQL = "SELECT VoyageID,VoyageNo,VesselCode,CloseDateTime,ETD,ETA,datediff(D,ETD,ETA) TranSit,PortofDischargeName," +
-						"(select top 1 ShippinglineName from rcsl1 where shippinglinecode=rcvy1.shippinglinecode)  ShippinglineName " +
-						"FROM rcvy1 Where StatusCode='USE' And ETD >= Convert(varchar(12),getdate(),112) Order By UpdateDateTime Desc";
-						Result = db.Select<Rcvy1_sps>(strSQL);
+					string strSQL = "SELECT VoyageID,VoyageNo,VesselCode,CloseDateTime,ETD,ETA,datediff(D,ETD,ETA) TranSit,PortofDischargeName," +
+					"(select top 1 ShippinglineName from rcsl1 where shippinglinecode=rcvy1.shippinglinecode)  ShippinglineName " +
+					"FROM rcvy1 Where StatusCode='USE' And ETD >= Convert(varchar(12),getdate(),112) And PortofDischargeName='" + request.PortOfDischargeName + "' Order By UpdateDateTime Desc";
+					Result = db.Select<Rcvy1_sps>(strSQL);
 					//string strSQL = "EXEC sps_Track_Rcvy1_List @intUserId=0,@PageSize=0,@PageCount=0,@RecordCount=0,@strWhere='And PortofDischargeName=''" + request.PortOfDischargeName + "'''";
                     //Result = db.SqlList<Rcvy1_sps>(strSQL);
                 }
