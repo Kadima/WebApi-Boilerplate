@@ -16,6 +16,7 @@ namespace WebApi.ServiceModel.Tables
 		public string CustomerRefNo { get; set; }
 		public Nullable<System.DateTime> ETA { get; set; }
 		public Nullable<System.DateTime> ETD { get; set; }
+		public string ContainerNo { get; set; }
 		public string CommodityDescription { get; set; }	
 		public string OriginCode { get; set; }
 		public string OriginName { get; set; }
