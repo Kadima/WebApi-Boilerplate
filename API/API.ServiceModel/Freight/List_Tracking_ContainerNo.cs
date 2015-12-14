@@ -10,7 +10,8 @@ using WebApi.ServiceModel.Tables;
 
 namespace WebApi.ServiceModel.Freight
 {
-    [Route("/freight/tracking/ContainerNo/{ContainerNo}", "Get")]
+	[Route("/freight/tracking/ContainerNo/{ContainerNo}", "Get")]
+	[Route("/freight/tracking/ContainerNo/sps/{RecordCount}/{ContainerNo}", "Get")]
     [Route("/freight/tracking/ContainerNo/count/{ContainerNoToCount}", "Get")]
     [Route("/freight/tracking/ContainerNo/module/{JobNo}", "Get")]
     public class List_Tracking_ContainerNo : IReturn<CommonResponse>
@@ -18,6 +19,7 @@ namespace WebApi.ServiceModel.Freight
         public string ContainerNo { get; set; }
         public string ContainerNoToCount { get; set; }
         public string JobNo { get; set; }
+		public string RecordCount { get; set; }
     }
     public class List_Tracking_ContainerNo_Logic
     {
@@ -37,9 +39,20 @@ namespace WebApi.ServiceModel.Freight
                     }
                     else if (!string.IsNullOrEmpty(request.ContainerNo))
                     {
-                        Result = db.Select<Jmjm1>(
-                            "Select * from Jmjm1 Where ContainerNo LIKE '%" + request.ContainerNo + "%' Order by Jmjm1.JobDate Desc"
-                        );
+						int count = int.Parse(request.RecordCount);
+						string strWhere = "";
+						if (!string.IsNullOrEmpty(request.ContainerNo))
+						{
+							strWhere = " Where ContainerNo LIKE '%" + request.ContainerNo + "%'";
+						}
+						string strSelect = "SELECT " + 
+							"j1.* " +
+							"FROM Jmjm1 j1, " +
+							"(SELECT TOP " + (count + 10) + " row_number() OVER (ORDER BY JobNo ASC, JobDate DESC) n, JobNo FROM Jmjm1 " + strWhere + ") j2 " +
+							"WHERE j1.JobNo = j2.JobNo AND j2.n > " + count;
+						string strOrderBy = " ORDER BY r2.n ASC";
+						string strSQL = strSelect + strOrderBy;
+						Result = db.Select<Jmjm1>(strSQL);
                     }
                     else if (!string.IsNullOrEmpty(request.JobNo))
                     {
