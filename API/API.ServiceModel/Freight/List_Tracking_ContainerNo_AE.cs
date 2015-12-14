@@ -32,7 +32,7 @@ namespace WebApi.ServiceModel.Freight
                         "a.ModuleCode,a.JobNo,a.JobType, a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode," +
 	                      "a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity " +
 	                      "From Jmjm1 a Left Join Aeaw1 c on c.AwbNo=a.AwbBlNo " +
-                        "Where a.ModuleCode='AE' and a.JobNo='{0}'",request.JobNo
+                        "Where a.ModuleCode='AE' and a.JobNo='" + request.JobNo + "'"
                     );
                 }
             }
