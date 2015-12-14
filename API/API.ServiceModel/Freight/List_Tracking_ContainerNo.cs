@@ -39,20 +39,9 @@ namespace WebApi.ServiceModel.Freight
                     }
                     else if (!string.IsNullOrEmpty(request.ContainerNo))
                     {
-						int count = int.Parse(request.RecordCount);
-						string strWhere = "";
-						if (!string.IsNullOrEmpty(request.ContainerNo))
-						{
-							strWhere = " Where ContainerNo LIKE '%" + request.ContainerNo + "%'";
-						}
-						string strSelect = "SELECT " + 
-							"j1.* " +
-							"FROM Jmjm1 j1, " +
-							"(SELECT TOP " + (count + 10) + " row_number() OVER (ORDER BY JobNo ASC, JobDate DESC) n, JobNo FROM Jmjm1 " + strWhere + ") j2 " +
-							"WHERE j1.JobNo = j2.JobNo AND j2.n > " + count;
-						string strOrderBy = " ORDER BY r2.n ASC";
-						string strSQL = strSelect + strOrderBy;
-						Result = db.Select<Jmjm1>(strSQL);
+						Result = db.Select<Jmjm1>(
+							"Select * from Jmjm1 Where ContainerNo LIKE '%" + request.ContainerNo + "%' Order by Jmjm1.JobDate Desc"
+						);
                     }
                     else if (!string.IsNullOrEmpty(request.JobNo))
                     {
@@ -65,5 +54,34 @@ namespace WebApi.ServiceModel.Freight
             catch { throw; }
             return Result;
         }
+		public List<Jmjm1> GetSpsList(List_Tracking_ContainerNo request)
+		{
+			List<Jmjm1> Result = null;
+			try
+			{
+				using (var db = DbConnectionFactory.OpenDbConnection())
+				{
+					if (!string.IsNullOrEmpty(request.ContainerNo))
+					{
+						int count = int.Parse(request.RecordCount);
+						string strWhere = "";
+						if (!string.IsNullOrEmpty(request.ContainerNo))
+						{
+							strWhere = " Where ContainerNo LIKE '%" + request.ContainerNo + "%'";
+						}
+						string strSelect = "SELECT " +
+							"j1.* " +
+							"FROM Jmjm1 j1, " +
+							"(SELECT TOP " + (count + 10) + " row_number() OVER (ORDER BY JobNo ASC, JobDate DESC) n, JobNo FROM Jmjm1 " + strWhere + ") j2 " +
+							"WHERE j1.JobNo = j2.JobNo AND j2.n > " + count;
+						string strOrderBy = " ORDER BY j2.n ASC";
+						string strSQL = strSelect + strOrderBy;
+						Result = db.Select<Jmjm1>(strSQL);
+					}
+				}
+			}
+			catch { throw; }
+			return Result;
+		}
     }
 }
