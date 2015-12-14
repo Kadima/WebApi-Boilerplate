@@ -30,5 +30,7 @@ namespace WebApi.ServiceModel.Tables
         public string Noof20FtContainer { get; set; }
         public string Noof40FtContainer { get; set; }
         public string ContainerNo { get; set; }
+        public string CityCode { get; set; }
+        public Nullable<System.DateTime> ATA { get; set; }
     }
 }
