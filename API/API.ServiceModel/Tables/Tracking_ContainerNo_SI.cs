@@ -27,8 +27,11 @@ namespace WebApi.ServiceModel.Tables
         public Nullable<System.DateTime> ETA { get; set; }
         public string PortofLoadingName { get; set; }
         public string PortofDischargeName { get; set; }
-        public string Noof20FtContainer { get; set; }
-        public string Noof40FtContainer { get; set; }
-        public string ContainerNo { get; set; }
+        public int Noof20FtContainer { get; set; }
+								public int Noof40FtContainer { get; set; }
+								public int Noof45FtContainer { get; set; }
+								public string ContainerNo { get; set; }
+								public string OriginName { get; set; }
+								public string DestName { get; set; }
     }
 }

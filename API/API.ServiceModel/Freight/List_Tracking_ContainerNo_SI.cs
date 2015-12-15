@@ -29,7 +29,8 @@ namespace WebApi.ServiceModel.Freight
                         "Select c.VesselName,c.VoyageNo,c.FeederVesselName,c.FeederVoyage,a.ModuleCode," +
                         "a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode," +
                         "a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity,a.ETD,a.ETA," +
-                        "a.PortofLoadingName,a.PortofDischargeName,a.Noof20FtContainer,a.Noof40FtContainer,a.ContainerNo " +
+																								"a.PortofLoadingName,a.PortofDischargeName,a.Noof20FtContainer,a.Noof40FtContainer,a.Noof45FtContainer,a.ContainerNo," +
+																								"a.OriginName, a.DestName " +
                         "From Jmjm1 a Left Join Sebl1 c on c.BlNo=a.AwbBlNo " +
                         "Where a.ModuleCode='SI'  and a.JobNo='" + request.JobNo + "'"
                     );
