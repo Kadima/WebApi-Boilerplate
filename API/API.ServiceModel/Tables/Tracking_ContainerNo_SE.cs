@@ -26,12 +26,12 @@ namespace WebApi.ServiceModel.Tables
         public Nullable<System.DateTime> ETD { get; set; }
         public Nullable<System.DateTime> ETA { get; set; }
         public Nullable<System.DateTime> ATA { get; set; }
-		public string ContainerNo { get; set; }
-		public string CityCode { get; set; }
-		public string PortOfLoadingName { get; set; }
-		public string PortOfDischargeName { get; set; }
-		public int NoOf20ftContainer { get; set; }
-		public int NoOf40FtContainer { get; set; }
-		public int NoOf45FtContainer { get; set; }
+								public string ContainerNo { get; set; }
+								public string CityCode { get; set; }
+								public string PortOfLoadingName { get; set; }
+								public string PortOfDischargeName { get; set; }
+								public int NoOf20ftContainer { get; set; }
+								public int NoOf40FtContainer { get; set; }
+								public int NoOf45FtContainer { get; set; }
     }
 }

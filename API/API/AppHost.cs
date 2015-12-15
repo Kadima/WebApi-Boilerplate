@@ -46,15 +46,15 @@ namespace WebApi
             });
             CorsFeature cf = new CorsFeature(allowedOrigins: "*", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature", allowCredentials: false);
             this.Plugins.Add(cf);
-            this.PreRequestFilters.Add((httpReq, httpRes) =>
-            {
-                //Handles Request and closes Responses after emitting global HTTP Headers
-                if (httpReq.HttpMethod == "OPTIONS")
-                {
-                    //httpReq.Headers["Access-Control-Allow-Origin"] = "*";
-                    httpRes.EndRequest();
-                }
-            });
+            //this.PreRequestFilters.Add((httpReq, httpRes) =>
+            //{
+            //    //Handles Request and closes Responses after emitting global HTTP Headers
+            //    if (httpReq.HttpMethod == "OPTIONS")
+            //    {
+            //        //httpReq.Headers["Access-Control-Allow-Origin"] = "*";
+            //        httpRes.EndRequest();
+            //    }
+            //});
             this.Plugins.Add(new SwaggerFeature());
             //DB
             string strConnectionString = GetConnectionString();
