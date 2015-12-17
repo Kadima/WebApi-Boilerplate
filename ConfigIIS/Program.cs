@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.IO;
 
 namespace ConfigIIS
 {
     class Program
     {
         static void Main(string[] args)
-        {
-												string nl = Environment.NewLine;
-												string[] colorNames = Enum.GetNames(typeof(ConsoleColor));
+								{
+												Console.Title = "WebAPI Configuration";
+												string msg = "";
+												bool blnWait = true;
+												int WaitTime = 0;
             try
             {
 																PrintLatticeChar("IIS");
@@ -19,29 +22,64 @@ namespace ConfigIIS
 																{
 																				Console.WriteLine();
 																}
-																Console.WriteLine("Version");
-																Console.ReadLine();
-																for (int x = 0; x < colorNames.Length; x++)
-																{
-																		Console.Write("{0,2}: ", x);
-																		Console.BackgroundColor = ConsoleColor.Black;
-																		Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colorNames[x]);
-																		Console.Write("This is foreground color {0}.", colorNames[x]);
-																		Console.ResetColor();
-																		Console.WriteLine();
-																}
+																msg = "==============================================";
+																ConsoleColorWrite(msg, ConsoleColor.Green);
+																msg = "== This programme is help to install Server ==";
+																ConsoleColorWrite(msg, ConsoleColor.Green);
+																msg = "== Side Application of Freight Mobile APP.  ==";
+																ConsoleColorWrite(msg, ConsoleColor.Green);
+																msg = "==        Power By (C)2015 SysMagic.        ==";
+																ConsoleColorWrite(msg, ConsoleColor.Green);
+																msg = "==============================================";
+																ConsoleColorWrite(msg, ConsoleColor.Green);
+																msg = "!! Note: Press Enter To Use Default Setting !!";
+																ConsoleColorWrite(msg, ConsoleColor.Yellow);
+																msg = "Environment Ready,Press Any Key To Continue...";
+																ConsoleColorWrite(msg, ConsoleColor.Gray);
+																Console.ReadKey();
                 string folderPath = "C:\\inetpub\\wwwroot\\WebApi";
-                string applicationPath = "/WebApi";
-                string applicationPoolName = "WebApiService";
-																Console.ReadLine();
-                if (!FolderSecurityHelper.ExistFolderRights(folderPath))
-                {
-                    FolderSecurityHelper.SetFolderRights(folderPath);
-                }
+																while (blnWait)
+																{
+																				msg = "Enter Application Folder Path.\nDefault is 'C:\\inetpub\\wwwroot\\WebApi'";
+																				ConsoleColorWrite(msg, ConsoleColor.Cyan);
+																				folderPath = ReadLineString(folderPath);
+																				if (Directory.Exists(folderPath))
+																				{
+																								blnWait = false;
+																								if (!FolderSecurityHelper.ExistFolderRights(folderPath))
+																								{
+																												FolderSecurityHelper.SetFolderRights(folderPath);
+																								}
+																				}
+																				else
+																				{
+																								WaitTime++;
+																								if (WaitTime > 3)
+																								{
+																												msg = "Failed To Many Times, Press Any Key To Close.";
+																												ConsoleColorWrite(msg, ConsoleColor.Red);
+																												Console.ReadLine();
+																												return;
+																								}
+																								else
+																								{
+																												msg = "Application Folder Path '" + folderPath + "' Not Exist.";
+																												ConsoleColorWrite(msg, ConsoleColor.Red);
+																								}
+																				}
+																}																
+																string applicationPoolName = "WebApiService";
+																msg = "Enter Application Pool Name.\nDefault is 'WebApiService' - Press Enter To Use Default Setting.";
+																ConsoleColorWrite(msg, ConsoleColor.Cyan);
+																applicationPoolName = ReadLineString(applicationPoolName);
                 if (!IISControlHelper.ExistApplicationPool(applicationPoolName))
                 {
                     IISControlHelper.CreateApplicationPool(applicationPoolName);
-                }
+																}
+																string applicationPath = "WebApi";
+																msg = "Enter Application Name.\nDefault is 'WebApi' - Press Enter To Use Default Setting.";
+																ConsoleColorWrite(msg, ConsoleColor.Cyan);
+																applicationPath = "/" + ReadLineString(applicationPath);
                 if (!IISControlHelper.ExistApplication(applicationPath))
                 {
                     IISControlHelper.CreateApplication(applicationPath, folderPath, applicationPoolName);
@@ -131,6 +169,31 @@ namespace ConfigIIS
 																				Console.CursorTop -= charWidth;
 																}
 												}
+								}
+
+								static void ConsoleColorWrite(string msg, ConsoleColor cc)
+								{
+												Console.BackgroundColor = ConsoleColor.Black;
+												Console.ForegroundColor = cc;
+												Console.WriteLine(EncodingString(msg, Encoding.UTF8));
+												Console.ResetColor();
+								}
+
+								static string EncodingString(string msg, Encoding type)
+								{
+												byte[] srcBytes = Encoding.Default.GetBytes(msg);
+												byte[] bytes = Encoding.Convert(Encoding.Default, type, srcBytes);
+												return type.GetString(bytes);
+								}
+
+								static string ReadLineString(string str)
+								{
+												string strNew = Console.ReadLine();
+												if (strNew.Length > 0)
+												{
+																str = strNew;
+												}
+												return str;
 								}
     }
 }
