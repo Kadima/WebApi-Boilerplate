@@ -15,6 +15,17 @@ namespace ConfigIIS
     /// </summary>
     public class IISControlHelper
     {
+								public static ArrayList ListSites()
+								{
+												ArrayList al = new ArrayList();
+												ServerManager iisManager = new ServerManager();
+												foreach (Site site in iisManager.Sites)
+												{
+																al.Add(site.Name);
+												}
+												return al;
+								}
+
         public static bool ExistApplication(string applicationName)
         {
             ServerManager iisManager = new ServerManager();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Collections;
 
 namespace ConfigIIS
 {
@@ -69,24 +70,91 @@ namespace ConfigIIS
 																				}
 																}																
 																string applicationPoolName = "WebApiService";
-																msg = "Enter Application Pool Name.\nDefault is 'WebApiService' - Press Enter To Use Default Setting.";
-																ConsoleColorWrite(msg, ConsoleColor.Cyan);
-																applicationPoolName = ReadLineString(applicationPoolName);
-                if (!IISControlHelper.ExistApplicationPool(applicationPoolName))
-                {
-                    IISControlHelper.CreateApplicationPool(applicationPoolName);
-																}
+																blnWait = true;
+																WaitTime = 0;
+																while (blnWait)
+																{
+																				msg = "Enter Application Pool Name.\nDefault is 'WebApiService' - Press Enter To Use Default Setting.";
+																				ConsoleColorWrite(msg, ConsoleColor.Cyan);
+																				applicationPoolName = ReadLineString(applicationPoolName);
+																				if (!IISControlHelper.ExistApplicationPool(applicationPoolName))
+																				{
+																								blnWait = false;
+																								IISControlHelper.CreateApplicationPool(applicationPoolName);
+																				}
+																				else
+																				{
+																								WaitTime++;
+																								if (WaitTime > 3)
+																								{
+																												msg = "Failed To Many Times, Press Any Key To Close.";
+																												ConsoleColorWrite(msg, ConsoleColor.Red);
+																												Console.ReadLine();
+																												return;
+																								}
+																								else
+																								{
+																												msg = "Application Pool Name '" + applicationPoolName + "' Already Exist.";
+																												ConsoleColorWrite(msg, ConsoleColor.Red);
+																												msg = "Do you want to Override '" + applicationPoolName + "'? Enter Y Or N .";
+																												ConsoleColorWrite(msg, ConsoleColor.Cyan);
+																												string s = Console.ReadLine();
+																												if (s.ToUpper() == 'Y'.ToString())
+																												{
+																																blnWait = false;
+																																IISControlHelper.DeleteApplicationPool(applicationPoolName);
+																																IISControlHelper.CreateApplicationPool(applicationPoolName);
+																												}
+																								}
+																				}
+																}																
 																string applicationPath = "WebApi";
-																msg = "Enter Application Name.\nDefault is 'WebApi' - Press Enter To Use Default Setting.";
-																ConsoleColorWrite(msg, ConsoleColor.Cyan);
-																applicationPath = "/" + ReadLineString(applicationPath);
-                if (!IISControlHelper.ExistApplication(applicationPath))
-                {
-                    IISControlHelper.CreateApplication(applicationPath, folderPath, applicationPoolName);
-                }
+																blnWait = true;
+																WaitTime = 0;
+																int siteIndex = 0;
+																while (blnWait)
+																{
+																				msg = "Enter Application Name.\nDefault is 'WebApi' - Press Enter To Use Default Setting.";
+																				ConsoleColorWrite(msg, ConsoleColor.Cyan);
+																				applicationPath = "/" + ReadLineString(applicationPath);
+																				ArrayList al = IISControlHelper.ListSites();
+																				if (al.Count > 1)
+																				{
+																								msg = "Detect More then One WebSite, Enter The Number To Chose One.";
+																								ConsoleColorWrite(msg, ConsoleColor.Cyan);
+																								for (int i = 0; i < al.Count; i++)
+																								{
+																												msg = (i+1).ToString() + ") " + al[i].ToString();
+																												ConsoleColorWrite(msg, ConsoleColor.White);
+																								}
+																								string s = Console.ReadLine();
+																								siteIndex = int.Parse(s);
+																				}
+																				if (!IISControlHelper.ExistApplication(applicationPath))
+																				{
+																								blnWait = false;
+																								IISControlHelper.CreateApplication(applicationPath, folderPath, applicationPoolName);
+																				}
+																				else
+																				{
+																								WaitTime++;
+																								if (WaitTime > 3)
+																								{
+																												msg = "Failed To Many Times, Press Any Key To Close.";
+																												ConsoleColorWrite(msg, ConsoleColor.Red);
+																												Console.ReadLine();
+																												return;
+																								}
+																								else
+																								{
+																												msg = "Application Name '" + applicationPath + "' Already Exist.";
+																												ConsoleColorWrite(msg, ConsoleColor.Red);
+																								}
+																				}
+																}																
             }
             catch (Exception ex) {
-                Console.WriteLine(ex.Message);
+																ConsoleColorWrite(ex.Message, ConsoleColor.Red);
                 Console.ReadLine();
             }
         }
