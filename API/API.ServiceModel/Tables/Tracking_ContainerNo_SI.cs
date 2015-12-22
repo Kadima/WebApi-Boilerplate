@@ -33,5 +33,6 @@ namespace WebApi.ServiceModel.Tables
 								public string ContainerNo { get; set; }
 								public string OriginName { get; set; }
 								public string DestName { get; set; }
+								public string UomDescription { get; set; }
     }
 }

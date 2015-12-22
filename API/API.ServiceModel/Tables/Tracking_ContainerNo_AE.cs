@@ -30,6 +30,7 @@ namespace WebApi.ServiceModel.Tables
         public int Pcs { get; set; }
         public decimal GrossWeight { get; set; }
         public decimal Volume { get; set; }
-        public string Commodity { get; set; }
+								public string Commodity { get; set; }
+								public string UomDescription { get; set; }
     }
 }
