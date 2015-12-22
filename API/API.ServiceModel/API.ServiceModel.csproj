@@ -97,6 +97,7 @@
     <Compile Include="Tables\Imgr2.cs" />
     <Compile Include="Tables\Impr1.cs" />
     <Compile Include="Tables\Jmje1.cs" />
+    <Compile Include="Tables\Jmjm1_Type.cs" />
     <Compile Include="Tables\Jmjm1.cs" />
     <Compile Include="Tables\Jmjm3.cs" />
     <Compile Include="Tables\Jmjm4.cs" />
