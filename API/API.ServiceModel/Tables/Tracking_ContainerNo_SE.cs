@@ -33,5 +33,6 @@ namespace WebApi.ServiceModel.Tables
 								public int NoOf20ftContainer { get; set; }
 								public int NoOf40FtContainer { get; set; }
 								public int NoOf45FtContainer { get; set; }
+								public string UomDescription { get; set; }
     }
 }

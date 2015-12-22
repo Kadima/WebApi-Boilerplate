@@ -27,7 +27,7 @@ namespace WebApi.ServiceModel.Freight
                 {
                     Result = db.Select<Tracking_ContainerNo_AI>(
                         "Select a.ModuleCode,a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode," +
-                        "a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity " +
+																								"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity, (Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
                         "From Jmjm1 a Left Join Aiaw1 c on c.AwbNo=a.AwbBlNo " +
                         "Where a.ModuleCode='AI' and a.JobNo='" + request.JobNo + "'"
                     );
