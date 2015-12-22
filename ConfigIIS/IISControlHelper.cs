@@ -5,7 +5,6 @@ using System.DirectoryServices;
 using System.Linq;
 using System.Text;
 using System.Net;
-using System.Threading.Tasks;
 using Microsoft.Web.Administration;
 
 namespace ConfigIIS
@@ -26,10 +25,10 @@ namespace ConfigIIS
 												return al;
 								}
 
-        public static bool ExistApplication(string applicationName)
+        public static bool ExistApplication(string applicationName, int siteIndex)
         {
             ServerManager iisManager = new ServerManager();
-            foreach (Application a in iisManager.Sites[0].Applications)
+												foreach (Application a in iisManager.Sites[siteIndex].Applications)
             {
                 if (a.Path.Equals(applicationName))
                 {
@@ -39,18 +38,18 @@ namespace ConfigIIS
             return false;
         }
 
-        public static void CreateApplication(string applicationPath, string folderPath, string applicationPoolName)
+        public static void CreateApplication(string applicationPath, int siteIndex, string folderPath, string applicationPoolName)
         {
             ServerManager iisManager = new ServerManager();
-            iisManager.Sites[0].Applications.Add(applicationPath, folderPath);
-            iisManager.Sites[0].Applications[applicationPath].ApplicationPoolName = applicationPoolName;
+												iisManager.Sites[siteIndex].Applications.Add(applicationPath, folderPath);
+												iisManager.Sites[siteIndex].Applications[applicationPath].ApplicationPoolName = applicationPoolName;
             iisManager.CommitChanges();
         }
 
-        public static void DeleteApplication(string applicationPath)
+        public static void DeleteApplication(string applicationPath,int siteIndex)
         {
             ServerManager iisManager = new ServerManager();
-            iisManager.Sites[0].Applications.Remove(iisManager.Sites[0].Applications[applicationPath]);
+												iisManager.Sites[siteIndex].Applications.Remove(iisManager.Sites[siteIndex].Applications[applicationPath]);
             iisManager.CommitChanges();
         }
 
