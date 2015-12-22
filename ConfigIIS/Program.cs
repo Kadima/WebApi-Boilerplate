@@ -18,25 +18,29 @@ namespace ConfigIIS
 												int WaitTime = 0;
             try
             {
-																PrintLatticeChar("IIS");
-																for (int i = 0; i < 15; i++)
-																{
-																				Console.WriteLine();
-																}
+																//PrintLatticeChar("IIS");
+																//for (int i = 0; i < 15; i++)
+																//{
+																//				Console.WriteLine();
+																//}
 																msg = "==============================================";
 																ConsoleColorWrite(msg, ConsoleColor.Green);
-																msg = "== This programme is help to install Server ==";
+																msg = "==                                          ==";
 																ConsoleColorWrite(msg, ConsoleColor.Green);
-																msg = "== Side Application of Freight Mobile APP.  ==";
+																msg = "== Freight Mobile APP Server Side Installer ==";
+																ConsoleColorWrite(msg, ConsoleColor.Green);
+																msg = "==                                          ==";
 																ConsoleColorWrite(msg, ConsoleColor.Green);
 																msg = "==        Power By (C)2015 SysMagic.        ==";
+																ConsoleColorWrite(msg, ConsoleColor.Green);
+																msg = "==                                          ==";
 																ConsoleColorWrite(msg, ConsoleColor.Green);
 																msg = "==============================================";
 																ConsoleColorWrite(msg, ConsoleColor.Green);
 																msg = "!! Note: Press Enter To Use Default Setting !!";
 																ConsoleColorWrite(msg, ConsoleColor.Yellow);
 																msg = "Environment Ready,Press Any Key To Continue...";
-																ConsoleColorWrite(msg, ConsoleColor.Gray);
+																ConsoleColorWrite(msg, ConsoleColor.Green);
 																Console.ReadKey();
                 string folderPath = "C:\\inetpub\\wwwroot\\WebApi";
 																while (blnWait)
@@ -74,7 +78,7 @@ namespace ConfigIIS
 																WaitTime = 0;
 																while (blnWait)
 																{
-																				msg = "Enter Application Pool Name.\nDefault is 'WebApiService' - Press Enter To Use Default Setting.";
+																				msg = "Enter Application Pool Name.\nDefault is 'WebApiService'";
 																				ConsoleColorWrite(msg, ConsoleColor.Cyan);
 																				applicationPoolName = ReadLineString(applicationPoolName);
 																				if (!IISControlHelper.ExistApplicationPool(applicationPoolName))
@@ -96,7 +100,7 @@ namespace ConfigIIS
 																								{
 																												msg = "Application Pool Name '" + applicationPoolName + "' Already Exist.";
 																												ConsoleColorWrite(msg, ConsoleColor.Red);
-																												msg = "Do you want to Override '" + applicationPoolName + "'? Enter Y Or N .";
+																												msg = "Enter 'Y' To Override Or 'S' To Skip This Step.";
 																												ConsoleColorWrite(msg, ConsoleColor.Cyan);
 																												string s = Console.ReadLine();
 																												if (s.ToUpper() == 'Y'.ToString())
@@ -104,6 +108,10 @@ namespace ConfigIIS
 																																blnWait = false;
 																																IISControlHelper.DeleteApplicationPool(applicationPoolName);
 																																IISControlHelper.CreateApplicationPool(applicationPoolName);
+																												}
+																												else if (s.ToUpper() == 'S'.ToString())
+																												{
+																																blnWait = false;
 																												}
 																								}
 																				}
@@ -114,7 +122,7 @@ namespace ConfigIIS
 																int siteIndex = 0;
 																while (blnWait)
 																{
-																				msg = "Enter Application Name.\nDefault is 'WebApi' - Press Enter To Use Default Setting.";
+																				msg = "Enter Application Name.\nDefault is 'WebApi'";
 																				ConsoleColorWrite(msg, ConsoleColor.Cyan);
 																				applicationPath = "/" + ReadLineString(applicationPath);
 																				ArrayList al = IISControlHelper.ListSites();
@@ -124,16 +132,17 @@ namespace ConfigIIS
 																								ConsoleColorWrite(msg, ConsoleColor.Cyan);
 																								for (int i = 0; i < al.Count; i++)
 																								{
-																												msg = (i+1).ToString() + ") " + al[i].ToString();
+																												msg = "( " + (i+1).ToString() + " )  " + al[i].ToString();
 																												ConsoleColorWrite(msg, ConsoleColor.White);
 																								}
 																								string s = Console.ReadLine();
-																								siteIndex = int.Parse(s);
+																								siteIndex = int.Parse(s) - 1;
+
 																				}
-																				if (!IISControlHelper.ExistApplication(applicationPath))
+																				if (!IISControlHelper.ExistApplication(applicationPath, siteIndex))
 																				{
 																								blnWait = false;
-																								IISControlHelper.CreateApplication(applicationPath, folderPath, applicationPoolName);
+																								IISControlHelper.CreateApplication(applicationPath, siteIndex, folderPath, applicationPoolName);
 																				}
 																				else
 																				{
@@ -149,9 +158,26 @@ namespace ConfigIIS
 																								{
 																												msg = "Application Name '" + applicationPath + "' Already Exist.";
 																												ConsoleColorWrite(msg, ConsoleColor.Red);
+																												msg = "Enter 'Y' To Override Or 'S' To Skip This Step.";
+																												ConsoleColorWrite(msg, ConsoleColor.Cyan);
+																												string s = Console.ReadLine();
+																												if (s.ToUpper() == 'Y'.ToString())
+																												{
+																																blnWait = false;
+																																IISControlHelper.DeleteApplication(applicationPath, siteIndex);
+																																IISControlHelper.CreateApplication(applicationPath, siteIndex, folderPath, applicationPoolName);
+																												}
+																												else if (s.ToUpper() == 'S'.ToString())
+																												{
+																																blnWait = false;
+																												}
 																								}
 																				}
-																}																
+																}
+																msg = "Install Success! Press Any Key To Continue...";
+																ConsoleColorWrite(msg, ConsoleColor.Green);
+																Console.ReadLine();
+																return;
             }
             catch (Exception ex) {
 																ConsoleColorWrite(ex.Message, ConsoleColor.Red);
