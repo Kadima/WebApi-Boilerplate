@@ -75,16 +75,20 @@ namespace WebApi.ServiceInterface.Freight
         {
             if (auth.AuthResult(token, uri))
             {
-				if (uri.IndexOf("/sps/") > 0)
-				{
-					ecr.data.results = list_Tracking_ContainerNo_Logic.GetSpsList(request);
-				}
-				else
-				{
-					ecr.data.results = list_Tracking_ContainerNo_Logic.GetList(request);
-				}
-				ecr.meta.code = 200;
-				ecr.meta.message = "OK";
+																if (uri.IndexOf("/sps/") > 0)
+																{
+																				ecr.data.results = list_Tracking_ContainerNo_Logic.GetSpsList(request);
+																}
+																else if (uri.IndexOf("/count/") > 0)
+																{
+																				ecr.data.results = list_Tracking_ContainerNo_Logic.GetCountList(request);
+																}
+																else
+																{
+																				ecr.data.results = list_Tracking_ContainerNo_Logic.GetList(request);
+																}
+																ecr.meta.code = 200;
+																ecr.meta.message = "OK";
             }
             else
             {
