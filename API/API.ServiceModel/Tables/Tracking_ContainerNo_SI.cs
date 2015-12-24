@@ -31,8 +31,6 @@ namespace WebApi.ServiceModel.Tables
 								public int Noof40FtContainer { get; set; }
 								public int Noof45FtContainer { get; set; }
 								public string ContainerNo { get; set; }
-								public string OriginName { get; set; }
-								public string DestName { get; set; }
 								public string UomDescription { get; set; }
     }
 }

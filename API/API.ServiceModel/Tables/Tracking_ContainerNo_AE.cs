@@ -32,5 +32,7 @@ namespace WebApi.ServiceModel.Tables
         public decimal Volume { get; set; }
 								public string Commodity { get; set; }
 								public string UomDescription { get; set; }
+								public string OriginName { get; set; }
+								public string DestName { get; set; }
     }
 }

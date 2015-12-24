@@ -30,7 +30,7 @@ namespace WebApi.ServiceModel.Freight
                         "a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode," +
                         "a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity,a.ETD,a.ETA," +
 																								"a.PortofLoadingName,a.PortofDischargeName,a.Noof20FtContainer,a.Noof40FtContainer,a.Noof45FtContainer,a.ContainerNo," +
-																								"a.OriginName, a.DestName, (Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
+																								"(Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
                         "From Jmjm1 a Left Join Sebl1 c on c.BlNo=a.AwbBlNo " +
                         "Where a.ModuleCode='SI'  and a.JobNo='" + request.JobNo + "'"
                     );
