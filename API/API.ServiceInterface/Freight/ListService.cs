@@ -60,93 +60,38 @@ namespace WebApi.ServiceInterface.Freight
         {
             if (auth.AuthResult(token, uri))
             {
-
-                ecr.data.results = list_Tracking_Logic.GetCount(request);
-                ecr.meta.code = 200;
-                ecr.meta.message = "OK";
-            }
-            else
-            {
-                ecr.meta.code = 401;
-                ecr.meta.message = "Unauthorized";
-            }
-        }
-        public void List_Tracking_ContainerNo(Auth auth, List_Tracking_ContainerNo request, List_Tracking_ContainerNo_Logic list_Tracking_ContainerNo_Logic, CommonResponse ecr, string[] token, string uri)
-        {
-            if (auth.AuthResult(token, uri))
-            {
 																if (uri.IndexOf("/sps/") > 0)
 																{
-																				ecr.data.results = list_Tracking_ContainerNo_Logic.GetSpsList(request);
+																				ecr.data.results = list_Tracking_Logic.GetSpsList(request);
 																}
 																else if (uri.IndexOf("/count/") > 0)
 																{
-																				ecr.data.results = list_Tracking_ContainerNo_Logic.GetCountList(request);
+																				ecr.data.results = list_Tracking_Logic.GetCount(request);
+																}
+																else if (uri.IndexOf("/list/") > 0)
+																{
+																				ecr.data.results = list_Tracking_Logic.GetCountList(request);
+																}
+																else if (uri.IndexOf("/AE/") > 0)
+																{
+																				ecr.data.results = list_Tracking_Logic.GetAEList(request);
+																}
+																else if (uri.IndexOf("/AI/") > 0)
+																{
+																				ecr.data.results = list_Tracking_Logic.GetAIList(request);
+																}
+																else if (uri.IndexOf("/SE/") > 0)
+																{
+																				ecr.data.results = list_Tracking_Logic.GetSEList(request);
+																}
+																else if (uri.IndexOf("/SI/") > 0)
+																{
+																				ecr.data.results = list_Tracking_Logic.GetSIList(request);
 																}
 																else
 																{
-																				ecr.data.results = list_Tracking_ContainerNo_Logic.GetList(request);
+																				ecr.data.results = list_Tracking_Logic.GetList(request);
 																}
-																ecr.meta.code = 200;
-																ecr.meta.message = "OK";
-            }
-            else
-            {
-                ecr.meta.code = 401;
-                ecr.meta.message = "Unauthorized";
-            }
-        }
-        public void List_Tracking_ContainerNo_AE(Auth auth, List_Tracking_ContainerNo_AE request, List_Tracking_ContainerNo_AE_Logic list_Tracking_ContainerNo_AE_Logic, CommonResponse ecr, string[] token, string uri)
-        {
-            if (auth.AuthResult(token, uri))
-            {
-
-                ecr.data.results = list_Tracking_ContainerNo_AE_Logic.GetList(request);
-                ecr.meta.code = 200;
-                ecr.meta.message = "OK";
-            }
-            else
-            {
-                ecr.meta.code = 401;
-                ecr.meta.message = "Unauthorized";
-            }
-        }
-        public void List_Tracking_ContainerNo_AI(Auth auth, List_Tracking_ContainerNo_AI request, List_Tracking_ContainerNo_AI_Logic list_Tracking_ContainerNo_AI_Logic, CommonResponse ecr, string[] token, string uri)
-        {
-            if (auth.AuthResult(token, uri))
-            {
-
-                ecr.data.results = list_Tracking_ContainerNo_AI_Logic.GetList(request);
-                ecr.meta.code = 200;
-                ecr.meta.message = "OK";
-            }
-            else
-            {
-                ecr.meta.code = 401;
-                ecr.meta.message = "Unauthorized";
-            }
-        }
-        public void List_Tracking_ContainerNo_SE(Auth auth, List_Tracking_ContainerNo_SE request, List_Tracking_ContainerNo_SE_Logic list_Tracking_ContainerNo_SE_Logic, CommonResponse ecr, string[] token, string uri)
-        {
-            if (auth.AuthResult(token, uri))
-            {
-
-                ecr.data.results = list_Tracking_ContainerNo_SE_Logic.GetList(request);
-                ecr.meta.code = 200;
-                ecr.meta.message = "OK";
-            }
-            else
-            {
-                ecr.meta.code = 401;
-                ecr.meta.message = "Unauthorized";
-            }
-        }
-        public void List_Tracking_ContainerNo_SI(Auth auth, List_Tracking_ContainerNo_SI request, List_Tracking_ContainerNo_SI_Logic list_Tracking_ContainerNo_SI_Logic, CommonResponse ecr, string[] token, string uri)
-        {
-            if (auth.AuthResult(token, uri))
-            {
-
-                ecr.data.results = list_Tracking_ContainerNo_SI_Logic.GetList(request);
                 ecr.meta.code = 200;
                 ecr.meta.message = "OK";
             }
