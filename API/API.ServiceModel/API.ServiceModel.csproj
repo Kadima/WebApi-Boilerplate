@@ -82,11 +82,6 @@
     <Compile Include="ConfigInterface.cs" />
     <Compile Include="Freight\Freight_Login.cs" />
     <Compile Include="Freight\List_Tracking.cs" />
-    <Compile Include="Freight\List_Tracking_ContainerNo_SI.cs" />
-    <Compile Include="Freight\List_Tracking_ContainerNo_SE.cs" />
-    <Compile Include="Freight\List_Tracking_ContainerNo_AI.cs" />
-    <Compile Include="Freight\List_Tracking_ContainerNo_AE.cs" />
-    <Compile Include="Freight\List_Tracking_ContainerNo.cs" />
     <Compile Include="Freight\List_Rcvy1.cs" />
     <Compile Include="Freight\List_Plcp1.cs" />
     <Compile Include="Freight\Update_Plcp1.cs" />
@@ -97,6 +92,7 @@
     <Compile Include="Tables\Imgr2.cs" />
     <Compile Include="Tables\Impr1.cs" />
     <Compile Include="Tables\Jmje1.cs" />
+    <Compile Include="Tables\Omtx1.cs" />
     <Compile Include="Tables\Jmjm1_Type.cs" />
     <Compile Include="Tables\Jmjm1.cs" />
     <Compile Include="Tables\Jmjm3.cs" />

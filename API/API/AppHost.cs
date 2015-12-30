@@ -94,11 +94,6 @@ namespace WebApi
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.Update_Plcp1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Rcvy1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Tracking_Logic>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Tracking_ContainerNo_Logic>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Tracking_ContainerNo_AE_Logic>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Tracking_ContainerNo_AI_Logic>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Tracking_ContainerNo_SE_Logic>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Tracking_ContainerNo_SI_Logic>();
             //Common
             container.RegisterAutoWired<WebApi.ServiceModel.Common.List_Rcbp1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Common.Update_Rcbp1_Logic>();
