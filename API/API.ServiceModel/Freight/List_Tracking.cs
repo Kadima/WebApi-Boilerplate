@@ -206,15 +206,38 @@ namespace WebApi.ServiceModel.Freight
 																				if (!string.IsNullOrEmpty(request.FilterValue))
 																				{
 																								int count = int.Parse(request.RecordCount);
-																								string strWhere = " Where ContainerNo LIKE '%" + request.FilterValue + "%'";
-																								string strSelect = "SELECT " +
-																												"j1.*,(Select Top 1 UomDescription From Rcum1 Where UomCode=j1.UomCode) AS UomDescription " +
-																												"FROM Jmjm1 j1, " +
-																												"(SELECT TOP " + (count + 10) + " row_number() OVER (ORDER BY JobNo ASC, JobDate DESC) n, JobNo FROM Jmjm1 " + strWhere + ") j2 " +
-																												"WHERE j1.JobNo = j2.JobNo AND j2.n > " + count;
-																								string strOrderBy = " ORDER BY j2.n ASC";
-																								string strSQL = strSelect + strOrderBy;
-																								Result = db.Select<Jmjm1>(strSQL);
+																								string strWhere = "";
+																								string strSelect = "";
+																								string strOrderBy = "";
+																								string strSQL = "";
+																								if (request.FilterName == "ContainerNo")
+																								{
+																												strWhere = " Where ContainerNo LIKE '%" + request.FilterValue + "%'";
+																												strSelect = "SELECT " +
+																																"j1.*,(Select Top 1 UomDescription From Rcum1 Where UomCode=j1.UomCode) AS UomDescription " +
+																																"FROM Jmjm1 j1, " +
+																																"(SELECT TOP " + (count + 10) + " row_number() OVER (ORDER BY JobNo ASC, JobDate DESC) n, JobNo FROM Jmjm1 " + strWhere + ") j2 " +
+																																"WHERE j1.JobNo = j2.JobNo AND j2.n > " + count;
+																												strOrderBy = " ORDER BY j2.n ASC";
+																												strSQL = strSelect + strOrderBy;
+																												Result = db.Select<Jmjm1>(strSQL);
+																								}
+																								else if (request.FilterName == "OrderNo")
+																								{
+
+																								}
+																								else
+																								{
+																												strWhere = " Where " + request.FilterName + "='" + request.FilterValue + "'";
+																												strSelect = "SELECT " +
+																																"j1.*,(Select Top 1 UomDescription From Rcum1 Where UomCode=j1.UomCode) AS UomDescription " +
+																																"FROM Jmjm1 j1, " +
+																																"(SELECT TOP " + (count + 10) + " row_number() OVER (ORDER BY JobNo ASC, JobDate DESC) n, JobNo FROM Jmjm1 " + strWhere + ") j2 " +
+																																"WHERE j1.JobNo = j2.JobNo AND j2.n > " + count;
+																												strOrderBy = " ORDER BY j2.n ASC";
+																												strSQL = strSelect + strOrderBy;
+																												Result = db.Select<Jmjm1>(strSQL);
+																								}
 																				}
 																}
 												}
