@@ -60,17 +60,17 @@ namespace WebApi.ServiceInterface.Freight
         {
             if (auth.AuthResult(token, uri))
             {
-																if (uri.IndexOf("/sps/") > 0)
+																if (uri.IndexOf("/tracking/OrderNo/") > 0)
+																{
+																				ecr.data.results = list_Tracking_Logic.GetOmtx1List(request);
+																}
+																else if (uri.IndexOf("/tracking/sps/") > 0)
 																{
 																				ecr.data.results = list_Tracking_Logic.GetSpsList(request);
 																}
-																else if (uri.IndexOf("/count/") > 0)
+																else if (uri.IndexOf("/tracking/count/") > 0)
 																{
 																				ecr.data.results = list_Tracking_Logic.GetCount(request);
-																}
-																else if (uri.IndexOf("/list/") > 0)
-																{
-																				ecr.data.results = list_Tracking_Logic.GetCountList(request);
 																}
 																else if (uri.IndexOf("/AE/") > 0)
 																{
