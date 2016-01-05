@@ -11,7 +11,8 @@ using WebApi.ServiceModel.Tables;
 namespace WebApi.ServiceModel.Freight
 {
     [Route("/freight/rcvy1", "Get")]
-    [Route("/freight/rcvy1/{PortOfDischargeName}", "Get")]
+				[Route("/freight/rcvy1/{PortOfDischargeName}", "Get")]
+				[Route("/freight/rcvy1/sps", "Get")]
     [Route("/freight/rcvy1/sps/{PortOfDischargeName}", "Get")]
     public class List_Rcvy1 : IReturn<CommonResponse>
     {
@@ -30,13 +31,13 @@ namespace WebApi.ServiceModel.Freight
                     if (!string.IsNullOrEmpty(request.PortOfDischargeName))
                     {
                         Result = db.HashSet<string>(
-								"Select PortOfDischargeName from rcvy1 where PortOfDischargeName is not null and PortOfDischargeName <> '' and PortOfDischargeName LIKE '" + request.PortOfDischargeName + "%' Order By PortOfDischargeName ASC"
+																												"Select PortOfDischargeName from rcvy1 where PortOfDischargeName is not null and PortOfDischargeName <> '' and PortOfDischargeName LIKE '" + request.PortOfDischargeName + "%' Order By PortOfDischargeName ASC"
                         );
                     }
                     else
                     {
                         Result = db.HashSet<string>(
-								"Select PortOfDischargeName from rcvy1 where PortOfDischargeName is not null and PortOfDischargeName<>'' Order By PortofDischargeName ASC"
+																												"Select PortOfDischargeName from rcvy1 where PortOfDischargeName is not null and PortOfDischargeName<>'' Order By PortofDischargeName ASC"
                         );
                     }
                 }
@@ -51,10 +52,10 @@ namespace WebApi.ServiceModel.Freight
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-					string strSQL = "SELECT VoyageID,VoyageNo,VesselCode,CloseDateTime,ETD,ETA,datediff(D,ETD,ETA) TranSit,PortofDischargeName," +
-					"(select top 1 ShippinglineName from rcsl1 where shippinglinecode=rcvy1.shippinglinecode)  ShippinglineName " +
-					"FROM rcvy1 Where StatusCode='USE' And ETD >= Convert(varchar(12),getdate(),112) And PortofDischargeName='" + request.PortOfDischargeName + "' Order By UpdateDateTime Desc";
-					Result = db.Select<Rcvy1_sps>(strSQL);
+																				string strSQL = "SELECT VoyageID,VoyageNo,VesselCode,CloseDateTime,ETD,ETA,datediff(D,ETD,ETA) TranSit,PortofDischargeName," +
+																								"(select top 1 ShippinglineName from rcsl1 where shippinglinecode=rcvy1.shippinglinecode)  ShippinglineName " +
+																								"FROM rcvy1 Where StatusCode='USE' And ETD >= Convert(varchar(12),getdate(),112) And PortofDischargeName='" + request.PortOfDischargeName + "' Order By UpdateDateTime Desc";
+																				Result = db.Select<Rcvy1_sps>(strSQL);
                 }
             }
             catch { throw; }
