@@ -42,7 +42,7 @@ namespace WebApi.ServiceInterface.Freight
         {
             if (auth.AuthResult(token, uri))
             {
-                if(uri.IndexOf("/sps/") > 0){
+                if(uri.IndexOf("/sps") > 0){
                     ecr.data.results = list_Rcvy1_Logic.GetSpsList(request);
                 }else{                    
                     ecr.data.results = list_Rcvy1_Logic.GetList(request);
@@ -60,31 +60,31 @@ namespace WebApi.ServiceInterface.Freight
         {
             if (auth.AuthResult(token, uri))
             {
-																if (uri.IndexOf("/tracking/OrderNo/") > 0)
+																if (uri.IndexOf("/tracking/OrderNo") > 0)
 																{
 																				ecr.data.results = list_Tracking_Logic.GetOmtx1List(request);
 																}
-																else if (uri.IndexOf("/tracking/sps/") > 0)
+																else if (uri.IndexOf("/tracking/sps") > 0)
 																{
 																				ecr.data.results = list_Tracking_Logic.GetSpsList(request);
 																}
-																else if (uri.IndexOf("/tracking/count/") > 0)
+																else if (uri.IndexOf("/tracking/count") > 0)
 																{
 																				ecr.data.results = list_Tracking_Logic.GetCount(request);
 																}
-																else if (uri.IndexOf("/AE/") > 0)
+																else if (uri.IndexOf("ModuleCode=AE") > 0)
 																{
 																				ecr.data.results = list_Tracking_Logic.GetAEList(request);
 																}
-																else if (uri.IndexOf("/AI/") > 0)
+																else if (uri.IndexOf("ModuleCode=AI") > 0)
 																{
 																				ecr.data.results = list_Tracking_Logic.GetAIList(request);
 																}
-																else if (uri.IndexOf("/SE/") > 0)
+																else if (uri.IndexOf("ModuleCode=SE") > 0)
 																{
 																				ecr.data.results = list_Tracking_Logic.GetSEList(request);
 																}
-																else if (uri.IndexOf("/SI/") > 0)
+																else if (uri.IndexOf("ModuleCode=SI") > 0)
 																{
 																				ecr.data.results = list_Tracking_Logic.GetSIList(request);
 																}

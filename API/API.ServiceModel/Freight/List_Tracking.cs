@@ -10,8 +10,11 @@ using WebApi.ServiceModel.Tables;
 
 namespace WebApi.ServiceModel.Freight
 {
+				[Route("/freight/tracking/count", "Get")]
 				[Route("/freight/tracking/count/{FilterName}/{FilterValue}", "Get")]
+				[Route("/freight/tracking/sps", "Get")]
 				[Route("/freight/tracking/sps/{FilterName}/{RecordCount}/{FilterValue}", "Get")]
+				[Route("/freight/tracking", "Get")]
 				[Route("/freight/tracking/{FilterName}/{FilterValue}", "Get")]
 				[Route("/freight/tracking/{FilterName}/{ModuleCode}/{FilterValue}", "Get")]
 
