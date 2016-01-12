@@ -234,7 +234,7 @@ namespace WebApi.ServiceInterface
         }
         //Freight
         public ServiceModel.Freight.Freight_Login_Logic freight_Login_Logic { get; set; }
-        public object Post(ServiceModel.Freight.Freight_Login request)
+        public object Any(ServiceModel.Freight.Freight_Login request)
         {
             CommonResponse ecr = new CommonResponse();
             ecr.initial();
