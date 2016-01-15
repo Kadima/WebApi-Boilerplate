@@ -10,14 +10,15 @@ using WebApi.ServiceModel.Tables;
 
 namespace WebApi.ServiceModel.Freight
 {
-    [Route("/freight/rcbp3", "Get")]
+				[Route("/freight/rcbp3/{BusinessPartyCode}/{LineItemNo}", "Get")]
 				[Route("/freight/rcbp3/{BusinessPartyCode}", "Get")]
-				[Route("/freight/rcbp3/delete", "Get")]
+    [Route("/freight/rcbp3", "Get")]
 				[Route("/freight/rcbp3/delete/{BusinessPartyCode}/{LineItemNo}", "Get")]
+				[Route("/freight/rcbp3/delete", "Get")]
     public class List_Rcbp3 : IReturn<CommonResponse>
     {
 								public string BusinessPartyCode { get; set; }
-								public int LineItemNo { get; set; }
+								public string LineItemNo { get; set; }
     }
     public class List_Rcbp3_Logic
     {
@@ -30,8 +31,15 @@ namespace WebApi.ServiceModel.Freight
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
                     if (!string.IsNullOrEmpty(request.BusinessPartyCode))
-                    { 
-                        Result = db.Where<Rcbp3>(r1 => r1.BusinessPartyCode == request.BusinessPartyCode);
+                    {
+																								if (!string.IsNullOrEmpty(request.LineItemNo))
+																								{
+																												Result = db.Where<Rcbp3>(r1 => r1.BusinessPartyCode == request.BusinessPartyCode && r1.LineItemNo == int.Parse(request.LineItemNo));
+																								}
+																								else
+																								{
+																												Result = db.Where<Rcbp3>(r1 => r1.BusinessPartyCode == request.BusinessPartyCode);
+																								}
                     }
                 }
             }
@@ -45,7 +53,33 @@ namespace WebApi.ServiceModel.Freight
 												{
 																using (var db = DbConnectionFactory.OpenDbConnection())
 																{
-																				Result = db.Delete<Rcbp3>(r3 => r3.BusinessPartyCode == request.BusinessPartyCode && r3.LineItemNo == request.LineItemNo);
+																				Result = db.Delete<Rcbp3>(r3 => r3.BusinessPartyCode == request.BusinessPartyCode && r3.LineItemNo == int.Parse(request.LineItemNo));
+																}
+												}
+												catch { throw; }
+												return Result;
+								}
+								public int InsertItem(List_Rcbp3 request)
+								{
+												int Result = -1;
+												try
+												{
+																using (var db = DbConnectionFactory.OpenDbConnection())
+																{
+																				//Result = db.Delete<Rcbp3>(r3 => r3.BusinessPartyCode == request.BusinessPartyCode && r3.LineItemNo == request.LineItemNo);
+																}
+												}
+												catch { throw; }
+												return Result;
+								}
+								public int UpdateItem(List_Rcbp3 request)
+								{
+												int Result = -1;
+												try
+												{
+																using (var db = DbConnectionFactory.OpenDbConnection())
+																{
+																				//Result = db.Delete<Rcbp3>(r3 => r3.BusinessPartyCode == request.BusinessPartyCode && r3.LineItemNo == request.LineItemNo);
 																}
 												}
 												catch { throw; }
