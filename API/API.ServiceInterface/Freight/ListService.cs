@@ -14,7 +14,7 @@ namespace WebApi.ServiceInterface.Freight
         {
             if (auth.AuthResult(token, uri))
             {
-                ecr.data.results = list_Rcbp3_Logic.GetList(request);
+																ecr.data.results = list_Rcbp3_Logic.GetList(request);
                 ecr.meta.code = 200;
                 ecr.meta.message = "OK";
             }

@@ -89,7 +89,9 @@ namespace WebApi
             //Freight
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.Freight_Login_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Rcbp3_Logic>();
-            container.RegisterAutoWired<WebApi.ServiceModel.Freight.Update_Rcbp3_Logic>();
+												container.RegisterAutoWired<WebApi.ServiceModel.Freight.Update_Rcbp3_Logic>();
+												container.RegisterAutoWired<WebApi.ServiceModel.Freight.Delete_Rcbp3_Logic>();
+												container.RegisterAutoWired<WebApi.ServiceModel.Freight.Insert_Rcbp3_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Plcp1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.Update_Plcp1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.List_Rcvy1_Logic>();
@@ -98,7 +100,6 @@ namespace WebApi
             container.RegisterAutoWired<WebApi.ServiceModel.Common.List_Rcbp1_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Common.Update_Rcbp1_Logic>();
         }
-
         #region DES
         //private string DESKey = "F322186F";
         //private string DESIV = "F322186F";
