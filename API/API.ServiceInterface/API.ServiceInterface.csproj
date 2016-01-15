@@ -81,6 +81,8 @@
     <Compile Include="Common\UpdateService.cs" />
     <Compile Include="Freight\ListService.cs" />
     <Compile Include="Freight\LoginService.cs" />
+    <Compile Include="Freight\InsertService.cs" />
+    <Compile Include="Freight\DeleteService.cs" />
     <Compile Include="Freight\UpdateService.cs" />
     <Compile Include="Tms\DoneService.cs" />
     <Compile Include="Tms\ListService.cs" />

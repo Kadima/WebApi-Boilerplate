@@ -10,12 +10,12 @@ using WebApi.ServiceModel.Tables;
 
 namespace WebApi.ServiceModel.Freight
 {
-    [Route("/freight/plcp1", "Get")]
-    [Route("/freight/plcp1/VoucherNo/{VoucherNo}", "Get")]
     [Route("/freight/plcp1/VoucherNo/{VoucherNo}/{StatusCode}", "Get")]
-    [Route("/freight/plcp1/VendorName/{VendorName}", "Get")]
+    [Route("/freight/plcp1/VoucherNo/{VoucherNo}", "Get")]
     [Route("/freight/plcp1/VendorName/{VendorName}/{StatusCode}", "Get")]
+    [Route("/freight/plcp1/VendorName/{VendorName}", "Get")]
     [Route("/freight/plcp1/{StatusCode}", "Get")]
+    [Route("/freight/plcp1", "Get")]
     public class List_Plcp1 : IReturn<CommonResponse>
     {
         public string VoucherNo { get; set; }
