@@ -71,23 +71,7 @@ namespace WebApi.ServiceInterface.Freight
 																else if (uri.IndexOf("/tracking/count") > 0)
 																{
 																				ecr.data.results = list_Tracking_Logic.GetCount(request);
-																}
-																else if (uri.IndexOf("ModuleCode=AE") > 0)
-																{
-																				ecr.data.results = list_Tracking_Logic.GetAEList(request);
-																}
-																else if (uri.IndexOf("ModuleCode=AI") > 0)
-																{
-																				ecr.data.results = list_Tracking_Logic.GetAIList(request);
-																}
-																else if (uri.IndexOf("ModuleCode=SE") > 0)
-																{
-																				ecr.data.results = list_Tracking_Logic.GetSEList(request);
-																}
-																else if (uri.IndexOf("ModuleCode=SI") > 0)
-																{
-																				ecr.data.results = list_Tracking_Logic.GetSIList(request);
-																}
+																}																
 																else
 																{
 																				ecr.data.results = list_Tracking_Logic.GetList(request);

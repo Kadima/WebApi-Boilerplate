@@ -163,100 +163,75 @@ namespace WebApi.ServiceModel.Freight
 												catch { throw; }
 												return Result;
 								}
-								public List<Jmjm1> GetList(List_Tracking request)
+								public object GetList(List_Tracking request)
 								{
-												List<Jmjm1> Result = null;
+												object Result = null;
+												string strModuleCode = request.ModuleCode;
 												try
 												{
 																using (var db = DbConnectionFactory.OpenDbConnection())
 																{
-																				if (!string.IsNullOrEmpty(request.ModuleCode))
+																				if (strModuleCode.Equals("AE"))
 																				{
-																								Result = db.Select<Jmjm1>(
+																								List<Tracking_ContainerNo_AE> ResultAE = null;
+																								ResultAE = db.Select<Tracking_ContainerNo_AE>(
+																												"select c.FirstToDestCode,c.FirstByAirlineID,c.FirstFlightNo,c.FirstFlightDate," +
+																												"c.SecondToDestCode,c.SecondByAirlineID,c.SecondFlightNo,c.SecondFlightDate," +
+																											"c.ThirdToDestCode,c.ThirdByAirlineID,c.ThirdFlightNo,c.ThirdFlightDate," +
+																												"a.ModuleCode,a.JobNo,a.JobType, a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode,a.OriginName,a.DestName," +
+																											"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity, (Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
+																											"From Jmjm1 a Left Join Aeaw1 c on c.AwbNo=a.AwbBlNo " +
+																												"Where a.ModuleCode='AE' and a.JobNo='" + request.FilterValue + "'"
+																								);
+																								Result = ResultAE;
+																				}
+																				else if (strModuleCode.Equals("AI"))
+																				{
+																								List<Tracking_ContainerNo_AI> ResultAI = null;
+																								ResultAI = db.Select<Tracking_ContainerNo_AI>(
+																												"Select a.ModuleCode,a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode,a.OriginName,a.DestName," +
+																												"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity, (Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
+																												"From Jmjm1 a Left Join Aiaw1 c on c.AwbNo=a.AwbBlNo " +
+																												"Where a.ModuleCode='AI' and a.JobNo='" + request.FilterValue + "'"
+																								);
+																								Result = ResultAI;
+																				}
+																				else if (strModuleCode.Equals("SE"))
+																				{
+																								List<Tracking_ContainerNo_SE> ResultSE = null;
+																								Result = db.Select<Tracking_ContainerNo_SE>(
+																												"Select c.VesselName, c.VoyageNo, c.FeederVesselName, c.FeederVoyage, a.ModuleCode," +
+																												"a.JobNo, a.JobType, a.CustomerRefNo as ReferenceNo, a.AwbBlNo, a.MawbOBLNo, a.OriginCode, a.DestCode," +
+																												"a.Pcs, a.GrossWeight, a.Volume, a.CommodityDescription as Commodity, a.ETD, a.ETA," +
+																												"a.PortOfLoadingName, a.PortOfDischargeName, a.NoOf20ftContainer, a.NoOf40ftContainer, a.NoOf45ftContainer, a.ContainerNo," +
+																												"(SELECT TOP 1 CityCode From Saco1) AS CityCode, c.AtaDate AS ATA, (Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
+																												"From Jmjm1 a Left Join Sebl1 c on c.BlNo=a.AwbBlNo " +
+																												"Where a.ModuleCode='SE' and a.JobNo='" + request.FilterValue + "'"
+																								);
+																								Result = ResultSE;
+																				}
+																				else if (strModuleCode.Equals("SI"))
+																				{
+																								List<Tracking_ContainerNo_SI> ResultSI = null;
+																								ResultSI = db.Select<Tracking_ContainerNo_SI>(
+																												"Select c.VesselName,c.VoyageNo,c.FeederVesselName,c.FeederVoyage,a.ModuleCode," +
+																												"a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode," +
+																												"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity,a.ETD,a.ETA," +
+																												"a.PortofLoadingName,a.PortofDischargeName,a.Noof20FtContainer,a.Noof40FtContainer,a.Noof45FtContainer,a.ContainerNo," +
+																												"(Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
+																												"From Jmjm1 a Left Join Sebl1 c on c.BlNo=a.AwbBlNo " +
+																												"Where a.ModuleCode='SI'  and a.JobNo='" + request.FilterValue + "'"
+																								);
+																								Result = ResultSI;
+																				}
+																				else if (!string.IsNullOrEmpty(strModuleCode))
+																				{
+																								List<Jmjm1> ResultJmjm = null;
+																								ResultJmjm = db.Select<Jmjm1>(
 																												"Select *,(Select Top 1 UomDescription From Rcum1 Where UomCode=Jmjm1.UomCode) AS UomDescription From Jmjm1 Where ModuleCode='" + request.ModuleCode + "' And JobNo='" + request.FilterValue + "' Order By Jmjm1.JobNo Asc,Jmjm1.JobDate Desc"
 																								);
+																								Result = ResultJmjm;
 																				}
-																}
-												}
-												catch { throw; }
-												return Result;
-								}
-								public List<Tracking_ContainerNo_AE> GetAEList(List_Tracking request)
-								{
-												List<Tracking_ContainerNo_AE> Result = null;
-												try
-												{
-																using (var db = DbConnectionFactory.OpenDbConnection())
-																{
-																				Result = db.Select<Tracking_ContainerNo_AE>(
-																								"select c.FirstToDestCode,c.FirstByAirlineID,c.FirstFlightNo,c.FirstFlightDate," +
-																								"c.SecondToDestCode,c.SecondByAirlineID,c.SecondFlightNo,c.SecondFlightDate," +
-																							"c.ThirdToDestCode,c.ThirdByAirlineID,c.ThirdFlightNo,c.ThirdFlightDate," +
-																								"a.ModuleCode,a.JobNo,a.JobType, a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode,a.OriginName,a.DestName," +
-																							"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity, (Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
-																							"From Jmjm1 a Left Join Aeaw1 c on c.AwbNo=a.AwbBlNo " +
-																								"Where a.ModuleCode='AE' and a.JobNo='" + request.FilterValue + "'"
-																				);
-																}
-												}
-												catch { throw; }
-												return Result;
-								}
-								public List<Tracking_ContainerNo_AI> GetAIList(List_Tracking request)
-								{
-												List<Tracking_ContainerNo_AI> Result = null;
-												try
-												{
-																using (var db = DbConnectionFactory.OpenDbConnection())
-																{
-																				Result = db.Select<Tracking_ContainerNo_AI>(
-																								"Select a.ModuleCode,a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode,a.OriginName,a.DestName," +
-																								"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity, (Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
-																								"From Jmjm1 a Left Join Aiaw1 c on c.AwbNo=a.AwbBlNo " +
-																								"Where a.ModuleCode='AI' and a.JobNo='" + request.FilterValue + "'"
-																				);
-																}
-												}
-												catch { throw; }
-												return Result;
-								}
-								public List<Tracking_ContainerNo_SE> GetSEList(List_Tracking request)
-								{
-												List<Tracking_ContainerNo_SE> Result = null;
-												try
-												{
-																using (var db = DbConnectionFactory.OpenDbConnection())
-																{
-																				Result = db.Select<Tracking_ContainerNo_SE>(
-																								"Select c.VesselName, c.VoyageNo, c.FeederVesselName, c.FeederVoyage, a.ModuleCode," +
-																								"a.JobNo, a.JobType, a.CustomerRefNo as ReferenceNo, a.AwbBlNo, a.MawbOBLNo, a.OriginCode, a.DestCode," +
-																								"a.Pcs, a.GrossWeight, a.Volume, a.CommodityDescription as Commodity, a.ETD, a.ETA," +
-																								"a.PortOfLoadingName, a.PortOfDischargeName, a.NoOf20ftContainer, a.NoOf40ftContainer, a.NoOf45ftContainer, a.ContainerNo," +
-																								"(SELECT TOP 1 CityCode From Saco1) AS CityCode, c.AtaDate AS ATA, (Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
-																								"From Jmjm1 a Left Join Sebl1 c on c.BlNo=a.AwbBlNo " +
-																								"Where a.ModuleCode='SE' and a.JobNo='" + request.FilterValue + "'"
-																				);
-																}
-												}
-												catch { throw; }
-												return Result;
-								}
-								public List<Tracking_ContainerNo_SI> GetSIList(List_Tracking request)
-								{
-												List<Tracking_ContainerNo_SI> Result = null;
-												try
-												{
-																using (var db = DbConnectionFactory.OpenDbConnection())
-																{
-																				Result = db.Select<Tracking_ContainerNo_SI>(
-																								"Select c.VesselName,c.VoyageNo,c.FeederVesselName,c.FeederVoyage,a.ModuleCode," +
-																								"a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode," +
-																								"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity,a.ETD,a.ETA," +
-																								"a.PortofLoadingName,a.PortofDischargeName,a.Noof20FtContainer,a.Noof40FtContainer,a.Noof45FtContainer,a.ContainerNo," +
-																								"(Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
-																								"From Jmjm1 a Left Join Sebl1 c on c.BlNo=a.AwbBlNo " +
-																								"Where a.ModuleCode='SI'  and a.JobNo='" + request.FilterValue + "'"
-																				);
 																}
 												}
 												catch { throw; }
