@@ -27,7 +27,8 @@ namespace WebApi.ServiceModel.Freight
 												{
 																using (var db = DbConnectionFactory.OpenDbConnection())
 																{
-																				Result = db.Delete<Rcbp3>(r3 => r3.BusinessPartyCode == request.BusinessPartyCode && r3.LineItemNo == int.Parse(request.LineItemNo));
+																				db.Delete<Rcbp3>(r3 => r3.BusinessPartyCode == request.BusinessPartyCode && r3.LineItemNo == int.Parse(request.LineItemNo));
+																				Result = 1;
 																}
 												}
 												catch { throw; }
