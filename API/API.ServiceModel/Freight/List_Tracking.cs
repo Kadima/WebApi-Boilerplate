@@ -173,8 +173,7 @@ namespace WebApi.ServiceModel.Freight
 																{
 																				if (strModuleCode.Equals("AE"))
 																				{
-																								List<Tracking_ContainerNo_AE> ResultAE = null;
-																								ResultAE = db.Select<Tracking_ContainerNo_AE>(
+																								Result = db.Select<Tracking_ContainerNo_AE>(
 																												"select c.FirstToDestCode,c.FirstByAirlineID,c.FirstFlightNo,c.FirstFlightDate," +
 																												"c.SecondToDestCode,c.SecondByAirlineID,c.SecondFlightNo,c.SecondFlightDate," +
 																											"c.ThirdToDestCode,c.ThirdByAirlineID,c.ThirdFlightNo,c.ThirdFlightDate," +
@@ -183,22 +182,18 @@ namespace WebApi.ServiceModel.Freight
 																											"From Jmjm1 a Left Join Aeaw1 c on c.AwbNo=a.AwbBlNo " +
 																												"Where a.ModuleCode='AE' and a.JobNo='" + request.FilterValue + "'"
 																								);
-																								Result = ResultAE;
 																				}
 																				else if (strModuleCode.Equals("AI"))
 																				{
-																								List<Tracking_ContainerNo_AI> ResultAI = null;
-																								ResultAI = db.Select<Tracking_ContainerNo_AI>(
+																								Result = db.Select<Tracking_ContainerNo_AI>(
 																												"Select a.ModuleCode,a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode,a.OriginName,a.DestName," +
 																												"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity, (Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
 																												"From Jmjm1 a Left Join Aiaw1 c on c.AwbNo=a.AwbBlNo " +
 																												"Where a.ModuleCode='AI' and a.JobNo='" + request.FilterValue + "'"
 																								);
-																								Result = ResultAI;
 																				}
 																				else if (strModuleCode.Equals("SE"))
 																				{
-																								List<Tracking_ContainerNo_SE> ResultSE = null;
 																								Result = db.Select<Tracking_ContainerNo_SE>(
 																												"Select c.VesselName, c.VoyageNo, c.FeederVesselName, c.FeederVoyage, a.ModuleCode," +
 																												"a.JobNo, a.JobType, a.CustomerRefNo as ReferenceNo, a.AwbBlNo, a.MawbOBLNo, a.OriginCode, a.DestCode," +
@@ -208,12 +203,10 @@ namespace WebApi.ServiceModel.Freight
 																												"From Jmjm1 a Left Join Sebl1 c on c.BlNo=a.AwbBlNo " +
 																												"Where a.ModuleCode='SE' and a.JobNo='" + request.FilterValue + "'"
 																								);
-																								Result = ResultSE;
 																				}
 																				else if (strModuleCode.Equals("SI"))
 																				{
-																								List<Tracking_ContainerNo_SI> ResultSI = null;
-																								ResultSI = db.Select<Tracking_ContainerNo_SI>(
+																								Result = db.Select<Tracking_ContainerNo_SI>(
 																												"Select c.VesselName,c.VoyageNo,c.FeederVesselName,c.FeederVoyage,a.ModuleCode," +
 																												"a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode," +
 																												"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity,a.ETD,a.ETA," +
@@ -222,15 +215,12 @@ namespace WebApi.ServiceModel.Freight
 																												"From Jmjm1 a Left Join Sebl1 c on c.BlNo=a.AwbBlNo " +
 																												"Where a.ModuleCode='SI'  and a.JobNo='" + request.FilterValue + "'"
 																								);
-																								Result = ResultSI;
 																				}
 																				else if (!string.IsNullOrEmpty(strModuleCode))
 																				{
-																								List<Jmjm1> ResultJmjm = null;
-																								ResultJmjm = db.Select<Jmjm1>(
+																								Result = db.Select<Jmjm1>(
 																												"Select *,(Select Top 1 UomDescription From Rcum1 Where UomCode=Jmjm1.UomCode) AS UomDescription From Jmjm1 Where ModuleCode='" + request.ModuleCode + "' And JobNo='" + request.FilterValue + "' Order By Jmjm1.JobNo Asc,Jmjm1.JobDate Desc"
 																								);
-																								Result = ResultJmjm;
 																				}
 																}
 												}

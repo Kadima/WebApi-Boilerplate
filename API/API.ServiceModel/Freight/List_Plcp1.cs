@@ -24,52 +24,6 @@ namespace WebApi.ServiceModel.Freight
     public class List_Plcp1_Logic
     {
         public IDbConnectionFactory DbConnectionFactory { get; set; }
-								//public List<Plcp1> GetList(List_Plcp1 request)
-								//{
-								//				List<Plcp1> Result = null;
-								//				try
-								//				{
-								//								using (var db = DbConnectionFactory.OpenDbConnection())
-								//								{
-								//												if (!string.IsNullOrEmpty(request.VoucherNo) && !string.IsNullOrEmpty(request.StatusCode))
-								//												{
-								//																Result = db.SelectParam<Plcp1>(
-								//																				q => q.StatusCode != null && q.StatusCode == request.StatusCode && q.VoucherNo.StartsWith(request.VoucherNo)
-								//																);
-								//												}
-								//												else if (!string.IsNullOrEmpty(request.VendorName) && !string.IsNullOrEmpty(request.StatusCode))
-								//												{
-								//																Result = db.SelectParam<Plcp1>(
-								//																				q => q.StatusCode != null && q.StatusCode == request.StatusCode && q.VendorName.StartsWith(request.VendorName)
-								//																);
-								//												}
-								//												else if (!string.IsNullOrEmpty(request.VoucherNo))
-								//												{
-								//																Result = db.SelectParam<Plcp1>(
-								//																				q => q.StatusCode != null && q.StatusCode != "DEL" && q.VoucherNo.StartsWith(request.VoucherNo)
-								//																);
-								//												}
-								//												else if (!string.IsNullOrEmpty(request.VendorName))
-								//												{
-								//																Result = db.SelectParam<Plcp1>(
-								//																				q => q.StatusCode != null && q.StatusCode != "DEL" && q.VendorName.StartsWith(request.VendorName)
-								//																);
-								//												}
-								//												else if (!string.IsNullOrEmpty(request.StatusCode))
-								//												{
-								//																Result = db.SelectParam<Plcp1>(
-								//																				q => q.StatusCode != null && q.StatusCode == request.StatusCode
-								//																);
-								//												}
-								//												else
-								//												{
-								//																Result = db.Where<Plcp1>(r1 => r1.StatusCode != null && r1.StatusCode != "DEL");
-								//												}
-								//								}
-								//				}
-								//				catch { throw; }
-								//				return Result;
-								//}
 								public List<Plcp1> GetSpsList(List_Plcp1 request)
 								{
 												List<Plcp1> Result = null;
