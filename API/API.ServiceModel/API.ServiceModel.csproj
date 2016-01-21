@@ -69,6 +69,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -81,9 +82,11 @@
     <Compile Include="Common\Update_Rcbp1.cs" />
     <Compile Include="ConfigInterface.cs" />
     <Compile Include="Freight\Freight_Login.cs" />
+    <Compile Include="Freight\List_Saus1.cs" />
     <Compile Include="Freight\List_Tracking.cs" />
     <Compile Include="Freight\List_Rcvy1.cs" />
     <Compile Include="Freight\List_Plcp1.cs" />
+    <Compile Include="Freight\Update_Saus1.cs" />
     <Compile Include="Freight\Update_Plcp1.cs" />
     <Compile Include="Freight\Delete_Rcbp3.cs" />
     <Compile Include="Freight\Insert_Rcbp3.cs" />

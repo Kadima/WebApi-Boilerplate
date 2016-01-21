@@ -9,5 +9,6 @@ namespace WebApi.ServiceModel.Tables
     {
         public string UserId { get; set; }
         public string Password { get; set; }
+								public string Memo { get; set; }
     }
 }
