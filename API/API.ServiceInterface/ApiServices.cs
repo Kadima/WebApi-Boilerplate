@@ -274,6 +274,19 @@ namespace WebApi.ServiceInterface
 												catch (Exception ex) { cr(ecr, ex); }
 												return ecr;
 								}
+								public ServiceModel.Freight.List_Smsa1_Logic list_Smsa1_Logic { get; set; }
+								public object Get(ServiceModel.Freight.List_Smsa1 request)
+								{
+												CommonResponse ecr = new CommonResponse();
+												ecr.initial();
+												try
+												{
+																ServiceInterface.Freight.ListService ls = new ServiceInterface.Freight.ListService();
+																ls.List_Smsa1(auth, request, list_Smsa1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+												}
+												catch (Exception ex) { cr(ecr, ex); }
+												return ecr;
+								}
         public ServiceModel.Freight.List_Rcbp3_Logic list_Rcbp3_Logic { get; set; }
         public object Get(ServiceModel.Freight.List_Rcbp3 request)
         {

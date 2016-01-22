@@ -41,6 +41,27 @@ namespace WebApi.ServiceInterface.Freight
                 ecr.meta.message = "Unauthorized";
             }
         }
+								public void List_Smsa1(Auth auth, List_Smsa1 request, List_Smsa1_Logic logic, CommonResponse ecr, string[] token, string uri)
+								{
+												if (auth.AuthResult(token, uri))
+												{
+																if (uri.IndexOf("/count") > 0)
+																{
+																				ecr.data.results = logic.GetCount(request);
+																}
+																else if (uri.IndexOf("/sps") > 0)
+																{
+																				ecr.data.results = logic.GetSpsList(request);
+																}
+																ecr.meta.code = 200;
+																ecr.meta.message = "OK";
+												}
+												else
+												{
+																ecr.meta.code = 401;
+																ecr.meta.message = "Unauthorized";
+												}
+								}
 								public void List_Saus1(Auth auth, List_Saus1 request, List_Saus1_Logic list_Saus1_Logic, CommonResponse ecr, string[] token, string uri)
 								{
 												if (auth.AuthResult(token, uri))
