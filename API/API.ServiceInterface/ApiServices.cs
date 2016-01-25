@@ -255,7 +255,7 @@ namespace WebApi.ServiceInterface
 												ecr.initial();
 												try
 												{
-																ServiceInterface.Freight.ListService ls = new ServiceInterface.Freight.ListService();
+																ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
 																ls.List_Saus1(auth, request, list_Saus1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
 												}
 												catch (Exception ex) { cr(ecr, ex); }
@@ -274,15 +274,15 @@ namespace WebApi.ServiceInterface
 												catch (Exception ex) { cr(ecr, ex); }
 												return ecr;
 								}
-								public ServiceModel.Freight.List_Smsa1_Logic list_Smsa1_Logic { get; set; }
-								public object Get(ServiceModel.Freight.List_Smsa1 request)
+								public ServiceModel.Freight.Smsa_Logic smsa_Logic { get; set; }
+								public object Any(ServiceModel.Freight.Smsa request)
 								{
 												CommonResponse ecr = new CommonResponse();
 												ecr.initial();
 												try
 												{
-																ServiceInterface.Freight.ListService ls = new ServiceInterface.Freight.ListService();
-																ls.List_Smsa1(auth, request, list_Smsa1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+																ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
+																ls.TS_Smsa(auth, request, smsa_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
 												}
 												catch (Exception ex) { cr(ecr, ex); }
 												return ecr;
@@ -294,7 +294,7 @@ namespace WebApi.ServiceInterface
             ecr.initial();
             try
             {
-                ServiceInterface.Freight.ListService ls = new ServiceInterface.Freight.ListService();
+                ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
                 ls.List_Rcbp3(auth, request, list_Rcbp3_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex) { cr(ecr, ex); }
@@ -346,7 +346,7 @@ namespace WebApi.ServiceInterface
             ecr.initial();
             try
             {
-                ServiceInterface.Freight.ListService ls = new ServiceInterface.Freight.ListService();
+                ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
                 ls.List_Plcp1(auth, request, list_Plcp1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex) { cr(ecr, ex); }
@@ -372,7 +372,7 @@ namespace WebApi.ServiceInterface
             ecr.initial();
             try
             {
-                ServiceInterface.Freight.ListService ls = new ServiceInterface.Freight.ListService();
+                ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
                 ls.List_Rcvy1(auth, request, list_Rcvy1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex) { cr(ecr, ex); }
@@ -385,7 +385,7 @@ namespace WebApi.ServiceInterface
             ecr.initial();
             try
             {
-                ServiceInterface.Freight.ListService ls = new ServiceInterface.Freight.ListService();
+                ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
                 ls.List_Tracking(auth, request, list_Tracking_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex) { cr(ecr, ex); }

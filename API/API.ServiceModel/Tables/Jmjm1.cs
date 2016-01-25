@@ -27,9 +27,14 @@ namespace WebApi.ServiceModel.Tables
 								public string VoyageNo { get; set; }
 								public int Pcs { get; set; }
 								public decimal GrossWeight { get; set; }
+								public decimal ChargeWeight { get; set; }
 								public decimal Volume { get; set; }
 								public string AttachmentFlag { get; set; }
 								public string StatusCode { get; set; }
 								public string UomDescription { get; set; }
+								public string AirportDeptCode { get; set; }
+								public string AirportDeptName { get; set; }
+								public string AirportDestCode { get; set; }
+								public string AirportDestName { get; set; }
 				}
 }
