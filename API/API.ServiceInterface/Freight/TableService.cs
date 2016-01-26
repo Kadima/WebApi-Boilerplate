@@ -44,7 +44,28 @@ namespace WebApi.ServiceInterface.Freight
 																ecr.meta.message = "Unauthorized";
 												}
 								}
-        public void List_Rcbp3(Auth auth, List_Rcbp3 request, List_Rcbp3_Logic list_Rcbp3_Logic, CommonResponse ecr, string[] token, string uri)
+								public void TS_Plvi(Auth auth, Plvi request, Plvi_Logic logic, CommonResponse ecr, string[] token, string uri)
+								{
+												if (auth.AuthResult(token, uri))
+												{
+																if (uri.IndexOf("/plvi1/sps") > 0)
+																{
+																				ecr.data.results = logic.GetSpsList(request);
+																}
+																else if (uri.IndexOf("/plvi1/update") > 0)
+																{
+																				ecr.data.results = logic.Update_Plvi1(request);
+																}
+																ecr.meta.code = 200;
+																ecr.meta.message = "OK";
+												}
+												else
+												{
+																ecr.meta.code = 401;
+																ecr.meta.message = "Unauthorized";
+												}
+								}
+								public void List_Rcbp3(Auth auth, List_Rcbp3 request, List_Rcbp3_Logic list_Rcbp3_Logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
@@ -58,24 +79,7 @@ namespace WebApi.ServiceInterface.Freight
                 ecr.meta.message = "Unauthorized";
             }
         }
-        public void List_Plcp1(Auth auth, List_Plcp1 request, List_Plcp1_Logic list_Plcp1_Logic, CommonResponse ecr, string[] token, string uri)
-        {
-            if (auth.AuthResult(token, uri))
-            {
-																if (uri.IndexOf("/sps") > 0)
-																{
-																				ecr.data.results = list_Plcp1_Logic.GetSpsList(request);
-																}
-                ecr.meta.code = 200;
-                ecr.meta.message = "OK";
-            }
-            else
-            {
-                ecr.meta.code = 401;
-                ecr.meta.message = "Unauthorized";
-            }
-        }
-								public void List_Saus1(Auth auth, List_Saus1 request, List_Saus1_Logic list_Saus1_Logic, CommonResponse ecr, string[] token, string uri)
+        public void List_Saus1(Auth auth, List_Saus1 request, List_Saus1_Logic list_Saus1_Logic, CommonResponse ecr, string[] token, string uri)
 								{
 												if (auth.AuthResult(token, uri))
 												{

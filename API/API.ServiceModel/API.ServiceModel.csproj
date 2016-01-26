@@ -82,13 +82,12 @@
     <Compile Include="Common\Update_Rcbp1.cs" />
     <Compile Include="ConfigInterface.cs" />
     <Compile Include="Freight\Freight_Login.cs" />
+    <Compile Include="Freight\Plvi.cs" />
     <Compile Include="Freight\Smsa.cs" />
     <Compile Include="Freight\List_Saus1.cs" />
     <Compile Include="Freight\List_Tracking.cs" />
     <Compile Include="Freight\List_Rcvy1.cs" />
-    <Compile Include="Freight\List_Plcp1.cs" />
     <Compile Include="Freight\Update_Saus1.cs" />
-    <Compile Include="Freight\Update_Plcp1.cs" />
     <Compile Include="Freight\Delete_Rcbp3.cs" />
     <Compile Include="Freight\Insert_Rcbp3.cs" />
     <Compile Include="Freight\Update_Rcbp3.cs" />
@@ -105,7 +104,7 @@
     <Compile Include="Tables\Jmjm3.cs" />
     <Compile Include="Tables\Jmjm4.cs" />
     <Compile Include="Tables\Jmjm6.cs" />
-    <Compile Include="Tables\Plcp1.cs" />
+    <Compile Include="Tables\_Plvi1.cs" />
     <Compile Include="Tables\Rcvy1_sps.cs" />
     <Compile Include="Tables\Rcvy1.cs" />
     <Compile Include="Tables\Jmjt1.cs" />

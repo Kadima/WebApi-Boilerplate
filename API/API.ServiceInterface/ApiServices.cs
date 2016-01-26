@@ -281,8 +281,21 @@ namespace WebApi.ServiceInterface
 												ecr.initial();
 												try
 												{
-																ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
-																ls.TS_Smsa(auth, request, smsa_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+																ServiceInterface.Freight.TableService ts = new ServiceInterface.Freight.TableService();
+																ts.TS_Smsa(auth, request, smsa_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+												}
+												catch (Exception ex) { cr(ecr, ex); }
+												return ecr;
+								}
+								public ServiceModel.Freight.Plvi_Logic plvi_Logic { get; set; }
+								public object Any(ServiceModel.Freight.Plvi request)
+								{
+												CommonResponse ecr = new CommonResponse();
+												ecr.initial();
+												try
+												{
+																ServiceInterface.Freight.TableService ts = new ServiceInterface.Freight.TableService();
+																ts.TS_Plvi(auth, request, plvi_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
 												}
 												catch (Exception ex) { cr(ecr, ex); }
 												return ecr;
@@ -339,32 +352,6 @@ namespace WebApi.ServiceInterface
 												catch (Exception ex) { cr(ecr, ex); }
 												return ecr;
 								}
-        public ServiceModel.Freight.List_Plcp1_Logic list_Plcp1_Logic { get; set; }
-        public object Get(ServiceModel.Freight.List_Plcp1 request)
-        {
-            CommonResponse ecr = new CommonResponse();
-            ecr.initial();
-            try
-            {
-                ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
-                ls.List_Plcp1(auth, request, list_Plcp1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
-            }
-            catch (Exception ex) { cr(ecr, ex); }
-            return ecr;
-        }
-        public ServiceModel.Freight.Update_Plcp1_Logic update_Plcp1_Logic { get; set; }
-        public object Post(ServiceModel.Freight.Update_Plcp1 request)
-        {
-            CommonResponse ecr = new CommonResponse();
-            ecr.initial();
-            try
-            {
-																ServiceInterface.Freight.UpdateService us = new ServiceInterface.Freight.UpdateService();
-																us.UpdatePlcp1(auth, request, update_Plcp1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
-            }
-            catch (Exception ex) { cr(ecr, ex); }
-            return ecr;
-        }
         public ServiceModel.Freight.List_Rcvy1_Logic list_Rcvy1_Logic { get; set; }
         public object Get(ServiceModel.Freight.List_Rcvy1 request)
         {
