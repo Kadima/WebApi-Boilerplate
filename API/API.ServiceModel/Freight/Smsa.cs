@@ -43,9 +43,9 @@ namespace WebApi.ServiceModel.Freight
 												catch { throw; }
 												return Result;
 								}
-								public List<_Smsa1> GetSpsList(Smsa request)
+								public List<Smsa1> GetSpsList(Smsa request)
 								{
-												List<_Smsa1> Result = null;
+												List<Smsa1> Result = null;
 												try
 												{
 																using (var db = DbConnectionFactory.OpenDbConnection())
@@ -63,20 +63,20 @@ namespace WebApi.ServiceModel.Freight
 																				" WHERE s1.TrxNo = s2.TrxNo AND s2.n > " + count;
 																				string strOrderBy = " ORDER BY s2.n ASC";
 																				string strSQL = strSelect + strOrderBy;
-																				Result = db.Select<_Smsa1>(strSQL);
+																				Result = db.Select<Smsa1>(strSQL);
 																}
 												}
 												catch { throw; }
 												return Result;
 								}
-								public List<_Smsa2> Read_Smsa2(Smsa request)
+								public List<Smsa2> Read_Smsa2(Smsa request)
 								{
-												List<_Smsa2> Result = null;
+												List<Smsa2> Result = null;
 												try
 												{
 																using (var db = DbConnectionFactory.OpenDbConnection())
 																{
-																				Result = db.Select<_Smsa2>("Select * From Smsa2 Where TrxNo=" + int.Parse(request.TrxNo));
+																				Result = db.Select<Smsa2>("Select * From Smsa2 Where TrxNo=" + int.Parse(request.TrxNo));
 																}
 												}
 												catch { throw; }

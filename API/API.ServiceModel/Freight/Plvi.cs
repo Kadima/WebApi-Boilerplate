@@ -21,15 +21,15 @@ namespace WebApi.ServiceModel.Freight
 								public string VendorName { get; set; }
 								public string StatusCode { get; set; }
 								public string RecordCount { get; set; }
-								public List<_Plvi1> plvi1s { get; set; }
+								public List<Plvi1> plvi1s { get; set; }
     }
 				public class Plvi_Logic
     {
         public IDbConnectionFactory DbConnectionFactory { get; set; }
 
-								public List<_Plvi1> GetSpsList(Plvi request)
+								public List<Plvi1> GetSpsList(Plvi request)
 								{
-												List<_Plvi1> Result = null;
+												List<Plvi1> Result = null;
 												try
 												{
 																using (var db = DbConnectionFactory.OpenDbConnection())
@@ -51,7 +51,7 @@ namespace WebApi.ServiceModel.Freight
 																				"WHERE p1.TrxNo = p2.TrxNo AND p2.n > " + count;
 																				string strOrderBy = " ORDER BY p2.n ASC";
 																				string strSQL = strSelect + strOrderBy;
-																				Result = db.Select<_Plvi1>(strSQL);
+																				Result = db.Select<Plvi1>(strSQL);
 																}
 												}
 												catch { throw; }
@@ -64,9 +64,9 @@ namespace WebApi.ServiceModel.Freight
 												{
 																using (var db = DbConnectionFactory.OpenDbConnection())
 																{
-																				foreach (_Plvi1 p1 in request.plvi1s)
+																				foreach (Plvi1 p1 in request.plvi1s)
 																				{
-																								db.Update<_Plvi1>(
+																								db.Update<Plvi1>(
 																												new
 																												{
 																																StatusCode = p1.StatusCode

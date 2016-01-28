@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WebApi.ServiceModel.Tables
 {
-				public class _Smsa1
+				public class Smsa1
     {
         public int TrxNo { get; set; }
 								public string SalesmanCode { get; set; }
