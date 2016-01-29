@@ -79,7 +79,7 @@
   <ItemGroup>
     <Compile Include="Common\ListService.cs" />
     <Compile Include="Common\UpdateService.cs" />
-    <Compile Include="Freight\ListService.cs" />
+    <Compile Include="Freight\TableService.cs" />
     <Compile Include="Freight\LoginService.cs" />
     <Compile Include="Freight\InsertService.cs" />
     <Compile Include="Freight\DeleteService.cs" />

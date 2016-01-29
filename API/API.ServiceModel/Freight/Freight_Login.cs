@@ -26,20 +26,16 @@ namespace WebApi.ServiceModel.Freight
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
+																				string strSql = "Select count(*) From Saus1 Where UserId='" + request.UserId + "' And Password=";
 																				if (string.IsNullOrEmpty(request.Md5Stamp))
 																				{
-																								Result = db.Scalar<int>(
-																												"Select count(*) From Saus1 Where UserId={0} And Password={1}",
-																												request.UserId, request.Password
-																								);
+																								strSql = strSql + "'" + request.Password + "'";
 																				}
 																				else
 																				{
-																								Result = db.Scalar<int>(
-																												"Select count(*) From Saus1 Where UserId={0} And Password={1}",
-																												request.UserId, request.Md5Stamp
-																								);
+																								strSql = strSql + "'" + request.Md5Stamp + "'";
 																				}
+																				Result = db.Scalar<int>(strSql);
                 }
             }
             catch { throw; }

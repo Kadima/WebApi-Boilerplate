@@ -35,26 +35,35 @@ namespace WebApi.ServiceModel.Freight
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-                    if (request.FilterName.ToUpper() == "ContainerNo".ToUpper())
-                    {
-                        List<Jmjm1> ResultJmjm1 = db.Select<Jmjm1>(
-                            "Select Jmjm1.JobNo,Jmjm1.JobType,Jmjm1.ModuleCode From Jmjm1 Left Join Jmjt1 on Jmjm1.JobType=Jmjt1.JobType Where charindex('" + request.FilterValue + ",',ISNULL(ContainerNo,'')+',')>0"
-                        );
-                        Result = ResultJmjm1.Count;
-                    }
-																				else if (request.FilterName.ToUpper() == "OrderNo".ToUpper())
+																				string strFilterName = request.FilterName.ToUpper();
+                    if (strFilterName.Equals("OrderNo".ToUpper()))
 																				{
-																								List<Omtx1> ResultOmtx1 = db.Select<Omtx1>(
+																								Result = db.Select<Omtx1>(
 																												"Select Top 1 TrxNo From Omtx1 Where OrderNo='" + request.FilterValue + "'"
-																								);
-																								Result = ResultOmtx1.Count;
-																				}
+																								).Count;
+																				}																				
 																				else
 																				{
-																								List<Jmjm1> ResultJmjm1 = db.Select<Jmjm1>(
-																												"Select Jmjm1.JobNo,Jmjm1.JobType,Jmjm1.ModuleCode From Jmjm1 Left Join Jmjt1 on Jmjm1.JobType=Jmjt1.JobType Where " + request.FilterName + "='" + request.FilterValue + "'"
-																								);
-																								Result = ResultJmjm1.Count;
+																								string strWhere = "";
+																								if (strFilterName.Equals("ContainerNo".ToUpper()))
+																								{
+																												strWhere = "charindex('" + request.FilterValue + ",',ISNULL(ContainerNo,'')+',')>0";
+																								}
+																								else if (strFilterName.Equals("BlNo".ToUpper()))
+																								{
+																												strWhere = "Jmjm1.AwbBlNo='" + request.FilterValue + "' And (Jmjm1.ModuleCode='SE' Or Jmjm1.ModuleCode='SI')";
+																								}
+																								else if (strFilterName.Equals("AwbNo".ToUpper()))
+																								{
+																												strWhere = "Jmjm1.AwbBlNo='" + request.FilterValue + "' And (Jmjm1.ModuleCode='AE' Or Jmjm1.ModuleCode='AI')";
+																								}
+																								else
+																								{
+																												strWhere = request.FilterName + "='" + request.FilterValue + "'";
+																								}
+																								Result = db.Select<Jmjm1>(
+																												"Select Jmjm1.JobNo,Jmjm1.JobType,Jmjm1.ModuleCode From Jmjm1 Left Join Jmjt1 on Jmjm1.JobType=Jmjt1.JobType Where " + strWhere
+																								).Count;
 																				}
                 }
             }
@@ -68,6 +77,7 @@ namespace WebApi.ServiceModel.Freight
 												{
 																using (var db = DbConnectionFactory.OpenDbConnection())
 																{
+																				string strFilterName = request.FilterName.ToUpper();
 																				if (!string.IsNullOrEmpty(request.FilterValue))
 																				{
 																								int count = int.Parse(request.RecordCount);
@@ -75,7 +85,7 @@ namespace WebApi.ServiceModel.Freight
 																								string strSelect = "";
 																								string strOrderBy = "";
 																								string strSQL = "";
-																								if (request.FilterName == "ContainerNo")
+																								if (strFilterName.Equals("ContainerNo".ToUpper()))
 																								{
 																												strWhere = " Where ContainerNo LIKE '%" + request.FilterValue + "%'";
 																												strSelect = "SELECT " +
@@ -87,13 +97,24 @@ namespace WebApi.ServiceModel.Freight
 																												strSQL = strSelect + strOrderBy;
 																												Result = db.Select<Jmjm1>(strSQL);
 																								}
-																								else if (request.FilterName == "OrderNo")
+																								else if (strFilterName.Equals("OrderNo".ToUpper()))
 																								{
 
 																								}
 																								else
 																								{
-																												strWhere = " Where " + request.FilterName + "='" + request.FilterValue + "'";
+																												if (strFilterName.Equals("BlNo".ToUpper()))
+																												{
+																																strWhere = " Where Jmjm1.AwbBlNo='" + request.FilterValue + "' And (Jmjm1.ModuleCode='SE' Or Jmjm1.ModuleCode='SI')";
+																												}
+																												else if (strFilterName.Equals("AwbNo".ToUpper()))
+																												{
+																																strWhere = " Where Jmjm1.AwbBlNo='" + request.FilterValue + "' And (Jmjm1.ModuleCode='AE' Or Jmjm1.ModuleCode='AI')";
+																												}
+																												else
+																												{
+																																strWhere = " Where " + strFilterName + "='" + request.FilterValue + "'";
+																												}
 																												strSelect = "SELECT " +
 																																"j1.*,(Select Top 1 UomDescription From Rcum1 Where UomCode=j1.UomCode) AS UomDescription " +
 																																"FROM Jmjm1 j1, " +
@@ -166,15 +187,14 @@ namespace WebApi.ServiceModel.Freight
 								public object GetList(List_Tracking request)
 								{
 												object Result = null;
-												string strModuleCode = request.ModuleCode;
 												try
 												{
 																using (var db = DbConnectionFactory.OpenDbConnection())
 																{
-																				if (strModuleCode.Equals("AE"))
+																				string strModuleCode = request.ModuleCode.ToUpper();
+																				if (strModuleCode.Equals("AE".ToUpper()))
 																				{
-																								List<Tracking_ContainerNo_AE> ResultAE = null;
-																								ResultAE = db.Select<Tracking_ContainerNo_AE>(
+																								Result = db.Select<Tracking_ContainerNo_AE>(
 																												"select c.FirstToDestCode,c.FirstByAirlineID,c.FirstFlightNo,c.FirstFlightDate," +
 																												"c.SecondToDestCode,c.SecondByAirlineID,c.SecondFlightNo,c.SecondFlightDate," +
 																											"c.ThirdToDestCode,c.ThirdByAirlineID,c.ThirdFlightNo,c.ThirdFlightDate," +
@@ -183,22 +203,18 @@ namespace WebApi.ServiceModel.Freight
 																											"From Jmjm1 a Left Join Aeaw1 c on c.AwbNo=a.AwbBlNo " +
 																												"Where a.ModuleCode='AE' and a.JobNo='" + request.FilterValue + "'"
 																								);
-																								Result = ResultAE;
 																				}
-																				else if (strModuleCode.Equals("AI"))
+																				else if (strModuleCode.Equals("AI".ToUpper()))
 																				{
-																								List<Tracking_ContainerNo_AI> ResultAI = null;
-																								ResultAI = db.Select<Tracking_ContainerNo_AI>(
+																								Result = db.Select<Tracking_ContainerNo_AI>(
 																												"Select a.ModuleCode,a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode,a.OriginName,a.DestName," +
 																												"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity, (Select Top 1 UomDescription From Rcum1 Where UomCode=a.UomCode) AS UomDescription " +
 																												"From Jmjm1 a Left Join Aiaw1 c on c.AwbNo=a.AwbBlNo " +
 																												"Where a.ModuleCode='AI' and a.JobNo='" + request.FilterValue + "'"
 																								);
-																								Result = ResultAI;
 																				}
-																				else if (strModuleCode.Equals("SE"))
+																				else if (strModuleCode.Equals("SE".ToUpper()))
 																				{
-																								List<Tracking_ContainerNo_SE> ResultSE = null;
 																								Result = db.Select<Tracking_ContainerNo_SE>(
 																												"Select c.VesselName, c.VoyageNo, c.FeederVesselName, c.FeederVoyage, a.ModuleCode," +
 																												"a.JobNo, a.JobType, a.CustomerRefNo as ReferenceNo, a.AwbBlNo, a.MawbOBLNo, a.OriginCode, a.DestCode," +
@@ -208,12 +224,10 @@ namespace WebApi.ServiceModel.Freight
 																												"From Jmjm1 a Left Join Sebl1 c on c.BlNo=a.AwbBlNo " +
 																												"Where a.ModuleCode='SE' and a.JobNo='" + request.FilterValue + "'"
 																								);
-																								Result = ResultSE;
 																				}
-																				else if (strModuleCode.Equals("SI"))
+																				else if (strModuleCode.Equals("SI".ToUpper()))
 																				{
-																								List<Tracking_ContainerNo_SI> ResultSI = null;
-																								ResultSI = db.Select<Tracking_ContainerNo_SI>(
+																								Result = db.Select<Tracking_ContainerNo_SI>(
 																												"Select c.VesselName,c.VoyageNo,c.FeederVesselName,c.FeederVoyage,a.ModuleCode," +
 																												"a.JobNo,a.JobType,a.CustomerRefNo as ReferenceNo,a.AwbBlNo,a.MawbOBLNo,a.OriginCode,a.DestCode," +
 																												"a.Pcs,a.GrossWeight,a.Volume,a.CommodityDescription as Commodity,a.ETD,a.ETA," +
@@ -222,15 +236,12 @@ namespace WebApi.ServiceModel.Freight
 																												"From Jmjm1 a Left Join Sebl1 c on c.BlNo=a.AwbBlNo " +
 																												"Where a.ModuleCode='SI'  and a.JobNo='" + request.FilterValue + "'"
 																								);
-																								Result = ResultSI;
 																				}
 																				else if (!string.IsNullOrEmpty(strModuleCode))
 																				{
-																								List<Jmjm1> ResultJmjm = null;
-																								ResultJmjm = db.Select<Jmjm1>(
+																								Result = db.Select<Jmjm1>(
 																												"Select *,(Select Top 1 UomDescription From Rcum1 Where UomCode=Jmjm1.UomCode) AS UomDescription From Jmjm1 Where ModuleCode='" + request.ModuleCode + "' And JobNo='" + request.FilterValue + "' Order By Jmjm1.JobNo Asc,Jmjm1.JobDate Desc"
 																								);
-																								Result = ResultJmjm;
 																				}
 																}
 												}
