@@ -18,17 +18,17 @@ namespace WebApi.ServiceModel.Freight
 				[Route("/freight/tracking/{FilterName}/{FilterValue}", "Get")]
 				[Route("/freight/tracking/{FilterName}/{ModuleCode}/{FilterValue}", "Get")]
 
-    public class List_Tracking : IReturn<CommonResponse>
+    public class Tracking : IReturn<CommonResponse>
     {
         public string FilterName { get; set; }
 								public string FilterValue { get; set; }
 								public string ModuleCode { get; set; }
 								public string RecordCount { get; set; }
     }
-    public class List_Tracking_Logic
+    public class Tracking_Logic
     {
         public IDbConnectionFactory DbConnectionFactory { get; set; }
-        public int GetCount(List_Tracking request)
+        public int GetCount(Tracking request)
         {
             int Result = -1;
             try
@@ -70,7 +70,7 @@ namespace WebApi.ServiceModel.Freight
             catch { throw; }
             return Result;
         }
-								public List<Jmjm1> GetSpsList(List_Tracking request)
+								public List<Jmjm1> GetSpsList(Tracking request)
 								{
 												List<Jmjm1> Result = null;
 												try
@@ -130,7 +130,7 @@ namespace WebApi.ServiceModel.Freight
 												catch { throw; }
 												return Result;
 								}
-								public List<Tracking_OrderNo> GetOmtx1List(List_Tracking request)
+								public List<Tracking_OrderNo> GetOmtx1List(Tracking request)
 								{
 												List<Tracking_OrderNo> Result = null;
 												try
@@ -164,7 +164,7 @@ namespace WebApi.ServiceModel.Freight
 												catch { throw; }
 												return Result;
 								}
-								public List<Omtx3> GetOmtx3List(List_Tracking request)
+								public List<Omtx3> GetOmtx3List(Tracking request)
 								{
 												List<Omtx3> Result = null;
 												try
@@ -184,7 +184,7 @@ namespace WebApi.ServiceModel.Freight
 												catch { throw; }
 												return Result;
 								}
-								public object GetList(List_Tracking request)
+								public object GetList(Tracking request)
 								{
 												object Result = null;
 												try
