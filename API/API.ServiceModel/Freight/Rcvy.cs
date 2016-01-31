@@ -10,18 +10,16 @@ using WebApi.ServiceModel.Tables;
 
 namespace WebApi.ServiceModel.Freight
 {
-    [Route("/freight/rcvy1", "Get")]
-				[Route("/freight/rcvy1/{PortOfDischargeName}", "Get")]
-				[Route("/freight/rcvy1/sps", "Get")]
-    [Route("/freight/rcvy1/sps/{PortOfDischargeName}", "Get")]
-    public class List_Rcvy1 : IReturn<CommonResponse>
+				[Route("/freight/rcvy1/sps", "Get")]				// sps?PortOfDischargeName=
+				[Route("/freight/rcvy1", "Get")]								// ?PortOfDischargeName=
+    public class Rcvy : IReturn<CommonResponse>
     {
         public string PortOfDischargeName { get; set; }
     }
-    public class List_Rcvy1_Logic
+    public class Rcvy_Logic
     {
         public IDbConnectionFactory DbConnectionFactory { get; set; }
-        public HashSet<string> GetList(List_Rcvy1 request)
+        public HashSet<string> Get_Rcvy1_List(Rcvy request)
         {
             HashSet<string> Result = null;
             try
@@ -45,7 +43,7 @@ namespace WebApi.ServiceModel.Freight
             catch { throw; }
             return Result;
         }
-        public List<Rcvy1_sps> GetSpsList(List_Rcvy1 request)
+        public List<Rcvy1_sps> Get_Rcvy1_SpsList(Rcvy request)
         {
             List<Rcvy1_sps> Result = null;
             try
