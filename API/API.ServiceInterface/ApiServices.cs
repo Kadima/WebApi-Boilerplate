@@ -248,28 +248,15 @@ namespace WebApi.ServiceInterface
             catch (Exception ex) { cr(ecr, ex); }
             return ecr;
         }
-								public ServiceModel.Freight.List_Saus1_Logic list_Saus1_Logic { get; set; }
-								public object Get(ServiceModel.Freight.List_Saus1 request)
+								public ServiceModel.Freight.Saus_Logic saus_Logic { get; set; }
+								public object Any(ServiceModel.Freight.Saus request)
 								{
 												CommonResponse ecr = new CommonResponse();
 												ecr.initial();
 												try
 												{
 																ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
-																ls.List_Saus1(auth, request, list_Saus1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
-												}
-												catch (Exception ex) { cr(ecr, ex); }
-												return ecr;
-								}
-								public ServiceModel.Freight.Update_Saus1_Logic update_Saus1_Logic { get; set; }
-								public object Post(ServiceModel.Freight.Update_Saus1 request)
-								{
-												CommonResponse ecr = new CommonResponse();
-												ecr.initial();
-												try
-												{
-																ServiceInterface.Freight.UpdateService us = new ServiceInterface.Freight.UpdateService();
-																us.UpdateSaus1(auth, request, update_Saus1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+																ls.TS_Saus(auth, request, saus_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
 												}
 												catch (Exception ex) { cr(ecr, ex); }
 												return ecr;
@@ -300,80 +287,41 @@ namespace WebApi.ServiceInterface
 												catch (Exception ex) { cr(ecr, ex); }
 												return ecr;
 								}
-        public ServiceModel.Freight.List_Rcbp3_Logic list_Rcbp3_Logic { get; set; }
-        public object Get(ServiceModel.Freight.List_Rcbp3 request)
+        public ServiceModel.Freight.Rcbp_Logic rcbp_Logic { get; set; }
+        public object Any(ServiceModel.Freight.Rcbp request)
         {
             CommonResponse ecr = new CommonResponse();
             ecr.initial();
             try
             {
                 ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
-                ls.List_Rcbp3(auth, request, list_Rcbp3_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+                ls.TS_Rcbp(auth, request, rcbp_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex) { cr(ecr, ex); }
             return ecr;
         }
-        public ServiceModel.Freight.Update_Rcbp3_Logic update_Rcbp3_Logic { get; set; }
-								public object Post(ServiceModel.Freight.Update_Rcbp3 request)
-        {
-            CommonResponse ecr = new CommonResponse();
-            ecr.initial();
-            try
-            {
-																ServiceInterface.Freight.UpdateService us = new ServiceInterface.Freight.UpdateService();
-																us.UpdateRcbp3(auth, request, update_Rcbp3_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
-            }
-            catch (Exception ex) { cr(ecr, ex); }
-            return ecr;
-								}
-								public ServiceModel.Freight.Insert_Rcbp3_Logic insert_Rcbp3_Logic { get; set; }
-								public object Post(ServiceModel.Freight.Insert_Rcbp3 request)
-								{
-												CommonResponse ecr = new CommonResponse();
-												ecr.initial();
-												try
-												{
-																ServiceInterface.Freight.InsertService ins = new ServiceInterface.Freight.InsertService();
-																ins.InsertRcbp3(auth, request, insert_Rcbp3_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
-												}
-												catch (Exception ex) { cr(ecr, ex); }
-												return ecr;
-								}
-								public ServiceModel.Freight.Delete_Rcbp3_Logic delete_Rcbp3_Logic { get; set; }
-								public object Get(ServiceModel.Freight.Delete_Rcbp3 request)
-								{
-												CommonResponse ecr = new CommonResponse();
-												ecr.initial();
-												try
-												{
-																ServiceInterface.Freight.DeleteService ds = new ServiceInterface.Freight.DeleteService();
-																ds.DeleteRcbp3(auth, request, delete_Rcbp3_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
-												}
-												catch (Exception ex) { cr(ecr, ex); }
-												return ecr;
-								}
-        public ServiceModel.Freight.List_Rcvy1_Logic list_Rcvy1_Logic { get; set; }
-        public object Get(ServiceModel.Freight.List_Rcvy1 request)
+        public ServiceModel.Freight.Rcvy_Logic list_Rcvy1_Logic { get; set; }
+        public object Get(ServiceModel.Freight.Rcvy request)
         {
             CommonResponse ecr = new CommonResponse();
             ecr.initial();
             try
             {
                 ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
-                ls.List_Rcvy1(auth, request, list_Rcvy1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+                ls.TS_Rcvy(auth, request, list_Rcvy1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex) { cr(ecr, ex); }
             return ecr;
         }
-        public ServiceModel.Freight.List_Tracking_Logic list_Tracking_Logic { get; set; }
-        public object Get(ServiceModel.Freight.List_Tracking request)
+        public ServiceModel.Freight.Tracking_Logic list_Tracking_Logic { get; set; }
+        public object Get(ServiceModel.Freight.Tracking request)
         {
             CommonResponse ecr = new CommonResponse();
             ecr.initial();
             try
             {
                 ServiceInterface.Freight.TableService ls = new ServiceInterface.Freight.TableService();
-                ls.List_Tracking(auth, request, list_Tracking_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
+                ls.TS_Tracking(auth, request, list_Tracking_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex) { cr(ecr, ex); }
             return ecr;
@@ -389,19 +337,6 @@ namespace WebApi.ServiceInterface
             {
                 ServiceInterface.Common.ListService ls = new ServiceInterface.Common.ListService();
                 ls.List_Rcbp1(auth, request, list_Rcbp1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
-            }
-            catch (Exception ex) { cr(ecr, ex); }
-            return ecr;
-        }
-        public ServiceModel.Common.Update_Rcbp1_Logic update_Rcbp1_Logic { get; set; }
-        public object Post(ServiceModel.Common.Update_Rcbp1 request)
-        {
-            CommonResponse ecr = new CommonResponse();
-            ecr.initial();
-            try
-            {
-                ServiceInterface.Common.UpdateService ls = new ServiceInterface.Common.UpdateService();
-                ls.UpdateRcbp1(auth, request, update_Rcbp1_Logic, ecr, this.Request.Headers.GetValues("Signature"), this.Request.RawUrl);
             }
             catch (Exception ex) { cr(ecr, ex); }
             return ecr;

@@ -50,7 +50,7 @@ namespace WebApi.ServiceInterface.Freight
 												{
 																if (uri.IndexOf("/plvi1/sps") > 0)
 																{
-																				ecr.data.results = logic.GetSpsList(request);
+																				ecr.data.results = logic.Get_Plvi1_SpsList(request);
 																}
 																else if (uri.IndexOf("/plvi1/update") > 0)
 																{
@@ -65,11 +65,42 @@ namespace WebApi.ServiceInterface.Freight
 																ecr.meta.message = "Unauthorized";
 												}
 								}
-								public void List_Rcbp3(Auth auth, List_Rcbp3 request, List_Rcbp3_Logic list_Rcbp3_Logic, CommonResponse ecr, string[] token, string uri)
+								public void TS_Rcbp(Auth auth, Rcbp request, Rcbp_Logic logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
-																ecr.data.results = list_Rcbp3_Logic.GetList(request);
+																if (uri.IndexOf("/rcbp1/sps") > 0)
+																{
+																				ecr.data.results = logic.Get_Rcbp1_SpsList(request);
+																}
+																else if (uri.IndexOf("/rcbp1/read") > 0)
+																{
+																				ecr.data.results = logic.Get_Rcbp1_List(request);
+																}
+																else if (uri.IndexOf("/rcbp1/update") > 0)
+																{
+																				ecr.data.results = logic.Update_Rcbp1(request);
+																}
+																else if (uri.IndexOf("/rcbp3/read") > 0)
+																{
+																				ecr.data.results = logic.Read_Rcbp3_List(request);
+																}
+																else if (uri.IndexOf("/rcbp3/create") > 0)
+																{
+																				ecr.data.results = logic.Insert_Rcbp3(request);
+																}
+																else if (uri.IndexOf("/rcbp3/update") > 0)
+																{
+																				ecr.data.results = logic.Update_Rcbp3(request);
+																}
+																else if (uri.IndexOf("/rcbp3/delete") > 0)
+																{
+																				ecr.data.results = logic.Delete_Rcbp3(request);
+																}
+																else
+																{
+																				ecr.data.results = -1;
+																}
                 ecr.meta.code = 200;
                 ecr.meta.message = "OK";
             }
@@ -79,13 +110,17 @@ namespace WebApi.ServiceInterface.Freight
                 ecr.meta.message = "Unauthorized";
             }
         }
-        public void List_Saus1(Auth auth, List_Saus1 request, List_Saus1_Logic list_Saus1_Logic, CommonResponse ecr, string[] token, string uri)
+        public void TS_Saus(Auth auth, Saus request, Saus_Logic logic, CommonResponse ecr, string[] token, string uri)
 								{
 												if (auth.AuthResult(token, uri))
 												{
 																if (uri.IndexOf("/memo") > 0)
 																{
-																				ecr.data.results = list_Saus1_Logic.GetMemo(request);
+																				ecr.data.results = logic.GetMemo(request);
+																}
+																else if (uri.IndexOf("/update/memo") > 0)
+																{
+																				ecr.data.results = logic.Update_Memo(request);
 																}
 																ecr.meta.code = 200;
 																ecr.meta.message = "OK";
@@ -96,14 +131,17 @@ namespace WebApi.ServiceInterface.Freight
 																ecr.meta.message = "Unauthorized";
 												}
 								}
-        public void List_Rcvy1(Auth auth, List_Rcvy1 request, List_Rcvy1_Logic list_Rcvy1_Logic, CommonResponse ecr, string[] token, string uri)
+        public void TS_Rcvy(Auth auth, Rcvy request, Rcvy_Logic logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
-                if(uri.IndexOf("/sps") > 0){
-                    ecr.data.results = list_Rcvy1_Logic.GetSpsList(request);
-                }else{                    
-                    ecr.data.results = list_Rcvy1_Logic.GetList(request);
+                if(uri.IndexOf("/rcvy1/sps") > 0)
+																{
+                    ecr.data.results = logic.Get_Rcvy1_SpsList(request);
+                }
+																else if(uri.IndexOf("/rcvy1") > 0)
+																{
+                    ecr.data.results = logic.Get_Rcvy1_List(request);
                 }
                 ecr.meta.code = 200;
                 ecr.meta.message = "OK";
@@ -114,25 +152,25 @@ namespace WebApi.ServiceInterface.Freight
                 ecr.meta.message = "Unauthorized";
             }
         }
-        public void List_Tracking(Auth auth, List_Tracking request, List_Tracking_Logic list_Tracking_Logic, CommonResponse ecr, string[] token, string uri)
+        public void TS_Tracking(Auth auth, Tracking request, Tracking_Logic logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
             {
 																if (uri.IndexOf("/tracking/OrderNo") > 0)
 																{
-																				ecr.data.results = list_Tracking_Logic.GetOmtx1List(request);
+																				ecr.data.results = logic.GetOmtx1List(request);
 																}
 																else if (uri.IndexOf("/tracking/sps") > 0)
 																{
-																				ecr.data.results = list_Tracking_Logic.GetSpsList(request);
+																				ecr.data.results = logic.GetSpsList(request);
 																}
 																else if (uri.IndexOf("/tracking/count") > 0)
 																{
-																				ecr.data.results = list_Tracking_Logic.GetCount(request);
+																				ecr.data.results = logic.GetCount(request);
 																}																
 																else
 																{
-																				ecr.data.results = list_Tracking_Logic.GetList(request);
+																				ecr.data.results = logic.GetList(request);
 																}
                 ecr.meta.code = 200;
                 ecr.meta.message = "OK";

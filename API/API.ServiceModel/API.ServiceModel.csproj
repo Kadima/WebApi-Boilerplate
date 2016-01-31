@@ -79,18 +79,13 @@
   <ItemGroup>
     <Compile Include="Auth.cs" />
     <Compile Include="CommonResponse.cs" />
-    <Compile Include="Common\Update_Rcbp1.cs" />
     <Compile Include="ConfigInterface.cs" />
     <Compile Include="Freight\Freight_Login.cs" />
     <Compile Include="Freight\Plvi.cs" />
     <Compile Include="Freight\Smsa.cs" />
-    <Compile Include="Freight\List_Saus1.cs" />
-    <Compile Include="Freight\List_Tracking.cs" />
-    <Compile Include="Freight\List_Rcvy1.cs" />
-    <Compile Include="Freight\Update_Saus1.cs" />
-    <Compile Include="Freight\Delete_Rcbp3.cs" />
-    <Compile Include="Freight\Insert_Rcbp3.cs" />
-    <Compile Include="Freight\Update_Rcbp3.cs" />
+    <Compile Include="Freight\Saus.cs" />
+    <Compile Include="Freight\Tracking.cs" />
+    <Compile Include="Freight\Rcvy.cs" />
     <Compile Include="Tables\Imgi2.cs" />
     <Compile Include="Tables\Imgi1.cs" />
     <Compile Include="Tables\Imgr1.cs" />
@@ -128,7 +123,7 @@
     <Compile Include="Wms\List_Imgi1.cs" />
     <Compile Include="Wms\List_Imsn1.cs" />
     <Compile Include="Wms\List_Imgi2.cs" />
-    <Compile Include="Freight\List_Rcbp3.cs" />
+    <Compile Include="Freight\Rcbp.cs" />
     <Compile Include="Wms\List_Imgr2.cs" />
     <Compile Include="Wms\List_Impr1.cs" />
     <Compile Include="Wms\List_Imgr1.cs" />
