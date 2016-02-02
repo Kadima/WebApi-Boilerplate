@@ -1,21 +1,21 @@
 ﻿using Funq;
-using ServiceStack;
-using ServiceStack.Configuration;
-using ServiceStack.ServiceHost;
-using ServiceStack.MiniProfiler;
-using ServiceStack.MiniProfiler.Data;
-using ServiceStack.OrmLite;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using WebApi.ServiceInterface;
 using System.Reflection;
-using ServiceStack.WebHost.Endpoints;
-using ServiceStack.ServiceInterface.Cors;
+using ServiceStack;
+using ServiceStack.OrmLite;
 using ServiceStack.Common.Web;
 using ServiceStack.Api.Swagger;
+using ServiceStack.ServiceHost;
+using ServiceStack.MiniProfiler;
+using ServiceStack.Configuration;
+using ServiceStack.MiniProfiler.Data;
+using ServiceStack.WebHost.Endpoints;
+using ServiceStack.ServiceInterface.Cors;
+using WebApi.ServiceInterface;
 
 namespace WebApi
 {
@@ -36,25 +36,16 @@ namespace WebApi
                 DebugMode = false,
                 UseCustomMetadataTemplates = true,
                 DefaultContentType = ContentType.Json,
-                //GlobalResponseHeaders = {
-                //    { "Access-Control-Allow-Origin", "*" },
-                //    { "Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS" },
-                //    { "Access-Control-Allow-Headers", "Content-Type, Signature" }
-                //},
+																GlobalResponseHeaders = {
+                    { "Access-Control-Allow-Origin", "*" },
+                    { "Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS" },
+                    { "Access-Control-Allow-Headers", "Content-Type, Signature" }
+                },
                 EnableFeatures = Feature.Json | Feature.Metadata
                 //ServiceStackHandlerFactoryPath  = "api"                
             });
-            CorsFeature cf = new CorsFeature(allowedOrigins: "*", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature", allowCredentials: false);
-            this.Plugins.Add(cf);
-            //this.PreRequestFilters.Add((httpReq, httpRes) =>
-            //{
-            //    //Handles Request and closes Responses after emitting global HTTP Headers
-            //    if (httpReq.HttpMethod == "OPTIONS")
-            //    {
-            //        //httpReq.Headers["Access-Control-Allow-Origin"] = "*";
-            //        httpRes.EndRequest();
-            //    }
-            //});
+            //CorsFeature cf = new CorsFeature(allowedOrigins: "*", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature", allowCredentials: false);
+            //this.Plugins.Add(cf);
             this.Plugins.Add(new SwaggerFeature());
             //DB
             string strConnectionString = GetConnectionString();
@@ -95,7 +86,7 @@ namespace WebApi
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.Rcvy_Logic>();
             container.RegisterAutoWired<WebApi.ServiceModel.Freight.Tracking_Logic>();
             //Common
-            container.RegisterAutoWired<WebApi.ServiceModel.Common.List_Rcbp1_Logic>();
+												container.RegisterAutoWired<WebApi.ServiceModel.Common.List_Rcbp1_Logic>();
         }
         #region DES
         //private string DESKey = "F322186F";

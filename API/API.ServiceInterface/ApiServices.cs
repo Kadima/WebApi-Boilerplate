@@ -1,23 +1,27 @@
-﻿using ServiceStack;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.IO;
+using System.Web;
+using System.Net;
 using System.Linq;
 using System.Text;
+using System.Collections.Generic;
+using ServiceStack;
+using ServiceStack.Common.Web;
+using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
 using WebApi.ServiceModel;
 using WebApi.ServiceModel.Wms;
 using WebApi.ServiceModel.Tms;
-using WebApi.ServiceModel.Freight;
+using WebApi.ServiceModel.Utils;
 using WebApi.ServiceModel.Common;
+using WebApi.ServiceModel.Freight;
 using WebApi.ServiceInterface.Wms;
 using WebApi.ServiceInterface.Tms;
-using System.IO;
-using ServiceStack.Common.Web;
-using ServiceStack.ServiceInterface.Cors;
+using File = System.IO.File;
+using System.Reflection;
 
 namespace WebApi.ServiceInterface
 {
-    //[EnableCors(allowedOrigins: "*", allowedMethods: "GET, POST, PUT, DELETE, OPTIONS", allowedHeaders: "Content-Type, Signature")]
     public class ApiServices : Service
     {        
         public Auth auth { get; set; }
@@ -341,6 +345,26 @@ namespace WebApi.ServiceInterface
             catch (Exception ex) { cr(ecr, ex); }
             return ecr;
         }
+								public object Post(Uploading request)
+								{
+												//string[] segments = base.Request.QueryString.GetValues(0);
+												//string strFileName = segments[0];
+												//string strPath = HttpContext.Current.Request.PhysicalApplicationPath;
+												//string resultFile = Path.Combine(@"C:\inetpub\wwwroot\WebAPI\attach", strFileName);
+												//if (File.Exists(resultFile))
+												//{
+												//				File.Delete(resultFile);
+												//}
+												//using (FileStream file = File.Create(resultFile))
+												//{
+												//				byte[] buffer = new byte[request.RequestStream.Length];
+												//				request.RequestStream.Read(buffer, 0, buffer.Length);
+												//				file.Write(buffer, 0, buffer.Length);
+												//				file.Flush();
+												//				file.Close();
+												//}
+												return new HttpResult(System.Net.HttpStatusCode.OK);
+								}
 								#endregion
         private CommonResponse cr(CommonResponse ecr, Exception ex)
         {
