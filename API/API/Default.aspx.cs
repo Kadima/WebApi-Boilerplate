@@ -34,14 +34,14 @@ namespace WebApi
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string path = "/TmsWS/bin";
+												string path = "/WebApi/bin";
             string param = "";
             string method = "GET";
-            string strServerURL = "www.sysfreight.net:8081/TmsWS";
+            string strServerURL = "www.sysfreight.net:8081/WebApi";
             string[] urls = new string[3];
-            urls[0] = strServerURL + "/TmsWS.dll";
-            urls[1] = strServerURL + "/TmsWS.ServiceInterface.dll";
-            urls[2] = strServerURL + "/TmsWS.ServiceModel.dll";
+												urls[0] = strServerURL + "/WebApi.dll";
+												urls[1] = strServerURL + "/WebApi.ServiceInterface.dll";
+												urls[2] = strServerURL + "/WebApi.ServiceModel.dll";
             foreach(string url in urls){
                 var result = HttpUtility.Request(method, url, path, param, onComplete);
             }

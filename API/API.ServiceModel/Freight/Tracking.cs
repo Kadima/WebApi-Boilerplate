@@ -17,7 +17,6 @@ namespace WebApi.ServiceModel.Freight
 				[Route("/freight/tracking", "Get")]
 				[Route("/freight/tracking/{FilterName}/{FilterValue}", "Get")]
 				[Route("/freight/tracking/{FilterName}/{ModuleCode}/{FilterValue}", "Get")]
-
     public class Tracking : IReturn<CommonResponse>
     {
         public string FilterName { get; set; }

@@ -86,6 +86,7 @@
     <Compile Include="Freight\Saus.cs" />
     <Compile Include="Freight\Tracking.cs" />
     <Compile Include="Freight\Rcvy.cs" />
+    <Compile Include="Freight\ViewPDF.cs" />
     <Compile Include="Tables\Imgi2.cs" />
     <Compile Include="Tables\Imgi1.cs" />
     <Compile Include="Tables\Imgr1.cs" />
@@ -120,6 +121,8 @@
     <Compile Include="Tms\List_JobNo.cs" />
     <Compile Include="Tms\Tms_Login.cs" />
     <Compile Include="Tms\Update_Done.cs" />
+    <Compile Include="Utils\Download.cs" />
+    <Compile Include="Utils\Uploading.cs" />
     <Compile Include="Wms\List_Imgi1.cs" />
     <Compile Include="Wms\List_Imsn1.cs" />
     <Compile Include="Wms\List_Imgi2.cs" />
