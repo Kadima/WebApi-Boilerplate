@@ -10,10 +10,7 @@ using WebApi.ServiceModel.Tables;
 
 namespace WebApi.ServiceModel.Freight
 {
-				[Route("/freight/plvi1/sps/{RecordCount}/{StatusCode}/VendorName/{VendorName}", "Get")]
-				[Route("/freight/plvi1/sps/{RecordCount}/{StatusCode}/VoucherNo/{VoucherNo}", "Get")]
-				[Route("/freight/plvi1/sps/{RecordCount}/{StatusCode}", "Get")]
-				[Route("/freight/plvi1/sps", "Get")]
+				[Route("/freight/plvi1/sps", "Get")] // sps?RecordCount= & StatusCode= & (VoucherNo= || VendorName=)
 				[Route("/freight/plvi1/update", "Post")]
 				public class Plvi : IReturn<CommonResponse>
 				{
@@ -26,8 +23,7 @@ namespace WebApi.ServiceModel.Freight
 				public class Plvi_Logic
     {
         public IDbConnectionFactory DbConnectionFactory { get; set; }
-
-								public List<Plvi1> GetSpsList(Plvi request)
+								public List<Plvi1> Get_Plvi1_SpsList(Plvi request)
 								{
 												List<Plvi1> Result = null;
 												try

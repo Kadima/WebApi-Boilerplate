@@ -8,7 +8,8 @@ using ServiceStack.OrmLite;
 
 namespace WebApi.ServiceModel.Tms
 {
-    [Route("/event/action/list/login", "Post")]
+				[Route("/event/action/list/login", "Post")]
+				[Route("/event/login/check", "Get")]
     public class Tms_Login : IReturn<CommonResponse>
     {
         public string PhoneNumber { get; set; }
@@ -27,11 +28,11 @@ namespace WebApi.ServiceModel.Tms
                 {
                     if (request.PhoneNumber != null && request.PhoneNumber.Length > 0)
                     {
-                        Result = db.Scalar<int>("Select count(*) From Jmjm4 Where PhoneNumber={0}", request.PhoneNumber);
+                        Result = db.Scalar<int>("Select count(*) From Jmjm4 Where PhoneNumber='" + request.PhoneNumber + "'");
                     }
                     else if (request.CustomerCode != null && request.CustomerCode.Length > 0 && request.JobNo != null && request.JobNo.Length > 0)
                     {
-                        Result = db.Scalar<int>("Select count(*) From Jmjm6 Left Join Jmjm1 on Jmjm6.JobNo=Jmjm1.JobNo Where Jmjm1.StatusCode<>'DEL' and Jmjm1.JobNo={0}", request.JobNo);
+                        Result = db.Scalar<int>("Select count(*) From Jmjm6 Left Join Jmjm1 on Jmjm6.JobNo=Jmjm1.JobNo Where Jmjm1.StatusCode<>'DEL' and Jmjm1.JobNo='" + request.JobNo + "'");
                     }                    
                 }
             }

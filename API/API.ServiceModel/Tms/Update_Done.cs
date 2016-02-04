@@ -38,6 +38,10 @@ namespace WebApi.ServiceModel.Tms
                     {
                         Result = db.Update<Jmjm4>(new { DoneFlag = request.DoneFlag, Remark = request.Remark, ContainerNo = request.ContainerNo }, p => p.JobNo == request.JobNo && p.JobLineItemNo == request.JobLineItemNo && p.LineItemNo == request.LineItemNo);  
                     }
+																				if (Result > 0)
+																				{
+																								InsertContainerNo(request);
+																				}
                 }
             }
             catch { throw; } 

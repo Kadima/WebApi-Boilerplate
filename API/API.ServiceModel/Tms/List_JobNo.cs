@@ -17,21 +17,39 @@ namespace WebApi.ServiceModel.Tms
     }
     public class List_JobNo_Logic
     {
+								private class JobJCT
+								{
+												public string JobNo { get; set; }
+												public string ContainerCounts { get; set; }
+												public string TaskDoneCounts { get; set; }
+								}
         public IDbConnectionFactory DbConnectionFactory { get; set; }
-        public HashSet<string> GetList(List_JobNo request)
+        public object GetList(List_JobNo request)
         {
-            HashSet<string> Result = null;
+												List<JobJCT> JobList = new List<JobJCT>();
+												HashSet<string> hsResult = null;
             try
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-                    Result = db.HashSet<string>(
-                        "Select Distinct JobNo From Jmjm4 Where IsNull(Jmjm4.DoneFlag,'')<>'Y' And Jmjm4.PhoneNumber={0}",request.PhoneNumber
+																				hsResult = db.HashSet<string>(
+                        "Select Distinct JobNo From Jmjm4 Where IsNull(Jmjm4.DoneFlag,'')<>'' And Jmjm4.PhoneNumber='" + request.PhoneNumber + "'"
                     );
+																				if (hsResult.Count > 0)
+																				{
+																								foreach (string strJobNo in hsResult)
+																								{
+																												JobJCT j = new JobJCT();
+																												j.JobNo = strJobNo;
+																												j.ContainerCounts = GetCount(request.PhoneNumber, strJobNo).ToString();
+																												j.TaskDoneCounts = GetDoneCount(request.PhoneNumber, strJobNo).ToString();
+																												JobList.Add(j);
+																								}
+																				}
                 }
             }
             catch { throw; }
-            return Result;
+												return JobList;
         }
         public long GetCount(string strPhoneNumber, string strJobNo)
         {
@@ -40,11 +58,24 @@ namespace WebApi.ServiceModel.Tms
             {
                 using (var db = DbConnectionFactory.OpenDbConnection())
                 {
-                    Result = db.Count<Jmjm4>(j4 => j4.PhoneNumber == strPhoneNumber && j4.JobNo == strJobNo && (j4.DoneFlag != "Y" || j4.DoneFlag == null));
+                    Result = db.Count<Jmjm4>(j4 => j4.PhoneNumber == strPhoneNumber && j4.JobNo == strJobNo && j4.DoneFlag != null);
                 }
             }
             catch { throw; }
             return Result;
         }
+								public long GetDoneCount(string strPhoneNumber, string strJobNo)
+								{
+												long Result = -1;
+												try
+												{
+																using (var db = DbConnectionFactory.OpenDbConnection())
+																{
+																				Result = db.Count<Jmjm4>(j4 => j4.PhoneNumber == strPhoneNumber && j4.JobNo == strJobNo && j4.DoneFlag == "Y");
+																}
+												}
+												catch { throw; }
+												return Result;
+								}
     }
 }

@@ -9,11 +9,6 @@ namespace WebApi.ServiceInterface.Tms
 {
     public class ListService
     {
-        private class job
-        {
-            public string JobNo { get; set; }
-            public string ContainerCounts { get; set; }
-        }
         public void ListContainer(Auth auth, List_Container request, List_Container_Logic list_Container_Logic, CommonResponse ecr, string[] token, string uri)
         {
             if (auth.AuthResult(token, uri))
@@ -62,26 +57,9 @@ namespace WebApi.ServiceInterface.Tms
         {
             if (auth.AuthResult(token, uri))
             {
-                List<job> JobList = new List<job>();
-                HashSet<string> hsResult = list_JobNo_Logic.GetList(request);
-                if (hsResult.Count > 0)
-                {
-                    ecr.meta.code = 200;
-                    ecr.meta.message = "OK";
-                }
-                else
-                {
-                    ecr.meta.code = 612;
-                    ecr.meta.message = "The specified resource does not exist";
-                }
-                foreach (string strJobNo in hsResult)
-                {
-                    job j = new job();
-                    j.JobNo = strJobNo;
-                    j.ContainerCounts = list_JobNo_Logic.GetCount(request.PhoneNumber, strJobNo).ToString();
-                    JobList.Add(j);                    
-                }
-                ecr.data.results = JobList;
+																ecr.data.results = list_JobNo_Logic.GetList(request);
+																ecr.meta.code = 200;
+																ecr.meta.message = "OK";																
             }
             else
             {
