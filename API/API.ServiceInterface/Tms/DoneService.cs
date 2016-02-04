@@ -13,17 +13,9 @@ namespace WebApi.ServiceInterface.Tms
         {
             if (auth.AuthResult(token, uri))
             {
-                if (eventdoneLogic.UpdateDone(request) > 0)
-                {
-                    eventdoneLogic.InsertContainerNo(request);
-                    ecr.meta.code = 200;
-                    ecr.meta.message = "OK";
-                }
-                else
-                {
-                    ecr.meta.code = 612;
-                    ecr.meta.message = "The specified resource does not exist";
-                }
+																ecr.data.results = eventdoneLogic.UpdateDone(request);
+                ecr.meta.code = 200;
+                ecr.meta.message = "OK";
             }
             else
             {

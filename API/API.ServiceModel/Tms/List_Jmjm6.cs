@@ -9,7 +9,7 @@ using ServiceStack.OrmLite;
 
 namespace WebApi.ServiceModel.Tms
 {
-    [Route("/event/action/list/jmjm6/{jobno}", "Get")]
+				[Route("/event/action/list/jmjm6/{jobno}", "Get")]
     public class List_Jmjm6 : IReturn<CommonResponse>
     {
         public string JobNo { get; set; }
